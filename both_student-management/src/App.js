@@ -37,7 +37,7 @@ class App extends Component {
               <Route exact path='/TeacherHome' component={TeacherHome}/>     
               <Route exact path='/ListOfStudents' component={ListOfStudents} />
               <Route exact path='/AddNewStudent' component={AddNewStudent} />
-              <Route exact path="/ListOfStudents/EditStudent" component={EditStudent}/>
+              <Route exact path="/ListOfStudents/EditStudent" component={EditStudent }/>
               <Route exact path="/ListOfStudents/DeleteStudent" component={DeleteStudent}/>
             </Switch>
             <MediaQuery query="(min-device-width:1224px)"></MediaQuery>

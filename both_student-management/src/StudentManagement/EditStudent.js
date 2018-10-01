@@ -2,7 +2,7 @@ import React from 'react';
 import InputBox from './InputBox';
 import Button from './Button';
 import '../App.css';
-import ListOfStudents from './ListOfStudents';
+//import ListOfStudents from './ListOfStudents';
 
 class EditStudent extends React.Component
 {
@@ -11,9 +11,15 @@ class EditStudent extends React.Component
         super(props)
         this.state={
                 studentData:{},
-                    studentID:"",FirstName:" ",LastName:" ",Class:" ",
-                    Division:" ",AddressLine1:" ",
-                    AddressLine2:" ",pincode:"",firstNameValid:false,
+                    studentID:'',
+                    FirstName: '',
+                    LastName: '',
+                    Class:'',
+                    Division:'',
+                    AddressLine1: '',
+                    AddressLine2: '',
+                    pincode: '',
+                    firstNameValid:false,
                     lastNameValid:false,
                     divisionValid: false,
                     addressLine1Valid:false,
@@ -33,7 +39,13 @@ class EditStudent extends React.Component
         //this.studentToUpdate=this.studentToUpdate.bind(this)
     }
 
+    componentWillMount(){
+        
+    }
+
     componentDidMount(){
+        const {FirstName} = this.props
+        this.setState({FirstName})
         //  this.studentToUpdate()
     }
    /*studentToUpdate(student){
@@ -111,30 +123,7 @@ class EditStudent extends React.Component
             this.setState({Errpincode:"*PIN Code is required"});
         }
     }
-    render()
-    {
-        <ListOfStudents updateStudentIDinEditStudent={this.studentToUpdate}></ListOfStudents>
-        return(
-            <div className="col-75 ">
-            <div className="center">
-            <h4> Student To be edit:</h4>  <h2>{this.state.studentData.studentID} </h2>
-            </div>
-                <div className="center">
-                    <form>
-                        <InputBox inputType="text"  placeholder="First Name"    handleChanges={this.handleFirstNameChange}    Name="firstName"   error={this.state.ErrfirstName} /><br></br> 
-                        <InputBox inputType="text"  placeholder="Last Name"     handleChanges={this.handleLastNameChange}     Name="lastName"    error={this.state.ErrlastName} /><br></br>           
-                        <InputBox inputType="text"  placeholder="Class"         handleChanges={this.handleClassChange}        Name="class"       error={this.state.ErrClass} /><br></br>           
-                        <InputBox inputType="text"  placeholder="Division"      handleChanges={this.handleDivisionChange}     Name="division"    error={this.state.Errdivision} /><br></br>           
-                        <InputBox inputType="text"  placeholder="Address Line1" handleChanges={this.handleAddressLine1Change} Name="addressLine1"error={this.state.ErraddressLine1} /><br></br>           
-                        <InputBox inputType="text"  placeholder="Address Line2" handleChanges={this.handleAddressLine2Change} Name="addressLine2"                                   /><br></br>           
-                        <InputBox inputType="text"  placeholder="PIN code"      handleChanges={this.handlePincodeChange}      Name="pincode"     error={this.state.Errpincode} /><br></br>           
-                        <Button buttonName="Edit Student" handleOnClick={this.handleEditStudent} error={this.state.ErrButton}/>
-                        <Button buttonName="Back" handleOnClick={this.handleBack}/>
-                    </form>
-                </div>
-            </div>
-        );
-    }
+ 
     handleEditStudent()
     {
         if(this.state.FirstName!=="" && this.state.LastName!==""&&this.state.Class!=="" && this.state.Division!==""&&this.state.AddressLine1!=="" && this.state.pincode!=="")
@@ -150,6 +139,31 @@ class EditStudent extends React.Component
     handleBack()
     {
         this.props.history.push('/ListOfStudents');
+    }
+
+    render()
+    {
+       // <ListOfStudents updateStudentIDinEditStudent={this.studentToUpdate}></ListOfStudents>
+        return(
+            <div className="col-75 ">
+            <div className="center">
+            <h4> Student To be edit:</h4>  <h2>{this.props.studentToUpdate.firstName} </h2>
+            </div>
+                <div className="center">
+                    <form>
+                        <InputBox inputType="text"  placeholder="First Name" value={this.props.FirstName}   handleChanges={this.handleFirstNameChange}    Name="firstName"   error={this.state.ErrfirstName} /><br></br> 
+                        <InputBox inputType="text"  placeholder="Last Name"     handleChanges={this.handleLastNameChange}     Name="lastName"    error={this.state.ErrlastName} /><br></br>           
+                        <InputBox inputType="text"  placeholder="Class"         handleChanges={this.handleClassChange}        Name="class"       error={this.state.ErrClass} /><br></br>           
+                        <InputBox inputType="text"  placeholder="Division"      handleChanges={this.handleDivisionChange}     Name="division"    error={this.state.Errdivision} /><br></br>           
+                        <InputBox inputType="text"  placeholder="Address Line1" handleChanges={this.handleAddressLine1Change} Name="addressLine1"error={this.state.ErraddressLine1} /><br></br>           
+                        <InputBox inputType="text"  placeholder="Address Line2" handleChanges={this.handleAddressLine2Change} Name="addressLine2"                                   /><br></br>           
+                        <InputBox inputType="text"  placeholder="PIN code"      handleChanges={this.handlePincodeChange}      Name="pincode"     error={this.state.Errpincode} /><br></br>           
+                        <Button buttonName="Edit Student" handleOnClick={this.handleEditStudent} error={this.state.ErrButton}/>
+                        <Button buttonName="Back" handleOnClick={this.handleBack}/>
+                    </form>
+                </div>
+            </div>
+        );
     }
 }
 export default EditStudent;

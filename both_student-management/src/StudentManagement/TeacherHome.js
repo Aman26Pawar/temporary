@@ -8,7 +8,11 @@ class TeacherHome extends React.Component
     constructor(props)
     {
       super(props);
-      this.state={Teachername:""};
+      this.state={
+          Teachername:"",
+          teacherData:[]
+          
+    };
       this.handleListOfStudents=this.handleListOfStudents.bind(this);
       this.handleNewStudent=this.handleNewStudent.bind(this);
       this.handleLogOut=this.handleLogOut.bind(this);
@@ -16,9 +20,9 @@ class TeacherHome extends React.Component
     render()
     {
         return(
-            <div className="col-75 ">
+            <div id ="TeacherHome" className="col-75 ">
                 <div className="right">  
-                    <h2> Name:.... {this.props.Teachername} </h2>
+                    <h2> Name:.... {this.props.teacherData} </h2>
                 </div>
                 <div className="center">
                     <Home/>
@@ -33,15 +37,9 @@ class TeacherHome extends React.Component
     }
     handleListOfStudents()
     {  
-       
+        console.log("ListOfStudents hit....")
         this.props.history.push("/ListOfStudents")
-    //    axios.get("http://localhost:8080/ListOfStudents").then(res => 
-    //    {
-    //           alert("Received Successful response from server!");
-    //     }, err => {
-    //      alert("Server rejected response with: " + err);
-    //    });
-        
+       
     }
     handleNewStudent()
     {

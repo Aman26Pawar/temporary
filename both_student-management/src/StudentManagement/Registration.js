@@ -14,9 +14,8 @@ export default class Registration extends Component{
             fields:{},
             formErrors:{FirstName:'',LastName:'',userNm:'',passWord:''},
             formValid:false,
-            data:[],
-            
-        
+            data:[],            
+            validRegistration: false
         }
     }
   
@@ -31,6 +30,7 @@ export default class Registration extends Component{
         "&userName="+uname+"&password="+pw)
        ){
            alert("New teacher added...")
+           this.props.history.push('/')
        }
     }
     render(){

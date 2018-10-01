@@ -1,9 +1,14 @@
 import React from 'react';
-import EditLink from './EditLink';
-import EditStudent from './EditStudent'
+//import EditLink from './EditLink';
+//import EditStudent from './EditStudent'
 import { Redirect } from 'react-router-dom';
 import './Button.css'
 import Button from './Button';
+import EditStudent from './EditStudent';
+import Axios from 'axios';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css' 
+
 
 //import axios from 'axios'
 
@@ -17,7 +22,8 @@ class ListOfStudents extends React.Component
             students:[],
             editClicked: false,
             studentToEdit:{},
-            referrer:null
+            referrer:null,
+            studentData:{}
         }
       this.updateStudentIDinEditStudent=this.updateStudentIDinEditStudent.bind(this)
     }
@@ -25,23 +31,20 @@ class ListOfStudents extends React.Component
     {
         this.props.history.push('/TeacherHome');
     }
-
-
     componentDidMount(){
         this.loadStudentsFromServer()
     }
 
     loadStudentsFromServer(){
-
-      fetch('http://localhost:8080/getAllStudent')
+        fetch('http://localhost:8080/getAllStudent')
         .then(res => res.json())
         .then((rows=[]) => {
           this.setState({ students: rows })
-          console.log(this.state.students)
         })
 
+
        /*let studentsList=[];
-        axios.get('http://localhost:8080/getAllStudent') 
+        Axios.get('http://localhost:8080/getAllStudent') 
         .then(function (response) {
             studentsList=response.data
             console.log(studentsList)
@@ -55,43 +58,68 @@ class ListOfStudents extends React.Component
 
 
 handleEditClicked(student){
+    console.log("edit clicked....")
     const id = student.studentID;
-    fetch('http://localhost:8080/viewStudentByID?id='+id,{method:'GET'})
-    .then(res=>res.json())
+    Axios.get('http://localhost:8080/viewStudentByID?id='+id)
+    .then(res=>res)
     .then((dataById={})=>{
         this.setState({studentToEdit:dataById})
         this.setState({referrer:'/ListOfStudents/EditStudent'})
-        this.updateStudentIDinEditStudent(this.state.studentToEdit)
-        console.log(this.state.studentToEdit.studentID)
+        this.setState({studentData:this.state.studentToEdit.data});
+        //this.updateStudentIDinEditStudent(this.state.studentToEdit)
     })
 }
 updateStudentIDinEditStudent(student){
     console.log(student)
 
 }
-handleDeleteClicked(student){
+handleDeleteClicked(student)
+{  
     const id = student.studentID;
-    console.log("delete clicked")
-    if(
-        fetch('http://localhost:8080/deleteStudent?id='+id, {method:'POST',mode:'no-cors'})
-    ){
-        alert("want to delete " + id + " ????")
-    }
+    confirmAlert({
+    title: 'Confirm to Delete',
+    message: 'Are you sure to do this.',
+    buttons: [
+    {
+        label: 'Yes',
+        onClick: () => fetch('http://localhost:8080/deleteStudent?id='+id, {method:'POST',mode:'no-cors'})
+                               .then(res=>this.loadStudentsFromServer())
+              },
+            {
+                label: 'No'
+            }
+            ]
+    })
 }
+
    
 
     render()
     {
         const {referrer} = this.state;
-        if (referrer) return <Redirect to={referrer} />;
-        <EditStudent studentData={this.state.studentToEdit}></EditStudent>
-        
+    if (referrer) return (<Redirect to={referrer} />,
+                 <EditStudent studentToUpdate={this.state.studentData}/>);
+       
         return( 
-            <div>
+           
+        <div>
         <table className="center">
         <tbody>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>TeacherID</th>
+            <th>class</th>
+            <th>division</th>
+            <th>line1</th>
+            <th>line2</th>
+            <th>pinCode</th>
+            <th>operations</th>
+        </tr>
+        
         {
-            this.state.students.map((student,index)=>{
+                    this.state.students.map((student,index)=>{
               return (
                  <tr key={index}>
                    <td>{student.studentID}</td>
@@ -112,10 +140,9 @@ handleDeleteClicked(student){
                                             })    
          }
          </tbody>
-        </table> 
-           
+        </table>  
         <Button buttonName="Back" handleOnClick={this.handleBack}/>
-            </div>
+     </div>
         );
     }
 }
@@ -137,6 +164,7 @@ export default ListOfStudents;
 
 
 /*
+<EditStudent studentToUpdate={this.state.studentToEdit.data}/>);
 <table className="center">
                      <tbody>           
                          <tr>
