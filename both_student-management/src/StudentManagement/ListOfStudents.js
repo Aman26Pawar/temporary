@@ -1,6 +1,5 @@
 import React from 'react';
 //import EditLink from './EditLink';
-//import EditStudent from './EditStudent'
 import { Redirect } from 'react-router-dom';
 import './Button.css'
 import Button from './Button';
@@ -8,6 +7,8 @@ import EditStudent from './EditStudent';
 import Axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css' 
+import '../App.css';
+//import TeacherHome from './TeacherHome';
 
 
 //import axios from 'axios'
@@ -23,16 +24,19 @@ class ListOfStudents extends React.Component
             editClicked: false,
             studentToEdit:{},
             referrer:null,
+            referrer1:null,
             studentData:{}
         }
       this.updateStudentIDinEditStudent=this.updateStudentIDinEditStudent.bind(this)
     }
     handleBack()
     {
-        this.props.history.push('/TeacherHome');
+        this.setState({referrer1:'/TeacherHome'})
+        //this.props.history.push('/TeacherHome');
     }
     componentDidMount(){
         this.loadStudentsFromServer()
+        
     }
 
     loadStudentsFromServer(){
@@ -41,8 +45,6 @@ class ListOfStudents extends React.Component
         .then((rows=[]) => {
           this.setState({ students: rows })
         })
-
-
        /*let studentsList=[];
         Axios.get('http://localhost:8080/getAllStudent') 
         .then(function (response) {
@@ -64,8 +66,10 @@ handleEditClicked(student){
     .then(res=>res)
     .then((dataById={})=>{
         this.setState({studentToEdit:dataById})
-        this.setState({referrer:'/ListOfStudents/EditStudent'})
         this.setState({studentData:this.state.studentToEdit.data});
+        this.setState({referrer:'/ListOfStudents/EditStudent'})
+        console.log(this.state.studentToEdit)
+        console.log(this.state.studentData)
         //this.updateStudentIDinEditStudent(this.state.studentToEdit)
     })
 }
@@ -82,12 +86,12 @@ handleDeleteClicked(student)
     buttons: [
     {
         label: 'Yes',
-        onClick: () => fetch('http://localhost:8080/deleteStudent?id='+id, {method:'POST',mode:'no-cors'})
-                               .then(res=>this.loadStudentsFromServer())
-              },
-            {
-                label: 'No'
-            }
+        onClick: () => fetch('http://localhost:8080/deleteStudent?id='+id, {method:'POST'})
+        .then(res=>this.loadStudentsFromServer())
+    },
+    {
+        label: 'No'
+    }
             ]
     })
 }
@@ -97,12 +101,13 @@ handleDeleteClicked(student)
     render()
     {
         const {referrer} = this.state;
+        const{referrer1}=this.state;
     if (referrer) return (<Redirect to={referrer} />,
                  <EditStudent studentToUpdate={this.state.studentData}/>);
-       
-        return( 
-           
-        <div>
+       if(referrer1) return (<Redirect to={referrer1}/>)
+        return(  
+        <div className="StudentList">
+            {/*<TeacherHome></TeacherHome>*/}
         <table className="center">
         <tbody>
         <tr>
@@ -110,7 +115,7 @@ handleDeleteClicked(student)
             <th>First Name</th>
             <th>Last Name</th>
             <th>TeacherID</th>
-            <th>class</th>
+            <th>class</th>  
             <th>division</th>
             <th>line1</th>
             <th>line2</th>
@@ -132,8 +137,8 @@ handleDeleteClicked(student)
                     <td>{student.line2}</td>
                     <td>{student.pin}</td>
                     <td>
-                    <button className="btn btn-primary btn-xs" onClick={() => this.handleEditClicked(student)}>Edit</button>
-                    <button className="btn btn-primary btn-xs" onClick={() => this.handleDeleteClicked(student)}>Delete</button>
+                    <button className="btn-btn-edit  btn-xs" onClick={() => this.handleEditClicked(student)}>Edit</button>
+                    <button className="btn-btn-danger btn-sm" onClick={() => this.handleDeleteClicked(student)}>Delete</button>
                     </td>
                 </tr>
                      ) 

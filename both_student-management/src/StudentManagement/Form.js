@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormErrors } from './FormErrors';
+import { FormErrors } from './ErrorHandling/FormErrors';
 
 
 class Form extends Component {

@@ -1,6 +1,8 @@
 import React from 'react';
 import InputBox from './InputBox';
 import Button from './Button';
+import { Redirect } from 'react-router-dom';
+//import { createBrowserHistory } from 'history';
 import '../App.css';
 
 class AddNewStudent extends React.Component
@@ -16,7 +18,8 @@ class AddNewStudent extends React.Component
                     addressLine1Valid:false,
                     pincodeValid:false,
                     ErrfirstName:" ",ErrlastName:" ",ErrClass:"",Errdivision:" ",
-                    ErraddressLine1:" ",Errpincode:"",ErrButton:""
+                    ErraddressLine1:" ",Errpincode:"",ErrButton:"",
+                    referrer:null
                     }
         this.handleAddStudent=this.handleAddStudent.bind(this);
         this.handleFirstNameChange=this.handleFirstNameChange.bind(this);
@@ -101,6 +104,8 @@ class AddNewStudent extends React.Component
     }
     render()
     {
+        const {referrer} = this.state;
+        if (referrer) return (<Redirect to={referrer} />)
         return(
             <div className="col-75 ">
                 <div className="center">
@@ -121,6 +126,7 @@ class AddNewStudent extends React.Component
     }
     handleAddStudent()
     {
+        const tid = this.props.teacherId
         const fname = this.state.FirstName;
         const lname = this.state.LastName;
         const classs = this.state.Class;
@@ -133,16 +139,14 @@ class AddNewStudent extends React.Component
         {
            if(
                fetch('http://localhost:8080/addStudent?firstName='+fname+
-            '&lastName='+lname+'&TeacherID='+1+'&classs='+classs+'&division='+division+'&line1='+line1 +
+            '&lastName='+lname+'&TeacherID='+tid+'&classs='+classs+'&division='+division+'&line1='+line1 +
             '&line2='+ line2+'&pinCode='+pin,
-            {method:'GET',mode:"no-cors"})
-            .then(resp => resp)
-            .then(findResp => this.setState({data:findResp}))
+            {method:'POST'})
            ){
             alert("Added "+ this.state.FirstName);
-            this.props.history.push('/ListOfStudents');   
-           }
-            
+            //this.props.createBrowserHistory.push('/ListOfStudents');   
+            this.setState({referrer:'/ListOfStudents'})
+            } 
         }
         else
         {
@@ -151,7 +155,8 @@ class AddNewStudent extends React.Component
     }
     handleBack()
     {
-        this.props.history.push('/TeacherHome');
+        //this.props.createBrowserHistory.push('/TeacherHome');
+        this.setState({referrer:'/TeacherHome'})
     }
 }
 export default AddNewStudent;

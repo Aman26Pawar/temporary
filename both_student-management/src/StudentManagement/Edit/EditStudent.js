@@ -1,8 +1,7 @@
 import React from 'react';
-import InputBox from './InputBox';
-import Button from './Button';
-
-import ListOfStudents from './ListOfStudents';
+import InputBox from '../InputBox';
+import Button from '../Components/Button.js';
+import ListOfStudents from '../ListOfStudents';
 //import {connect} from 'react-redux'
 //import ListOfStudents from './ListOfStudents';
 
