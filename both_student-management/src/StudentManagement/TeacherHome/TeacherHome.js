@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from "../Button";
+import Button from "../Buttons/Button.js";
 import Home from "./Home";
-import AddNewStudent from '../AddNewStudent'
+import AddNewStudent from '../AddUser/AddNewStudent'
 import Login from '../Login/LoginPage';
 import { Redirect } from 'react-router-dom';
-import ListOfStudents from '../ListOfStudents';
+import ListOfStudents from '../ListDisplay/ListOfStudents.js';
 //import { Auth } from "aws-amplify";
 //import axios from 'axios';
 

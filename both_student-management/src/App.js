@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Routers from './StudentManagement/Routers.js'
+import Routers from './StudentManagement/Routing/Routers.js'
 import AppHeader  from './StudentManagement/headers/AppHeader.js'
 import AppFooter  from './StudentManagement/footers/AppFooter.js'
 import {createStore} from 'redux'
