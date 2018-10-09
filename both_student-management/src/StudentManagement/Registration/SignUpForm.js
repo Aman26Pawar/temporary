@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {FormErrors} from '../ErrorHandling/FormErrors.js'
 import { Redirect } from 'react-router-dom';
-import Button from '../Components/Button.js';
+import Button from '../Buttons/Button.js';
 //import { browserHistory } from 'react-router';
 //import './Form.css';
 class SignUpForm extends Component {

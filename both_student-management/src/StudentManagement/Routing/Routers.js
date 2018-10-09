@@ -7,7 +7,7 @@ import ListOfStudents from '../ListDisplay/ListOfStudents.js'
 import AddNewStudent from '../AddUser/AddNewStudent.js'
 import EditStudent from '../Edit/EditStudent.js'
 import DeleteStudent from '../DeleteStudent.js'
-import MediaQuery from 'react-responsive'
+
 
 export default class Routers extends React.Component
 {
@@ -25,7 +25,6 @@ export default class Routers extends React.Component
                 <Route exact path="/ListOfStudents/EditStudent" component={EditStudent }/>
                 <Route exact path="/ListOfStudents/DeleteStudent" component={DeleteStudent}/>
                 </Switch>
-                <MediaQuery query="(min-device-width:1224px)"></MediaQuery>
             </div>
             </Router>
         )

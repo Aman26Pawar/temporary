@@ -27,37 +27,21 @@ class ListOfStudents extends React.Component
             referrer1:null,
             studentData:{}
         }
-      this.updateStudentIDinEditStudent=this.updateStudentIDinEditStudent.bind(this)
     }
-    handleBack()
-    {
-        this.setState({referrer1:'/TeacherHome'})
-        //this.props.history.push('/TeacherHome');
-    }
-    componentDidMount(){
-        this.loadStudentsFromServer()
-        
-    }
+  
+componentDidMount()
+{
+    this.loadStudentsFromServer()
+}
 
-    loadStudentsFromServer(){
-        fetch('http://localhost:8080/getAllStudent')
-        .then(res => res.json())
-        .then((rows=[]) => {
-          this.setState({ students: rows })
-        })
-       /*let studentsList=[];
-        Axios.get('http://localhost:8080/getAllStudent') 
-        .then(function (response) {
-            studentsList=response.data
-            console.log(studentsList)
-            response.data.forEach(element => {
-                console.log(element);
-            });
-        });   */    
-    }
-
-
-
+loadStudentsFromServer()
+{
+    fetch('http://localhost:8080/getAllStudent')
+    .then(res => res.json())
+    .then((rows=[]) => {
+        this.setState({ students: rows })
+    })
+}
 
 handleEditClicked(student){
     console.log("edit clicked....")
@@ -70,13 +54,9 @@ handleEditClicked(student){
         this.setState({referrer:'/ListOfStudents/EditStudent'})
         console.log(this.state.studentToEdit)
         console.log(this.state.studentData)
-        //this.updateStudentIDinEditStudent(this.state.studentToEdit)
     })
 }
-updateStudentIDinEditStudent(student){
-    console.log(student)
 
-}
 handleDeleteClicked(student)
 {  
     const id = student.studentID;
@@ -96,15 +76,21 @@ handleDeleteClicked(student)
     })
 }
 
-   
+handleBack()
+{
+    this.setState({referrer1:'/TeacherHome'})
+}
 
-    render()
+render()
+{
+    const {referrer} = this.state;
+    const{referrer1}=this.state;
+    if (referrer)
     {
-        const {referrer} = this.state;
-        const{referrer1}=this.state;
-    if (referrer) return (<Redirect to={referrer} />,
-                 <EditStudent studentToUpdate={this.state.studentData}/>);
-       if(referrer1) return (<Redirect to={referrer1}/>)
+        return (<Redirect to={referrer} />,
+            <EditStudent studentToUpdate={this.state.studentData}/>);
+    }
+    if(referrer1) return (<Redirect to={referrer1}/>)
         return(  
         <div className="StudentList">
             {/*<TeacherHome></TeacherHome>*/}
@@ -122,7 +108,6 @@ handleDeleteClicked(student)
             <th>pinCode</th>
             <th>operations</th>
         </tr>
-        
         {
                     this.state.students.map((student,index)=>{
               return (
@@ -143,98 +128,12 @@ handleDeleteClicked(student)
                 </tr>
                      ) 
                                             })    
-         }
+         } 
          </tbody>
-        </table>  
+         </table> 
         <Button buttonName="Back" handleOnClick={this.handleBack}/>
-     </div>
+    </div>
         );
     }
 }
 export default ListOfStudents;  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-<EditStudent studentToUpdate={this.state.studentToEdit.data}/>);
-<table className="center">
-                     <tbody>           
-                         <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>TeacherID</th>
-                            <th>class</th>
-                            <th>division</th>
-                            <th>line1</th>
-                            <th>line2</th>
-                            <th>pinCode</th>
-                        </tr>
-                     </tbody>
-                     </table> 
- */
-
-
-
-
-
-
-    // constructor(props)
-    // {
-    //     super(props);
-    //     this.handleList = this.handleList.bind(this);
-    // }
-    // handleList()
-    // {
-    //     var names = [['1','Venu','v c', '9','D','MP,Null stop','pune','780405'],
-    //                 ['2','Veag','Kta', '9','A','hp,Swargate','pune','780404'],
-    //                 ['3','ragha','Sha', '9','B','LK,Karve road','pune','780801']];
-    //     return (
-    //         <div >
-                
-    //         <table>
-    //         {
-                
-    //             names.map(function(name, index) 
-    //             {
-    //                 return <div> 
-    //                         <tr>
-    //                             <td>{name[0]}</td>
-    //                             <td>{name[1]}</td>
-    //                             <td>{name[2]}</td>
-    //                             <td>{name[3]}</td>
-    //                             <td>{name[4]}</td>
-    //                             <td>{name[5]}</td>
-    //                             <td>{name[6]}</td>
-    //                             <td>{name[7]}</td>
-    //                             <td><EditLink></EditLink></td>
-    //                             <td><DeleteLink></DeleteLink></td>
-    //                         </tr>
-    //                       </div>
-    //             })
-    //         }
-    //         </table>
-    //     </div>
-    //     )
-    // }
-    // render() {
-    // return (
-    //         <div>
-    //             <center> {this.handleList()} </center>
-    //         </div>
-    //         );
-    //         }
-
-

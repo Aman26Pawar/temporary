@@ -1,11 +1,12 @@
 import React from 'react';
 import axios from 'axios'
+import {connect} from 'react-redux'
 import TeacherHome from '../TeacherHome/TeacherHome';
-import {createStore} from 'redux'
+//import {createStore} from 'redux'
 //import { Auth } from "aws-amplify";
 //import { Cookies } from 'react-cookie'
 
-export default class Login extends React.Component{
+class Login extends React.Component{
     constructor(props)
     {
       super(props);
@@ -24,30 +25,6 @@ export default class Login extends React.Component{
       this.storeCredentials = this.storeCredentials.bind(this)
     }
 
-    
-   /* async componentDidMount() {
-        try {
-          if (await Auth.currentSession()) {
-            this.userHasAuthenticated(true);
-          }
-        }
-        catch(e) {
-          if (e !== 'No current user') {
-            alert(e);
-          }
-        }
-        this.setState({ isAuthenticating: false });
-      }
-    
-      userHasAuthenticated = authenticated => {
-        this.setState({ isAuthenticated: authenticated });
-      }*/
-    
-
-    /*componentDidUpdate(key){
-        localStorage.setItem(key,JSON.stringify(this.teacherData.firstName))
-        console.log(key)
-    }*/
 onLoginClick()
 {
     const uname = document.getElementById("userName").value
@@ -65,7 +42,6 @@ checkLoginCredentials(fetchedData,uname,pw)
     {
         if(fetchedData[i].userName===uname && fetchedData[i].password===pw)
         {
-            
             this.setState({loggedData:fetchedData[i]})
             this.storeCredentials(this.state.loggedData)
             break;
@@ -78,25 +54,20 @@ checkLoginCredentials(fetchedData,uname,pw)
 
 storeCredentials(dataTobeStore)
 {
-    //console.log(dataTobeStore)
     if(dataTobeStore!==undefined){
-        localStorage.setItem(this.state.validUser, dataTobeStore)
-        console.log(localStorage.getItem(this.state.validUser))
+        const loggedInData = dataTobeStore
+        console.log(loggedInData)
+        this.props.dispatch({
+            type:'ADD_LOGIN',
+            loggedInData})
         this.setState({validCredentials:!this.state.validCredentials})
-        console.log(this.state.validCredentials)
-        //console.log(dataTobeStore)
     }
-    
 }
 
-
     render()
-    {
-        const LoginStore = createStore(this.storeCredentials)
-        //console.log('getState is '+LoginStore)
-      
+    {      
         if(this.state.validCredentials === true){
-            return <TeacherHome teacherData={this.state.loggedData}/>
+            return <TeacherHome />
         }
         return(
         <div id="LoginData" className="LoginPage">
@@ -114,3 +85,5 @@ storeCredentials(dataTobeStore)
         )
     }
 }
+
+export default connect() (Login)
