@@ -5,5 +5,5 @@ import com.example.demo.Teacher;
 
 public interface TeacherRepository extends PagingAndSortingRepository<Teacher, Integer>
 {
-	
+	//Teacher findByUsername(String username);
 }

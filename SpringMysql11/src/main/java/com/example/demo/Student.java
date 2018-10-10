@@ -1,24 +1,14 @@
 package com.example.demo;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedStoredProcedureQueries;
-import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.Table;
-import javax.persistence.Version;
-
-import net.minidev.json.annotate.JsonIgnore;
-
-
-
 
 @Entity
-@Table(name="studentinfo")
+@Table(name="student_info")
 /*@NamedStoredProcedureQueries({
 	@NamedStoredProcedureQuery(name="sp_GetStudent", procedureName="sp_GetStudent", resultClasses=Student.class)
 })*/
@@ -27,96 +17,117 @@ public class Student implements Serializable
 	@Id
 	@GeneratedValue
 	@Column(name="StudentID")
-	private int StudentID;
+	private Integer studentId;
+	
 	@Column(name="firstName")
 	private String firstName;
+	
 	@Column(name="lastName")
 	private String lastName;
-	@Column(name="TeacherID")
-	private int TeacherID;
+	
+	@Column(name="teacherId")
+	private Integer teacherId;
+	
 	@Column(name="Standard")
-	private String classs;
+	private String studentClass;
+	
 	@Column(name="Division")
-	private String divv;
+    private String division;
+
 	@Column(name="Line1")
-	private String line1;
+    private String addressLine1;
+	
 	@Column(name="Line2")
-	private String line2;
+    private String addressLine2;
+	
 	@Column(name="PinCode")
-	private int pin;
+    private String pincode;
 	
-	//private @Version @JsonIgnore int version;
-	//private @ManyToOne Teacher teacher;
-	
-	
-	public int getStudentID() {
-		return StudentID;
-	}
-	public void setStudentID(int studentID) {
-		StudentID = studentID;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public int getTeacherID() {
-		return TeacherID;
-	}
-	public void setTeacherID(int teacherID) {
-		TeacherID = teacherID;
-	}
-	public String getClasss() {
-		return classs;
-	}
-	public void setClasss(String classs) {
-		this.classs = classs;
-	}
-	public String getDivv() {
-		return divv;
-	}
-	public void setDivv(String divv) {
-		this.divv = divv;
-	}
-	public String getLine1() {
-		return line1;
-	}
-	public void setLine1(String line1) {
-		this.line1 = line1;
-	}
-	public String getLine2() {
-		return line2;
-	}
-	public void setLine2(String line2) {
-		this.line2 = line2;
-	}
-	public int getPin() {
-		return pin;
-	}
-	public void setPin(int pin) {
-		this.pin = pin;
-	}
-	
-	public Student() 
+	public Integer getstudentId() {
+        return studentId;
+    }
+
+    public void setstudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getStudentClass() {
+        return studentClass;
+    }
+
+    public void setStudentClass(String studentClass) {
+        this.studentClass = studentClass;
+    }
+
+    public String getDivision() {
+        return division;
+    }
+
+    public void setDivision(String division) {
+        this.division = division;
+    }
+
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public String getPINcode() {
+        return pincode;
+    }
+
+    public void setPINcode(String pincode) {
+        this.pincode = pincode;
+    }
+    public Student() 
 	{
 		
 	}
-	public Student(String firstName2, String lastName2, int teacherID2, String classs2, String division, String line12,
-			String line22)
+	public Student(String firstName, String lastName, int teacherId, String studentclass, String division, 
+			String address1,String address2,String pincode )
 	{
-		this.firstName=firstName2;
-		this.lastName=lastName2;
-		this.TeacherID=teacherID2;
-		this.classs =classs2;
-		this.divv=division;
-		this.line1=line12;
-		this.line2=line22;
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.teacherId=teacherId;
+		this.studentClass =studentclass;
+		this.division=division;
+		this.addressLine1=address1;
+		this.addressLine2=address2;
+		this.pincode=pincode;
 	}
 }

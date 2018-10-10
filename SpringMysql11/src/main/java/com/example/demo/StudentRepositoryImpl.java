@@ -1,11 +1,7 @@
 package com.example.demo;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.StoredProcedureQuery;
-
 import com.example.demo.repositoriess.StudentRepositoryCustom;
 
 public class StudentRepositoryImpl implements StudentRepositoryCustom 

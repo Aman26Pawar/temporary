@@ -139,7 +139,7 @@ class EditStudent extends React.Component
         {
            if(
                fetch('http://localhost:8080/updateStudent?id='+stuID+'&firstName='+fname+
-            '&lastName='+lname+'&TeacherID='+tID+'&classs='+classs+'&division='+division+'&line1='+line1 +
+            '&lastName='+lname+'&TeacherID='+1+'&classs='+classs+'&division='+division+'&line1='+line1 +
             '&line2='+ line2+'&pinCode='+pin,
             {method:'POST',mode:"no-cors"})
             .then(resp => resp)

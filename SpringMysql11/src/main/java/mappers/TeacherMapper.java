@@ -2,9 +2,7 @@ package mappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import org.springframework.jdbc.core.RowMapper;
-
 import com.example.demo.Teacher;
 
 public class TeacherMapper implements RowMapper<Teacher>
