@@ -86,7 +86,8 @@ class InputBox extends React.Component
                 <div >
                     
                     <div>
-                        <input type={this.props.inputType} placeholder= {this.props.placeholder} onBlur={this.handleOnChange} name={this.props.Name}  required/>
+                        <input id={this.props.id} type={this.props.inputType} placeholder= {this.props.placeholder} 
+                        onBlur={this.handleOnChange} name={this.props.Name} defaultValue={this.props.value} required/>
                    </div>
                    <div> <label className="label"> {this.props.error} </label></div>
                 </div>

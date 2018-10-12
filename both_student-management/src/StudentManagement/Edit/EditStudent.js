@@ -124,22 +124,18 @@ class EditStudent extends React.Component
  
     handleEditStudent()
     {
-        const studentForm = document.getSelection['studentEditForm'];
-        console.log(studentForm)
-        const stuID =this.props.studentToUpdate.studentID
-        const tID = this.props.studentToUpdate.teacherID
-        const fname = this.state.FirstName; 
-        const lname = this.state.LastName;
-        const classs = this.state.Class;
-        const division= this.state.Division;
-        const line1 = this.state.AddressLine1;
-        const line2 = this.state.AddressLine2;
-        const pin = this.state.pincode;
-        if(this.state.FirstName!=="" && this.state.LastName!==""&&this.state.Class!=="" && this.state.Division!==""&&this.state.AddressLine1!=="" && this.state.pincode!=="")
-        {
+        const id=this.props.studentToUpdate.studentId;
+        const tid=this.props.studentToUpdate.teacherId;
+        const fname = document.getElementById("fname").value;
+        const lname = document.getElementById("lname").value;
+        const classs = document.getElementById("class").value;
+        const division= document.getElementById("div").value;
+        const line1 = document.getElementById("address1").value;
+        const line2 = document.getElementById("address2").value;
+        const pin = document.getElementById("pin").value;
            if(
-               fetch('http://localhost:8080/updateStudent?id='+stuID+'&firstName='+fname+
-            '&lastName='+lname+'&TeacherID='+tID+'&classs='+classs+'&division='+division+'&line1='+line1 +
+               fetch('http://localhost:8080/updateStudent?id='+id+'&firstName='+fname+
+            '&lastName='+lname+'&TeacherId='+tid+'&classs='+classs+'&division='+division+'&line1='+line1 +
             '&line2='+ line2+'&pinCode='+pin,
             {method:'POST',mode:"no-cors"})
             .then(resp => resp)
@@ -154,12 +150,6 @@ class EditStudent extends React.Component
             alert("Updated "+ this.state.FirstName);
             this.setState({editComplete:!this.state.editComplete})  
            }
-            
-        }
-        else
-        {
-            this.setState({ErrButton:"Please fill the above fields"})
-        }
     }
 
     handleBack()
@@ -187,21 +177,22 @@ class EditStudent extends React.Component
                 <div className="center">
                 <form>
 
-                    <InputBox inputType="text"  placeholder="First Name"    value={this.props.studentToUpdate.firstName}    
-                              handleChanges={this.handleFirstNameChange}    Name="firstName"   error={this.state.ErrfirstName} /><br></br> 
-                    <InputBox inputType="text"  placeholder="Last Name"     value={this.props.studentToUpdate.lastName}     
-                              handleChanges={this.handleLastNameChange}     Name="lastName"    error={this.state.ErrlastName} /><br></br>           
-                    <InputBox inputType="text"  placeholder="Class"         value={this.props.studentToUpdate.classs}        
-                              handleChanges={this.handleClassChange}        Name="class"       error={this.state.ErrClass} /><br></br>           
-                    <InputBox inputType="text"  placeholder="Division"      value={this.props.studentToUpdate.divv}     
-                              handleChanges={this.handleDivisionChange}     Name="division"    error={this.state.Errdivision} /><br></br>           
-                    <InputBox inputType="text"  placeholder="Address Line1" value={this.props.studentToUpdate.line1} 
-                              handleChanges={this.handleAddressLine1Change} Name="addressLine1"error={this.state.ErraddressLine1} /><br></br>           
-                    <InputBox inputType="text"  placeholder="Address Line2" value={this.props.studentToUpdate.line2} 
-                              handleChanges={this.handleAddressLine2Change} Name="addressLine2"                                   /><br></br>           
-                    <InputBox inputType="text"  placeholder="PIN code"      value={this.props.studentToUpdate.pinCode}      
-                              handleChanges={this.handlePincodeChange}      Name="pincode"     error={this.state.Errpincode} /><br></br>           
-                    <Button buttonName="Edit Student"  handleOnClick={this.handleEditStudent} error={this.state.ErrButton}/>
+                    <InputBox id="fname" inputType="text"  placeholder="First Name"    value={this.props.studentToUpdate.firstName}    
+                              handleChanges={this.handleFirstNameChange}    Name="firstName"   error={this.state.ErrfirstName} /><br/>
+                    
+                    <InputBox id="lname" inputType="text"  placeholder="Last Name"     value={this.props.studentToUpdate.lastName}     
+                              handleChanges={this.handleLastNameChange}     Name="lastName"    error={this.state.ErrlastName} /><br/>          
+                    <InputBox id="class" inputType="text"  placeholder="Class"         value={this.props.studentToUpdate.studentClass}        
+                              handleChanges={this.handleClassChange}        Name="class"       error={this.state.ErrClass} /><br/>         
+                    <InputBox id="div" inputType="text"  placeholder="Division"      value={this.props.studentToUpdate.division}     
+                              handleChanges={this.handleDivisionChange}     Name="division"    error={this.state.Errdivision} /><br/>          
+                    <InputBox id="address1" inputType="text"  placeholder="Address Line1" value={this.props.studentToUpdate.addressLine1} 
+                              handleChanges={this.handleAddressLine1Change} Name="addressLine1"error={this.state.ErraddressLine1} /><br/>
+                    <InputBox id="address2" inputType="text"  placeholder="Address Line2" value={this.props.studentToUpdate.addressLine2} 
+                              handleChanges={this.handleAddressLine2Change} Name="addressLine2"                               /><br/>
+                    <InputBox id="pin" inputType="text"  placeholder="PIN code"      value={this.props.studentToUpdate.pincode}      
+                              handleChanges={this.handlePincodeChange}      Name="pincode"     error={this.state.Errpincode} /><br/>           
+                    <Button buttonName="Edit Student" handleOnClick={this.handleEditStudent} error={this.state.ErrButton}/>
                     <Button buttonName="Back" handleOnClick={this.handleBack}/>
                 </form>   
                 </div>
