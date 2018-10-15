@@ -1,16 +1,17 @@
 import React from 'react';
-import InputBox from '../InputBox';
 import Button from '../Buttons/Button.js';
 import { Redirect } from 'react-router-dom';
-//import { createBrowserHistory } from 'history';
-//import '../App.css';
+import {FormErrors} from '../ErrorHandling/FormErrors.js'
+import TeacherHome from '../TeacherHome/TeacherHome';
+import '../Buttons/Button.css';
+
 
 class AddNewStudent extends React.Component
 {
     constructor(props)
     {
         super(props)
-        this.state={FirstName:" ",LastName:" ",Class:" ",
+        this.state={FirstName:"",LastName:" ",Class:" ",
                     Division:" ",AddressLine1:" ",
                     AddressLine2:" ",pincode:"",firstNameValid:false,
                     lastNameValid:false,
@@ -19,112 +20,86 @@ class AddNewStudent extends React.Component
                     pincodeValid:false,
                     ErrfirstName:" ",ErrlastName:" ",ErrClass:"",Errdivision:" ",
                     ErraddressLine1:" ",Errpincode:"",ErrButton:"",
-                    referrer:null
+                    formErrors:{FirstName:'',LastName:'',Class:'',Division:'',Address:'',PINcode:''},
+                    referrer:null,
+                    backCalled:false
                     }
-        this.handleAddStudent=this.handleAddStudent.bind(this);
-        this.handleFirstNameChange=this.handleFirstNameChange.bind(this);
-        this.handleLastNameChange=this.handleLastNameChange.bind(this);
-        this.handleClassChange=this.handleClassChange.bind(this);
-        this.handleDivisionChange=this.handleDivisionChange.bind(this);
-        this.handleAddressLine1Change=this.handleAddressLine1Change.bind(this);
-        this.handleAddressLine2Change=this.handleAddressLine2Change.bind(this); 
-        this.handlePincodeChange=this.handlePincodeChange.bind(this);
+                    this.handleAddStudent=this.handleAddStudent.bind(this);
+                    this.handleUserInput = this.handleUserInput.bind(this);
         this.handleBack=this.handleBack.bind(this);
     }
-    handleFirstNameChange(value)
+    handleUserInput = (e) => 
     {
-        if(value!=="")
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({[name]: value},
+                  () => { this.validateField(name, value) });
+    }
+    validateField(fieldName,value)
+    {
+        let fieldValidationErrors = this.state.formErrors;
+        let FirstNmValid = this.state.firstNameValid;
+        let LastNmValid = this.state.lastNameValid;
+        let classValid = this.state.classNameValid;
+        let divisionValid = this.state.divisionNmValid;
+        let addressValid=this.state.addressLine1Valid;
+        let pinValid=this.state.pincodeValid;
+        switch(fieldName) 
         {
-            this.setState({FirstName: value});
-            this.setState({ErrfirstName:""});
-        }
-        else{
-            this.setState({ErrfirstName:"*First Name is required"});
-        }
+            case 'FirstName':
+                FirstNmValid = value.match(/^[a-zA-Z'. -]+$/);
+                fieldValidationErrors.FirstName = FirstNmValid ? '' : ' is invalid';
+            break;
+            
+            case 'LastName':
+                LastNmValid = value.match(/^[a-zA-Z'. -]+$/);
+                fieldValidationErrors.LastName = LastNmValid ? '' : ' is invalid';
+            break;
+            
+            case 'Class':
+                classValid = value.match(/^[a-zA-Z0-9'. -]+$/);
+                fieldValidationErrors.Class = classValid ? '' : ' is invalid';
+            break;
 
+            case 'Division':
+                divisionValid = value.match(/^[a-zA-Z]$/);
+                fieldValidationErrors.Division = divisionValid ? '': ' Single Character';
+            break;
+
+            case 'AddressLine1':
+                addressValid = value.length <= 22;
+                fieldValidationErrors.Address = addressValid ? '' : ' Too long use AddressLine2';
+            break;
+
+            case 'PIN':
+                pinValid = value.length === 6 && value.match(/^[0-9]+$/) ;
+                fieldValidationErrors.PINcode= pinValid ? '': 'Check PIN code';
+            break;
+            
+            default:
+            break;
+        }
+        this.setState({formErrors: fieldValidationErrors,
+                        firstNameValid: FirstNmValid,
+                        lastNameValid: LastNmValid,
+                        classNameValid:classValid,
+                        divisionNmValid:divisionValid,
+                        addressLine1Valid:addressValid,
+                        pincodeValid:pinValid
+                        }, this.validateForm);
     }
-    handleLastNameChange(value)
+    validateForm() 
     {
-        if(value!=="")
-        {
-            this.setState({LastName: value});
-            this.setState({ErrlastName:""});
-        }
-        else{
-            this.setState({ErrfirstName:"*Last Name is required"});
-        }
+        this.setState({formValid: this.state.firstNameValid && this.state.lastNameValid &&
+             this.state.classNameValid &&this.state.divisionNmValid && this.state.addressLine1Valid &&
+             this.state.pincodeValid});        
     }
-    handleClassChange(value)
+    errorClass(error) 
     {
-        if(value!=="")
-        {
-            this.setState({Class: value});
-            this.setState({ErrClass:""});
-        }
-        else{
-            this.setState({ErrClass:"*Class is required"});
-        }
+        return(error.length === 0 ? '' : 'has-error');
     }
-    handleDivisionChange(value)
-    {
-        if(value!=="")
-        {
-            this.setState({Division: value});
-            this.setState({Errdivision:""});
-        }
-        else{
-            this.setState({Errdivision:"*Division is required"});
-        }
-    }
-    handleAddressLine1Change(value)
-    {
-        if(value!=="")
-        {
-            this.setState({AddressLine1: value});
-            this.setState({ErraddressLine1:""});
-        }
-        else{
-            this.setState({ErraddressLine1:"*Address is required"});
-        }
-    }
-    handleAddressLine2Change(value)
-    {
-        this.setState({AddressLine2: value});
-    }
-    handlePincodeChange(value)
-    {
-        if(value!=="")
-        {
-            this.setState({pincode: value});
-            this.setState({Errpincode:""});
-        }
-        else{
-            this.setState({Errpincode:"*PIN Code is required"});
-        }
-    }
-    render()
-    {
-        const {referrer} = this.state;
-        if (referrer) return (<Redirect to={referrer} />)
-        return(
-            <div className="col-75 ">
-                <div className="center">
-                    <form>
-                        <InputBox inputType="text"  placeholder="First Name"    handleChanges={this.handleFirstNameChange}    Name="firstName"   error={this.state.ErrfirstName} /><br></br> 
-                        <InputBox inputType="text"  placeholder="Last Name"     handleChanges={this.handleLastNameChange}     Name="lastName"    error={this.state.ErrlastName} /><br></br>           
-                        <InputBox inputType="text"  placeholder="Class"         handleChanges={this.handleClassChange}        Name="class"       error={this.state.ErrClass} /><br></br>           
-                        <InputBox inputType="text"  placeholder="Division"      handleChanges={this.handleDivisionChange}     Name="division"    error={this.state.Errdivision} /><br></br>           
-                        <InputBox inputType="text"  placeholder="Address Line1" handleChanges={this.handleAddressLine1Change} Name="addressLine1"error={this.state.ErraddressLine1} /><br></br>           
-                        <InputBox inputType="text"  placeholder="Address Line2" handleChanges={this.handleAddressLine2Change} Name="addressLine2"                                   /><br></br>           
-                        <InputBox inputType="text"  placeholder="PIN code"      handleChanges={this.handlePincodeChange}      Name="pincode"     error={this.state.Errpincode} /><br></br>           
-                        <Button buttonName="Add Student" handleOnClick={this.handleAddStudent } error={this.state.ErrButton} />
-                        <Button buttonName="Back" handleOnClick={this.handleBack } />
-                    </form>
-                </div>
-            </div>
-        );
-    }
-    handleAddStudent()
+
+      handleAddStudent()
     {
         const tid = this.props.teacherId
         const fname = this.state.FirstName;
@@ -133,30 +108,70 @@ class AddNewStudent extends React.Component
         const division= this.state.Division;
         const line1 = this.state.AddressLine1;
         const line2 = this.state.AddressLine2;
-        const pin = this.state.pincode;
+        const pin = document.getElementById("pincode").value;
 
-        if(this.state.FirstName!=="" && this.state.LastName!==""&&this.state.Class!=="" && this.state.Division!==""&&this.state.AddressLine1!=="" && this.state.pincode!=="")
-        {
            if(
                fetch('http://localhost:8080/addStudent?firstName='+fname+
             '&lastName='+lname+'&TeacherID='+tid+'&classs='+classs+'&division='+division+'&line1='+line1 +
             '&line2='+ line2+'&pinCode='+pin,
             {method:'POST'})
            ){
-            alert("Added "+ this.state.FirstName);
-            //this.props.createBrowserHistory.push('/ListOfStudents');   
+            alert("Added "+ this.state.FirstName);  
             this.setState({referrer:'/ListOfStudents'})
             } 
-        }
-        else
-        {
-            this.setState({ErrButton:"Please fill the above fields"})
-        }
     }
     handleBack()
     {
-        //this.props.createBrowserHistory.push('/TeacherHome');
-        this.setState({referrer:'/TeacherHome'})
+        this.setState({backCalled:!this.state.backCalled})
     }
+    render()
+    {
+        const {referrer} = this.state;
+        if (referrer) return (<Redirect to={referrer} />)
+        const{backCalled}=this.state;
+        if(backCalled) return (<TeacherHome></TeacherHome>)
+        return(
+            <div className="col-75 ">
+                <div className="center">
+                <form>
+                        <div className="panel panel-default">
+                            <FormErrors formErrors={this.state.formErrors} />
+                        </div><br/>
+                        <div className={`form-group ${this.errorClass(this.state.formErrors.FirstName)}`}>
+                            <input id="firstname" type="text" placeholder="First Name" name="FirstName"  required
+                                value={this.state.value} onChange={this.handleUserInput}/>                           
+                        </div><br/>
+                        <div className={`form-group ${this.errorClass(this.state.formErrors.LastName)}`}>
+                            <input id="lastName" type="text" placeholder="last name" name="LastName" required
+                                value={this.state.value} onChange={this.handleUserInput} />
+                        </div><br/>
+                        <div className={`form-group ${this.errorClass (this.state.formErrors.Class)}`}>
+                            <input id="class" type="text" placeholder="Class" name="Class" required
+                                value={this.state.value} onChange={this.handleUserInput}/>
+                        </div><br/>
+                        <div className={`form-group ${this.errorClass(this.state.formErrors.Division)}`}>      
+                            <input id="division" type="text" placeholder="Division" name="Division" required
+                                value={this.state.value} onChange={this.handleUserInput}/>
+                        </div><br/>
+                        <div className={`form-group ${this.errorClass(this.state.formErrors.Address)}`}>      
+                            <input id="address1" type="text" placeholder="Address Line1" name="AddressLine1" required
+                                value={this.state.value} onChange={this.handleUserInput}/>
+                        </div><br/>
+                        <div>      
+                            <input id="address2" type="text" placeholder="Address Line2" name="AddressLine2" required
+                                value={this.state.value} onChange={this.handleUserInput}/>
+                        </div><br/>
+                        <div className={`form-group ${this.errorClass(this.state.formErrors.PINcode)}`}>      
+                            <input id="pincode" type="text" placeholder="PIN code" name="PIN" required
+                                value={this.state.value} onChange={this.handleUserInput}/>
+                        </div><br/>
+                        <Button buttonName="Add Student" handleOnClick={this.handleAddStudent} disabled={!this.state.formValid} />
+                        <Button buttonName="Back" handleOnClick={this.handleBack}/>
+                    </form>
+                </div>
+            </div>
+        );
+    }
+  
 }
 export default AddNewStudent;

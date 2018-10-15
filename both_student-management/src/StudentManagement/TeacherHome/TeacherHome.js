@@ -6,8 +6,6 @@ import AddNewStudent from '../AddUser/AddNewStudent'
 import Login from '../Login/LoginPage';
 import { Redirect } from 'react-router-dom';
 import ListOfStudents from '../ListDisplay/ListOfStudents.js';
-//import { Auth } from "aws-amplify";
-//import axios from 'axios';
 
 class TeacherHome extends React.Component
 {
@@ -26,7 +24,6 @@ class TeacherHome extends React.Component
       this.handleLogOut=this.handleLogOut.bind(this);
     }
 
-   
 
     handleListOfStudents()
     {  

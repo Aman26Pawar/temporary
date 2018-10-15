@@ -6,7 +6,6 @@ import TeacherHome from '../TeacherHome/TeacherHome.js'
 import ListOfStudents from '../ListDisplay/ListOfStudents.js'
 import AddNewStudent from '../AddUser/AddNewStudent.js'
 import EditStudent from '../Edit/EditStudent.js'
-import DeleteStudent from '../DeleteStudent.js'
 
 
 export default class Routers extends React.Component
@@ -23,7 +22,6 @@ export default class Routers extends React.Component
                 <Route exact path='/ListOfStudents' component={ListOfStudents} />
                 <Route exact path='/AddNewStudent' component={AddNewStudent} />
                 <Route exact path="/ListOfStudents/EditStudent" component={EditStudent }/>
-                <Route exact path="/ListOfStudents/DeleteStudent" component={DeleteStudent}/>
                 </Switch>
             </div>
             </Router>

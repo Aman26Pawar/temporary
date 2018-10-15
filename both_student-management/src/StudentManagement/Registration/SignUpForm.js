@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {FormErrors} from '../ErrorHandling/FormErrors.js'
 import { Redirect } from 'react-router-dom';
 import Button from '../Buttons/Button.js';
-//import { browserHistory } from 'react-router';
-//import './Form.css';
+
 class SignUpForm extends Component {
   constructor(props){
     super(props);
@@ -79,7 +78,6 @@ handleBack()
 {
     console.log("back");
     this.setState({referrer:'/'})
-    //this.props.history.push('/')
 }
 
       render(){
@@ -92,32 +90,27 @@ handleBack()
                      <FormErrors formErrors={this.state.formErrors} />
                 </div>
                     <div className={`form-group ${this.errorClass(this.state.formErrors.FirstName)}`}>
-                        <label htmlFor="_FirstName">First Name: </label>
                         <input id="name" type="text" size="15" placeholder="First Name" name="FirstName"  required
                         value={this.state.value}
-                        onChange={this.handleUserInput}/>                           
+                        onChange={this.handleUserInput}/><br/><br/>                         
                     </div>
                     <div className={`form-group ${this.errorClass(this.state.formErrors.LastName)}`}>
-                    <label htmlFor="_LastName">Last Name: </label>
                             <input id="lastName" type="text" size="15" placeholder="last name" name="LastName" required
                             value={this.state.value}
-                            onChange={this.handleUserInput} />
+                            onChange={this.handleUserInput} /><br/><br/> 
                     </div>
                     <div className={`form-group ${this.errorClass (this.state.formErrors.userNm)}`}>
-                    <label htmlFor="_UserName">User Name:</label>
                             <input id="user" type="text" size="15" placeholder="User Name" name="userNm" required
                             value={this.state.value}
-                            onChange={this.handleUserInput}/>
+                            onChange={this.handleUserInput}/><br/><br/> 
                     </div>
-                    <div className={`form-group ${this.errorClass(this.state.formErrors.passWord)}`}>      
-                    <label htmlFor="_password">Password: </label>
+                    <div className={`form-group ${this.errorClass(this.state.formErrors.passWord)}`}>     
                             <input id="pass_word" type="password" size="15" placeholder="New password" name="passWord" required
                             value={this.state.value}
-                            onChange={this.handleUserInput}/>
+                            onChange={this.handleUserInput}/><br/><br/> 
                     </div>
                     <Button buttonName="Home" handleOnClick={this.handleBack}/>
-                    <button type="submit" onClick={this.props.onSubmitClick}disabled={!this.state.formValid}>Sign up</button>
-                    
+                    <Button buttonName="Sign Up" handleOnClick={this.props.onSubmitClick} disabled={!this.state.formValid}></Button>                   
                 </form>
         )
     }

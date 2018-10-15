@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import Routers from './StudentManagement/Routing/Routers.js'
 import AppHeader  from './StudentManagement/headers/AppHeader.js'
 import AppFooter  from './StudentManagement/footers/AppFooter.js'
-//import {createStore} from 'redux'
 
-
-//import client from 'client'
 import './App.css';
 class App extends Component {
 
