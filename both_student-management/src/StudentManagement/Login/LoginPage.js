@@ -2,9 +2,7 @@ import React from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux'
 import TeacherHome from '../TeacherHome/TeacherHome';
-//import {createStore} from 'redux'
-//import { Auth } from "aws-amplify";
-//import { Cookies } from 'react-cookie'
+import Button from '../Buttons/Button.js';
 
 class Login extends React.Component{
     constructor(props)
@@ -71,13 +69,13 @@ storeCredentials(dataTobeStore)
         }
         return(
         <div id="LoginData" className="LoginPage">
-            <label>User Name:</label>
             <input id="userName" type="text"  placeholder="User Name" required></input>
-            <br/>
-            <label>Password:</label>
+            <br/><br/>
+
             <input id="password" type="password" placeholder="New password" required></input>
-            <br/>
-            <button onClick={this.onLoginClick}>Login</button><br/><br/>
+            <br/><br/>
+
+            <Button buttonName="Login" handleOnClick={this.onLoginClick}></Button>
             <label className="loginError"> {this.state.error} </label> <br/><br/> 
             <a href="/"> Home </a><br/><br/>
             <a href="/Registration">Registration</a>      

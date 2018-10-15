@@ -1,10 +1,9 @@
 import React from 'react';
-import InputBox from '../InputBox';
 import Button from '../Buttons/Button.js';
 import { Redirect } from 'react-router-dom';
 import {FormErrors} from '../ErrorHandling/FormErrors.js'
-//import { createBrowserHistory } from 'history';
-//import '../App.css';
+import TeacherHome from '../TeacherHome/TeacherHome';
+
 
 class AddNewStudent extends React.Component
 {
@@ -21,7 +20,8 @@ class AddNewStudent extends React.Component
                     ErrfirstName:" ",ErrlastName:" ",ErrClass:"",Errdivision:" ",
                     ErraddressLine1:" ",Errpincode:"",ErrButton:"",
                     formErrors:{FirstName:'',LastName:'',Class:'',Division:'',Address:'',PINcode:''},
-                    referrer:null
+                    referrer:null,
+                    backCalled:false
                     }
                     this.handleAddStudent=this.handleAddStudent.bind(this);
                     this.handleUserInput = this.handleUserInput.bind(this);
@@ -97,10 +97,38 @@ class AddNewStudent extends React.Component
     {
         return(error.length === 0 ? '' : 'has-error');
     }
+
+      handleAddStudent()
+    {
+        const tid = this.props.teacherId
+        const fname = this.state.FirstName;
+        const lname = this.state.LastName;
+        const classs = this.state.Class;
+        const division= this.state.Division;
+        const line1 = this.state.AddressLine1;
+        const line2 = this.state.AddressLine2;
+        const pin = document.getElementById("pincode").value;
+
+           if(
+               fetch('http://localhost:8080/addStudent?firstName='+fname+
+            '&lastName='+lname+'&TeacherID='+tid+'&classs='+classs+'&division='+division+'&line1='+line1 +
+            '&line2='+ line2+'&pinCode='+pin,
+            {method:'POST'})
+           ){
+            alert("Added "+ this.state.FirstName);  
+            this.setState({referrer:'/ListOfStudents'})
+            } 
+    }
+    handleBack()
+    {
+        this.setState({backCalled:!this.state.backCalled})
+    }
     render()
     {
         const {referrer} = this.state;
         if (referrer) return (<Redirect to={referrer} />)
+        const{backCalled}=this.state;
+        if(backCalled) return (<TeacherHome></TeacherHome>)
         return(
             <div className="col-75 ">
                 <div className="center">
@@ -136,39 +164,14 @@ class AddNewStudent extends React.Component
                             <input id="pincode" type="text" placeholder="PIN code" name="PIN" required
                                 value={this.state.value} onChange={this.handleUserInput}/>
                         </div><br/>
-                        <button type="submit" onClick={this.handleAddStudent} disabled={!this.state.formValid}>Add New Student</button>    <br/><br/>
-                        <button type="submit" onClick={this.handleBack}>Back</button>   
+                        <Button buttonName="Add Student" handleOnClick={this.handleAddStudent} disabled={!this.state.formValid} />
+                        <Button buttonName="Back" handleOnClick={this.handleBack}/>
+
                     </form>
                 </div>
             </div>
         );
     }
-    handleAddStudent()
-    {
-        const tid = this.props.teacherId
-        const fname = this.state.FirstName;
-        const lname = this.state.LastName;
-        const classs = this.state.Class;
-        const division= this.state.Division;
-        const line1 = this.state.AddressLine1;
-        const line2 = this.state.AddressLine2;
-        const pin = document.getElementById("pincode").value;
-
-           if(
-               fetch('http://localhost:8080/addStudent?firstName='+fname+
-            '&lastName='+lname+'&TeacherID='+tid+'&classs='+classs+'&division='+division+'&line1='+line1 +
-            '&line2='+ line2+'&pinCode='+pin,
-            {method:'POST'})
-           ){
-            alert("Added "+ this.state.FirstName);
-            //this.props.createBrowserHistory.push('/ListOfStudents');   
-            this.setState({referrer:'/ListOfStudents'})
-            } 
-    }
-    handleBack()
-    {
-        //this.props.createBrowserHistory.push('/TeacherHome');
-        this.setState({referrer:'/TeacherHome'})
-    }
+  
 }
 export default AddNewStudent;
