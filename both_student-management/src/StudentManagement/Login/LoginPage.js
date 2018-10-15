@@ -78,15 +78,15 @@ class Login extends React.Component
         }
         return(
         <div id="LoginData" className="LoginPage">
-            <br/><br/>
+        <form><br/><br/>
             <input id="userName" type="text"  placeholder="User Name" required></input>
             <br/><br/>
             <input id="password" type="password" placeholder="Password" required></input>
             <br/><br/>
             <Button buttonName="Login" handleOnClick={this.onLoginClick}></Button>
             <label className="label"> {this.state.error} </label> <br/><br/> 
-            <a href="/"> Home </a><br/><br/>
-            <a href="/Registration">Registration</a>      
+            <a href="/Registration">Registration</a>
+        </form>      
         </div>
         )
     }

@@ -47,17 +47,17 @@ class AddNewStudent extends React.Component
         switch(fieldName) 
         {
             case 'FirstName':
-                FirstNmValid = value.match(/^[a-zA-Z'. -]+$/);
+                FirstNmValid = value.match(/^[a-zA-Z'.-]+$/);
                 fieldValidationErrors.FirstName = FirstNmValid ? '' : ' is invalid';
             break;
             
             case 'LastName':
-                LastNmValid = value.match(/^[a-zA-Z'. -]+$/);
+                LastNmValid = value.match(/^[a-zA-Z'.-]+$/);
                 fieldValidationErrors.LastName = LastNmValid ? '' : ' is invalid';
             break;
             
             case 'Class':
-                classValid = value.match(/^[a-zA-Z0-9'. -]+$/);
+                classValid = value.match(/^[a-zA-Z0-9'.-]+$/);
                 fieldValidationErrors.Class = classValid ? '' : ' is invalid';
             break;
 
@@ -72,8 +72,8 @@ class AddNewStudent extends React.Component
             break;
 
             case 'PIN':
-                pinValid = value.length === 6 && value.match(/^[0-9]+$/) ;
-                fieldValidationErrors.PINcode= pinValid ? '': 'Check PIN code';
+                pinValid = value.length === 6 && value.match(/[0-9]$/) ;
+                fieldValidationErrors.PINcode= pinValid ? '': 'Pin code should be 6 digits';
             break;
             
             default:

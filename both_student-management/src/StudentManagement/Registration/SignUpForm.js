@@ -90,22 +90,22 @@ handleBack()
                      <FormErrors formErrors={this.state.formErrors} />
                 </div>
                     <div className={`form-group ${this.errorClass(this.state.formErrors.FirstName)}`}>
-                        <input id="name" type="text" size="15" placeholder="First Name" name="FirstName"  required
+                        <input id="name" type="text" size="15" placeholder="First Name" name="First Name"  required
                         value={this.state.value}
                         onChange={this.handleUserInput}/><br/><br/>                         
                     </div>
                     <div className={`form-group ${this.errorClass(this.state.formErrors.LastName)}`}>
-                            <input id="lastName" type="text" size="15" placeholder="last name" name="LastName" required
+                            <input id="lastName" type="text" size="15" placeholder="last name" name="Last Name" required
                             value={this.state.value}
                             onChange={this.handleUserInput} /><br/><br/> 
                     </div>
                     <div className={`form-group ${this.errorClass (this.state.formErrors.userNm)}`}>
-                            <input id="user" type="text" size="15" placeholder="User Name" name="userNm" required
+                            <input id="user" type="text" size="15" placeholder="User Name" name="user Name" required
                             value={this.state.value}
                             onChange={this.handleUserInput}/><br/><br/> 
                     </div>
                     <div className={`form-group ${this.errorClass(this.state.formErrors.passWord)}`}>     
-                            <input id="pass_word" type="password" size="15" placeholder="New password" name="passWord" required
+                            <input id="pass_word" type="password" size="15" placeholder="password" name="passWord" required
                             value={this.state.value}
                             onChange={this.handleUserInput}/><br/><br/> 
                     </div>
