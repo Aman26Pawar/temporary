@@ -5,27 +5,24 @@ import ListOfStudents from '../ListDisplay/ListOfStudents.js';
 
 class EditStudent extends React.Component
 {
-    constructor(props)
+   constructor(props)
     {
         super(props)
-        this.state={
-                    studentID:this.props.studentToUpdate.studentID,
-                    FirstName: this.props.studentToUpdate.firstName,
-                    LastName: this.props.studentToUpdate.lastName,
-                    Class:this.props.studentToUpdate.classs,
+        this.state={studentId:this.props.studentToUpdate.id,
+                    FirstName:this.props.studentToUpdate.firstName,
+                    LastName:this.props.studentToUpdate.lastName,
+                    Class:this.props.studentToUpdate.studentClass,
                     Division:this.props.studentToUpdate.division,
-                    AddressLine1: this.props.studentToUpdate.line1,
-                    AddressLine2: this.props.studentToUpdate.line2,
-                    pincode: this.props.studentToUpdate.pinCode,
+                    AddressLine1:this.props.studentToUpdate.addressLine1,
+                    AddressLine2:this.props.studentToUpdate.addressLine2,
+                    pincode:this.props.studentToUpdate.pincode,
                     firstNameValid:false,
                     lastNameValid:false,
                     divisionValid: false,
-                    addressLine1Valid:false,
-                    pincodeValid:false,
+                    addressLine1Valid:false,handleEditcalled:false,
+                    pincodeValid:false,handlebackcalled:false,
                     ErrfirstName:" ",ErrlastName:" ",ErrClass:"",Errdivision:" ",
-                    ErraddressLine1:" ",Errpincode:"",ErrButton:"",
-                    editComplete:false,
-                    backPage:false
+                    ErraddressLine1:" ",Errpincode:"",ErrButton:""
                     }
         this.handleEditStudent=this.handleEditStudent.bind(this);
         this.handleFirstNameChange=this.handleFirstNameChange.bind(this);
@@ -37,17 +34,18 @@ class EditStudent extends React.Component
         this.handlePincodeChange=this.handlePincodeChange.bind(this);
         this.handleBack=this.handleBack.bind(this);
     }
-
-    componentDidMount(){
-     
-    }
-
-    handleFirstNameChange(value)
+    componentWillMount()
     {
+        
+    }
+    handleFirstNameChange(value)
+    { 
+        let FirstNmValid = this.state.firstNameValid;
         if(value!=="")
         {
+            FirstNmValid = value.match(/^[a-zA-Z'. -]+$/);
+            this.setState({ErrfirstName:FirstNmValid ? '' : ' Only: letters\' . -',});
             this.setState({FirstName: value});
-            this.setState({ErrfirstName:""});
         }
         else{
             this.setState({ErrfirstName:"*First Name is required"});
@@ -55,21 +53,25 @@ class EditStudent extends React.Component
     }
     handleLastNameChange(value)
     {
+        let LastNmValid = this.state.lastNameValid;
         if(value!=="")
         {
+            LastNmValid = value.match(/^[a-zA-Z'. -]+$/);
+            this.setState({ErrlastName:LastNmValid ? '' : ' Only: letters\' . -'});
             this.setState({LastName: value});
-            this.setState({ErrlastName:""});
         }
         else{
             this.setState({ErrlastName:"*Last Name is required"});
         }
     }
     handleClassChange(value)
-    {
+    { 
+        let classNmValid=this.state.classNameValid;
         if(value!=="")
         {
+            classNmValid=value.match(/^[a-zA-Z0-9'. -]+$/);
+            this.setState({ErrClass:classNmValid? '' : 'Only: letters\' . - 0-9'});
             this.setState({Class: value});
-            this.setState({ErrClass:""});
         }
         else{
             this.setState({ErrClass:"*Class is required"});
@@ -77,10 +79,13 @@ class EditStudent extends React.Component
     }
     handleDivisionChange(value)
     {
+        let divVlid=this.state.divisionValid;
         if(value!=="")
         {
+            divVlid=value.match(/^[a-zA-Z]$/);
+            this.setState({Errdivision:divVlid? '':'Only single character'});
             this.setState({Division: value});
-            this.setState({Errdivision:""});
+            
         }
         else{
             this.setState({Errdivision:"*Division is required"});
@@ -88,10 +93,12 @@ class EditStudent extends React.Component
     }
     handleAddressLine1Change(value)
     {
+        let addressLine1Valid=this.state.addressLine1Valid;
         if(value!=="")
         {
+            addressLine1Valid = value.length <= 22;
+            this.setState({ErraddressLine1:addressLine1Valid ? '' : ' Too long use Line2'});
             this.setState({AddressLine1: value});
-            this.setState({ErraddressLine1:""});
         }
         else{
             this.setState({ErraddressLine1:"*Address is required"});
@@ -103,16 +110,17 @@ class EditStudent extends React.Component
     }
     handlePincodeChange(value)
     {
+        let pincodeValid = this.state.pincodeValid;
         if(value!=="")
         {
+            pincodeValid = value.match(/^[0-9]+$/);
+            this.setState({Errpincode:pincodeValid ? '' : '  Only numbers'});
             this.setState({pincode: value});
-            this.setState({Errpincode:""});
         }
         else{
             this.setState({Errpincode:"*PIN Code is required"});
         }
     }
- 
     handleEditStudent()
     {
         const id=this.props.studentToUpdate.studentId;
