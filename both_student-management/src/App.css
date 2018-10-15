@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+}
 .App {
   text-align: center;
   background-color: aqua;
