@@ -12,6 +12,7 @@
 .App-header {
   background-color: #222;
   height: 70px;
+  width: 100%;
   padding: 5px;
   color: white;
 }
@@ -32,9 +33,7 @@
   font-size: 1.5em;
 }
 
-* {
-  box-sizing: border-box;
-}
+
 
 .input[type=text], select, textarea {
   width: 80%;
@@ -49,24 +48,10 @@
   display: inline;
 }
 
-
 .container {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
-}
-
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-  margin-left: 0px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 10px;
 }
 
 .right {
@@ -80,63 +65,34 @@
   text-align: center;
   margin-top: 10px;
 }
-@media screen and (min-width: 1024px) and (min-height:1360px) {
-  .col-25, .col-75, input[type=submit],.StudentList {
-      width: 100%;
-      margin-bottom: 12px;
-      background-color:aqua;
-      border: #222;
-      text-align: center;
-      padding-left:2cm;
-      padding-right: 2cm;
-      overflow-y: scroll;
-  }
-  .btn-btn-edit{
-    background-color: greenyellow;
-  }
-  .btn-btn-danger{
-    background-color: red;
-  }
-}
-
-@media screen and (min-width: 1200px) and (min-height:800px) {
-  .col-25, .col-75, input[type=submit],.StudentList {
-      width: 100%;
-      margin-bottom: 12px;
-      background-color:aqua;
-      border: #222;
-      text-align: center;
-      margin:1cm 4cm 2cm;
-      overflow-y: scroll;
-  }
-  .btn-btn-edit{
-    background-color: greenyellow;
-  }
-  .btn-btn-danger{
-    background-color: red;
-  }
-}
-
-
-@media screen and (max-width: 375px) and (min-height:850px) {
-  .col-25, .col-75, input[type=submit],.StudentList {
-      width: 100%;
-      margin-bottom: 12px;
-      background-color:yellow;
-      border: #222;
-      text-align: center;
-      overflow-y: scroll;
-  }
-  .btn-btn-edit{
-    background-color:peachpuff;
-  }
-  .btn-btn-danger{
-    background-color:red;
-  }
-}
 
 .List-O{
-  height:490px;
+  height:490px ;
   width: 100%;
   overflow-y: scroll;
+}
+
+.Add-Student {
+  float: left;
+  width: 100%;
+  margin-top: 6px;
+  margin-left: 0px;
+}
+
+.TeacherHome{
+  height:540px;
+  width: 100%;
+  overflow-y: scroll;
+}
+.SignUpPage{
+  height:540px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.Edit-Student{
+  height:500px;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x:scroll;
 }
