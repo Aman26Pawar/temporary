@@ -43,7 +43,7 @@ class EditStudent extends React.Component
         let FirstNmValid = this.state.firstNameValid;
         if(value!=="")
         {
-            FirstNmValid = value.match(/^[a-zA-Z'. -]+$/);
+            FirstNmValid = value.match(/^[a-zA-Z'.-]+$/);
             this.setState({ErrfirstName:FirstNmValid ? '' : ' Only: letters\' . -',});
             this.setState({FirstName: value});
         }
@@ -56,7 +56,7 @@ class EditStudent extends React.Component
         let LastNmValid = this.state.lastNameValid;
         if(value!=="")
         {
-            LastNmValid = value.match(/^[a-zA-Z'. -]+$/);
+            LastNmValid = value.match(/^[a-zA-Z'.-]+$/);
             this.setState({ErrlastName:LastNmValid ? '' : ' Only: letters\' . -'});
             this.setState({LastName: value});
         }
@@ -69,7 +69,7 @@ class EditStudent extends React.Component
         let classNmValid=this.state.classNameValid;
         if(value!=="")
         {
-            classNmValid=value.match(/^[a-zA-Z0-9'. -]+$/);
+            classNmValid=value.match(/^[a-zA-Z0-9'.-]+$/);
             this.setState({ErrClass:classNmValid? '' : 'Only: letters\' . - 0-9'});
             this.setState({Class: value});
         }

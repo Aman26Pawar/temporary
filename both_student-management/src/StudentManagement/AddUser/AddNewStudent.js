@@ -47,17 +47,17 @@ class AddNewStudent extends React.Component
         switch(fieldName) 
         {
             case 'FirstName':
-                FirstNmValid = value.match(/^[a-zA-Z'. -]+$/);
+                FirstNmValid = value.match(/^[a-zA-Z'.-]+$/);
                 fieldValidationErrors.FirstName = FirstNmValid ? '' : ' is invalid';
             break;
             
             case 'LastName':
-                LastNmValid = value.match(/^[a-zA-Z'. -]+$/);
+                LastNmValid = value.match(/^[a-zA-Z'.-]+$/);
                 fieldValidationErrors.LastName = LastNmValid ? '' : ' is invalid';
             break;
             
             case 'Class':
-                classValid = value.match(/^[a-zA-Z0-9'. -]+$/);
+                classValid = value.match(/^[a-zA-Z0-9'.-]+$/);
                 fieldValidationErrors.Class = classValid ? '' : ' is invalid';
             break;
 

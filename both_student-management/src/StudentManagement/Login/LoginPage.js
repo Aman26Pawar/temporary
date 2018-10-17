@@ -2,8 +2,9 @@ import React from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux'
 import TeacherHome from '../TeacherHome/TeacherHome';
-import Button from '../Buttons/Button.js';
+import Button from '../Buttons/Button';
 import '../Buttons/Button.css'
+import LoginImg from '../Login/LoginImg'
 
 class Login extends React.Component
 {
@@ -77,7 +78,8 @@ class Login extends React.Component
             return <TeacherHome />
         }
         return(
-        <div id="LoginData" className="LoginPage">
+        <div id="LoginData" className="LoginPage"><br/><br/>
+            <LoginImg></LoginImg><br/><br/>
             <br/><br/>
             <input id="userName" type="text"  placeholder="User Name" required></input>
             <br/><br/>
@@ -85,7 +87,6 @@ class Login extends React.Component
             <br/><br/>
             <Button buttonName="Login" handleOnClick={this.onLoginClick}></Button>
             <label className="label"> {this.state.error} </label> <br/><br/> 
-            <a href="/"> Home </a><br/><br/>
             <a href="/Registration">Registration</a>      
         </div>
         )

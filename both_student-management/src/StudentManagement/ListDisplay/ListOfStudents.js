@@ -97,15 +97,13 @@ class ListOfStudents extends React.Component
                 <Table >
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>TeacherID</th>
                             <th>class</th>
                             <th>division</th>
-                            <th>AddressLine1</th>
-                            <th>AddressLine2</th>
-                            <th>pinCode</th>
+                            <th>Address Line1</th>
+                            <th>Address Line2</th>
+                            <th>PIN Code</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -115,10 +113,8 @@ class ListOfStudents extends React.Component
                             return (
                                 <tbody>
                                     <tr key={index}>
-                                        <td>{student.studentId}</td>
                                         <td>{student.firstName}</td>
                                         <td>{student.lastName}</td>
-                                        <td>{student.teacherId}</td>
                                         <td>{student.studentClass}</td>
                                         <td>{student.division}</td>
                                         <td>{student.addressLine1}</td>
@@ -137,7 +133,6 @@ class ListOfStudents extends React.Component
         );
     }
 }
-//export default ListOfStudents;  
 const mapStateToProps = (state) => {
     return{
         teachers:state.LoginReducer[0]
