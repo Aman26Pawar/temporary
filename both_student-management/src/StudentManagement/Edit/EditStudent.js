@@ -9,10 +9,14 @@ class EditStudent extends React.Component
     constructor(props)
     {
         super(props)
-        this.state={studentId:'',FirstName:'',
-                    LastName:'',Class:'',
-                    Division:'',AddressLine1:'',
-                    AddressLine2:'',pincode:'',
+        this.state={studentId:'',
+                    FirstName:'',
+                    LastName:'',    
+                    Class:'',
+                    Division:'',
+                    AddressLine1:'',
+                    AddressLine2:'',
+                    pincode:'',
                     firstNameValid:false,
                     lastNameValid:false,
                     divisionValid: false,
@@ -31,6 +35,19 @@ class EditStudent extends React.Component
         this.handlePincodeChange=this.handlePincodeChange.bind(this);
         this.handleBack=this.handleBack.bind(this);
     }
+
+    componentDidMount(){
+        this.setState(
+            {FirstName:this.props.studentToUpdate.firstName},
+            {LastName:this.props.studentToUpdate.lastName},
+            {Class : this.props.studentToUpdate.studentClass},
+            {Division:this.props.studentToUpdate.division},
+            {AddressLine1:this.props.studentToUpdate.addressLine1},
+            {AddressLine2:this.props.studentToUpdate.addressLine2},
+            {pincode:this.props.studentToUpdate.pincode}
+        )
+    }
+
     handleFirstNameChange(value)
     { 
         let FirstNmValid = this.state.firstNameValid;

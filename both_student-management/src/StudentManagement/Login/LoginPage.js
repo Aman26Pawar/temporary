@@ -79,14 +79,13 @@ class Login extends React.Component
         }
         return(
         <div id="LoginData" className="LoginPage"><br/><br/>
-            <LoginImg></LoginImg><br/><br/>
+            <LoginImg></LoginImg>
             <br/><br/>
             <input id="userName" type="text"  placeholder="User Name" required></input>
             <br/><br/>
             <input id="password" type="password" placeholder="Password" required></input>
-            <br/><br/>
             <Button buttonName="Login" handleOnClick={this.onLoginClick} error={this.state.error} ></Button>
-            <br/><br/>
+            <br/>
             <a href="/Registration">Registration</a>      
         </div>
         )
