@@ -7,7 +7,7 @@ class LoginImg extends  React.Component
     {
         return(
             <div >
-                <img src={img2} width="400" height="200" alt='icon' />
+                <img src={img2} width="600" height="300" alt='icon' />
             </div>
         );
     }

@@ -37,11 +37,7 @@ class EditStudent extends React.Component
         if(value!=="")
         {
             FirstNmValid = value.match(/^[a-zA-Z'.-]+$/);
-<<<<<<< HEAD
-            this.setState({ErrfirstName:FirstNmValid ? '' : ' Only: letters\' . -',});
-=======
             this.setState({ErrfirstName:FirstNmValid ? '' : 'Only alphabates allowed\' . -',});
->>>>>>> 0f9dc40a765cad5891860e3488ded0a1937eb0a2
             this.setState({FirstName: value});
         }
         else{
@@ -54,11 +50,7 @@ class EditStudent extends React.Component
         if(value!=="")
         {
             LastNmValid = value.match(/^[a-zA-Z'.-]+$/);
-<<<<<<< HEAD
-            this.setState({ErrlastName:LastNmValid ? '' : ' Only: letters\' . -'});
-=======
             this.setState({ErrlastName:LastNmValid ? '' : 'Only alphabates allowed\' . -'});
->>>>>>> 0f9dc40a765cad5891860e3488ded0a1937eb0a2
             this.setState({LastName: value});
         }
         else{
@@ -71,11 +63,7 @@ class EditStudent extends React.Component
         if(value!=="")
         {
             classNmValid=value.match(/^[a-zA-Z0-9'.-]+$/);
-<<<<<<< HEAD
-            this.setState({ErrClass:classNmValid? '' : 'Only: letters\' . - 0-9'});
-=======
             this.setState({ErrClass:classNmValid? '' : 'space not allowed'});
->>>>>>> 0f9dc40a765cad5891860e3488ded0a1937eb0a2
             this.setState({Class: value});
         }
         else{

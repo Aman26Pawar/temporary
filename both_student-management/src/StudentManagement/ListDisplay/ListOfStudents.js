@@ -118,13 +118,8 @@ class ListOfStudents extends React.Component
                             <th>Last Name</th>
                             <th>class</th>
                             <th>division</th>
-<<<<<<< HEAD
                             <th>Address Line1</th>
                             <th>Address Line2</th>
-=======
-                            <th>AddressLine1</th>
-                            <th>AddressLine2</th>
->>>>>>> 0f9dc40a765cad5891860e3488ded0a1937eb0a2
                             <th>PIN Code</th>
                             <th></th>
                             <th></th>

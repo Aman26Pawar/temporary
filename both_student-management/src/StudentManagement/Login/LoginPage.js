@@ -78,26 +78,16 @@ class Login extends React.Component
             return <TeacherHome />
         }
         return(
-<<<<<<< HEAD
         <div id="LoginData" className="LoginPage"><br/><br/>
             <LoginImg></LoginImg><br/><br/>
             <br/><br/>
-=======
-        <div id="LoginData" className="LoginPage">
-        <form><br/><br/>
->>>>>>> 0f9dc40a765cad5891860e3488ded0a1937eb0a2
             <input id="userName" type="text"  placeholder="User Name" required></input>
             <br/><br/>
             <input id="password" type="password" placeholder="Password" required></input>
             <br/><br/>
-            <Button buttonName="Login" handleOnClick={this.onLoginClick}></Button>
-            <label className="label"> {this.state.error} </label> <br/><br/> 
-<<<<<<< HEAD
+            <Button buttonName="Login" handleOnClick={this.onLoginClick} error={this.state.error} ></Button>
+            <br/><br/>
             <a href="/Registration">Registration</a>      
-=======
-            <a href="/Registration">Registration</a>
-        </form>      
->>>>>>> 0f9dc40a765cad5891860e3488ded0a1937eb0a2
         </div>
         )
     }
