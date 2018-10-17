@@ -108,22 +108,28 @@ class AddNewStudent extends React.Component
     }
 
       handleAddStudent()
-    {
-        const tid = this.props.teacherId
-        const fname = this.state.FirstName;
-        const lname = this.state.LastName;
-        const classs = this.state.Class;
-        const division= this.state.Division;
-        const line1 = this.state.AddressLine1;
-        const line2 = this.state.AddressLine2;
-        const pin = document.getElementById("pincode").value;
-
+    { 
+        const newStudent= {
+        tid : this.props.teacherId,
+        fname : this.state.FirstName,
+        lname : this.state.LastName,
+        classs : this.state.Class,
+        division : this.state.Division,
+        line1 : this.state.AddressLine1,
+        line2 : this.state.AddressLine2,
+        pin : document.getElementById("pincode").value
+        }
            if(
-               fetch('http://localhost:8080/addStudent?firstName='+fname+
-            '&lastName='+lname+'&TeacherID='+tid+'&classs='+classs+'&division='+division+'&line1='+line1 +
-            '&line2='+ line2+'&pinCode='+pin,
-            {method:'POST'})
+               fetch('http://localhost:8080/addStudents',{
+                   method:'POST',
+                   headers: {
+                    'content-type': 'application/json'
+                  },
+                    body: JSON.stringify(newStudent),
+                }) 
+                   
            ){
+            
             alert("Added "+ this.state.FirstName);  
             this.setState({referrer:'/ListOfStudents'})
             } 

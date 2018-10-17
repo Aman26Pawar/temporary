@@ -20,13 +20,23 @@ export default class Registration extends Component{
   
 
     onSubmitClick   =   ()  =>{
-        const fname = document.getElementById("name").value;
-        const lname = document.getElementById("lastName").value;
-        const uname = document.getElementById("user").value;
-        const pw = document.getElementById("pass_word").value;
+        console.log("sign up clicked...")
+        const newTeacher=
+        {
+            fname : document.getElementById("name").value,
+            lname : document.getElementById("lastName").value,
+            uname : document.getElementById("user").value,
+            pw : document.getElementById("pass_word").value
+        }
+    
        if(
-        fetch("http://localhost:8080/addTeacher?firstName="+fname+"&lastName="+lname+
-        "&userName="+uname+"&password="+pw,{method:'POST',mode:'no-cors'})
+        fetch("http://localhost:8080/addTeacher/",{
+            method:'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newTeacher)
+        })
        ){
            alert("New teacher added...")
            this.props.history.push('/')

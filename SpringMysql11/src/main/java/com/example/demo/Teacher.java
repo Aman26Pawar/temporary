@@ -8,8 +8,10 @@ import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.Table;
 
+
+
 @Entity
-@Table(name="teacher_info")
+@Table(name="teacherinfo")
 
 @NamedStoredProcedureQueries({
 	@NamedStoredProcedureQuery( name="sp_GetTeacher",
@@ -72,8 +74,8 @@ public class Teacher
 		this.userName=userName;
 		this.password=password;
 	}
-	public Teacher(int teacherID2, String firstName2, String lastName2, String userName2, String password2) 
-	{
+
+	public Teacher(int teacherID2, String firstName2, String lastName2, String userName2, String password2) {
 		this.TeacherID = teacherID2;
 		this.firstName = firstName2;
 		this.lastName = lastName2;

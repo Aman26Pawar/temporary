@@ -30,7 +30,7 @@ class Login extends React.Component
     {
         const uname = document.getElementById("userName").value
         const pw =document.getElementById("password").value
-        axios.get("http://localhost:8080/viewTeacher",{mode:"no-cors"})
+        axios.get("http://localhost:8080/getAllTeachers",{mode:"no-cors"})
         .then(res=>res)
         .then(row => {
         this.checkLoginCredentials(row.data,uname,pw)

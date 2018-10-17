@@ -23,7 +23,7 @@ class ListOfStudents extends React.Component
             referrer:null,
             studentData:{}
         }
-        this.mapTeacherStudent = this.mapTeacherStudent.bind(this)
+       // this.mapTeacherStudent = this.mapTeacherStudent.bind(this)
     }
     handleBack()
     {
@@ -37,14 +37,21 @@ class ListOfStudents extends React.Component
     loadStudentsFromServer()
     { 
         console.log(this.state.teacherId)
-        fetch('http://localhost:8080/getAllStudent')
+        //const tid = this.state.teacherId 
+        fetch('http://localhost:8080/getStudentByTeacher/' + this.props.teachers.teacherID )
+        .then(res => res.json())
+        .then((rows) => { 
+            this.setState({students:rows}) 
+            //this.mapTeacherStudent(rows)
+        })
+       /* fetch('http://localhost:8080/getAllStudents')
         .then(res => res.json())
         .then((rows) => { 
             this.mapTeacherStudent(rows)
-        })
+        })*/
     }
 
-    mapTeacherStudent(studentsList)
+   /* mapTeacherStudent(studentsList)
     {
         const list = []
         for(let i=0; i<studentsList.length; i++)
@@ -56,7 +63,7 @@ class ListOfStudents extends React.Component
         }
         this.setState({students:list})  
         console.log(this.state.students)
-    }
+    }*/
 
     handleEditClicked(student)
     {
@@ -64,7 +71,7 @@ class ListOfStudents extends React.Component
       const stid=student.teacherId;
       if(this.state.teacherId===stid)
       {
-            Axios.get('http://localhost:8080/viewStudentByID?id='+id)
+            Axios.get('http://localhost:8080/getStudentById/'+id)
                  .then(res=>res)
                  .then((dataById={})=>{
             this.setState({studentToEdit:dataById})
@@ -88,7 +95,7 @@ class ListOfStudents extends React.Component
                 buttons: [
                 {
                     label: 'Yes',
-                    onClick: () => fetch('http://localhost:8080/deleteStudent?id='+id, {method:'DELETE'})
+                    onClick: () => fetch('http://localhost:8080/deleteStudent/'+id, {method:'DELETE'})
                                     .then(res=>this.loadStudentsFromServer())
                 },
                 {
