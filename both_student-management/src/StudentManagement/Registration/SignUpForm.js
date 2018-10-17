@@ -39,7 +39,7 @@ validateField(fieldName,value){
 
     switch(fieldName) {
       case 'FirstName':
-          FirstNmValid = value.match(/^[a-zA-Z]+$/);
+          FirstNmValid = value.match(/^[a-zA-Z'.-]+$/);
           fieldValidationErrors.FirstName = FirstNmValid ? '' : ' is invalid';
         break;
       
@@ -84,34 +84,36 @@ handleBack()
         const {referrer} = this.state;
         if (referrer) return (<Redirect to={referrer} />)
         return(
-                 <form className="SignUpPage">
+            <div className="SignUpPage">
+                 <form className="SignUpForm">
                  <h2>Register here</h2>
-                 <div className="panel panel-default">
+                 <div>
                      <FormErrors formErrors={this.state.formErrors} />
                 </div>
                     <div className={`form-group ${this.errorClass(this.state.formErrors.FirstName)}`}>
-                        <input id="name" type="text" size="15" placeholder="First Name" name="FirstName"  required
+                        <input id="name" type="text" size="15" placeholder="First Name" name="First Name"  required
                         value={this.state.value}
                         onChange={this.handleUserInput}/><br/><br/>                         
                     </div>
                     <div className={`form-group ${this.errorClass(this.state.formErrors.LastName)}`}>
-                            <input id="lastName" type="text" size="15" placeholder="last name" name="LastName" required
+                            <input id="lastName" type="text" size="15" placeholder="last name" name="Last Name" required
                             value={this.state.value}
                             onChange={this.handleUserInput} /><br/><br/> 
                     </div>
                     <div className={`form-group ${this.errorClass (this.state.formErrors.userNm)}`}>
-                            <input id="user" type="text" size="15" placeholder="User Name" name="userNm" required
+                            <input id="user" type="text" size="15" placeholder="User Name" name="user Name" required
                             value={this.state.value}
                             onChange={this.handleUserInput}/><br/><br/> 
                     </div>
                     <div className={`form-group ${this.errorClass(this.state.formErrors.passWord)}`}>     
-                            <input id="pass_word" type="password" size="15" placeholder="New password" name="passWord" required
+                            <input id="pass_word" type="password" size="15" placeholder="password" name="passWord" required
                             value={this.state.value}
                             onChange={this.handleUserInput}/><br/><br/> 
                     </div>
                     <Button buttonName="Home" handleOnClick={this.handleBack}/>
                     <Button buttonName="Sign Up" handleOnClick={this.props.onSubmitClick} disabled={!this.state.formValid}></Button>                   
                 </form>
+            </div>
         )
     }
 }

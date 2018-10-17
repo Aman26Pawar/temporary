@@ -1,21 +1,18 @@
 import React from 'react';
 import InputBox from '../InputBox';
-import Button from '../Buttons/Button.js';
-import ListOfStudents from '../ListDisplay/ListOfStudents.js';
-
+import Button from '../Buttons/Button';
+import { Redirect } from 'react-router-dom';
+import ListOfStudents from '../ListDisplay/ListOfStudents';
+//import Axios from 'axios';
 class EditStudent extends React.Component
 {
-   constructor(props)
+    constructor(props)
     {
         super(props)
-        this.state={studentId:this.props.studentToUpdate.id,
-                    FirstName:this.props.studentToUpdate.firstName,
-                    LastName:this.props.studentToUpdate.lastName,
-                    Class:this.props.studentToUpdate.studentClass,
-                    Division:this.props.studentToUpdate.division,
-                    AddressLine1:this.props.studentToUpdate.addressLine1,
-                    AddressLine2:this.props.studentToUpdate.addressLine2,
-                    pincode:this.props.studentToUpdate.pincode,
+        this.state={studentId:'',FirstName:'',
+                    LastName:'',Class:'',
+                    Division:'',AddressLine1:'',
+                    AddressLine2:'',pincode:'',
                     firstNameValid:false,
                     lastNameValid:false,
                     divisionValid: false,
@@ -34,17 +31,17 @@ class EditStudent extends React.Component
         this.handlePincodeChange=this.handlePincodeChange.bind(this);
         this.handleBack=this.handleBack.bind(this);
     }
-    componentWillMount()
-    {
-        
-    }
     handleFirstNameChange(value)
     { 
         let FirstNmValid = this.state.firstNameValid;
         if(value!=="")
         {
             FirstNmValid = value.match(/^[a-zA-Z'.-]+$/);
+<<<<<<< HEAD
             this.setState({ErrfirstName:FirstNmValid ? '' : ' Only: letters\' . -',});
+=======
+            this.setState({ErrfirstName:FirstNmValid ? '' : 'Only alphabates allowed\' . -',});
+>>>>>>> 0f9dc40a765cad5891860e3488ded0a1937eb0a2
             this.setState({FirstName: value});
         }
         else{
@@ -57,7 +54,11 @@ class EditStudent extends React.Component
         if(value!=="")
         {
             LastNmValid = value.match(/^[a-zA-Z'.-]+$/);
+<<<<<<< HEAD
             this.setState({ErrlastName:LastNmValid ? '' : ' Only: letters\' . -'});
+=======
+            this.setState({ErrlastName:LastNmValid ? '' : 'Only alphabates allowed\' . -'});
+>>>>>>> 0f9dc40a765cad5891860e3488ded0a1937eb0a2
             this.setState({LastName: value});
         }
         else{
@@ -70,7 +71,11 @@ class EditStudent extends React.Component
         if(value!=="")
         {
             classNmValid=value.match(/^[a-zA-Z0-9'.-]+$/);
+<<<<<<< HEAD
             this.setState({ErrClass:classNmValid? '' : 'Only: letters\' . - 0-9'});
+=======
+            this.setState({ErrClass:classNmValid? '' : 'space not allowed'});
+>>>>>>> 0f9dc40a765cad5891860e3488ded0a1937eb0a2
             this.setState({Class: value});
         }
         else{
@@ -94,13 +99,12 @@ class EditStudent extends React.Component
     handleAddressLine1Change(value)
     {
         let addressLine1Valid=this.state.addressLine1Valid;
-        if(value!=="")
+        if(value!==" " && value.length >= 100)
         {
-            addressLine1Valid = value.length <= 22;
             this.setState({ErraddressLine1:addressLine1Valid ? '' : ' Too long use Line2'});
             this.setState({AddressLine1: value});
         }
-        else{
+        else if(value === ""){
             this.setState({ErraddressLine1:"*Address is required"});
         }
     }
@@ -114,7 +118,7 @@ class EditStudent extends React.Component
         if(value!=="")
         {
             pincodeValid = value.match(/^[0-9]+$/);
-            this.setState({Errpincode:pincodeValid ? '' : '  Only numbers'});
+            this.setState({Errpincode:pincodeValid ? '' : 'Only numbers'});
             this.setState({pincode: value});
         }
         else{
@@ -132,63 +136,65 @@ class EditStudent extends React.Component
         const line1 = document.getElementById("address1").value;
         const line2 = document.getElementById("address2").value;
         const pin = document.getElementById("pin").value;
-           if(
-               fetch('http://localhost:8080/updateStudent?id='+id+'&firstName='+fname+
+        this.setState({FirstName:fname,LastName:lname,Class:classs,Division:division,
+                        AddressLine1:line1,AddressLine2:line2,pincode:pin})
+        if(this.state.FirstName!=="" && this.state.LastName!==""&&this.state.Class!=="" && this.state.Division!==""&&this.state.AddressLine1!=="" && this.state.pincode!=="")
+        {
+           if(fetch('http://localhost:8080/updateStudent?id='+id+'&firstName='+fname+
             '&lastName='+lname+'&TeacherId='+tid+'&classs='+classs+'&division='+division+'&line1='+line1 +
-            '&line2='+ line2+'&pinCode='+pin,
+            '&line2='+line2+'&pinCode='+pin,
             {method:'POST',mode:"no-cors"})
             .then(resp => resp)
             .then(findResp => this.setState({data:findResp}))
            )
            {
-            alert("Updated "+ fname);
-            this.setState({editComplete:!this.state.editComplete})  
-           }
+            alert("Updated "+ fname+ " "+lname);
+            this.setState({handleEditcalled:!this.state.handleEditcalled});
+           }    
+        }
+        else
+        {
+            this.setState({ErrButton:"Please fill the above fields"})
+        }
     }
-
     handleBack()
     {
-        this.setState({backPage:!this.state.backPage})
+        this.setState({handlebackcalled:!this.state.handlebackcalled});
     }
-
     render()
     {
-    
-        const {editComplete}=this.state;
-        const {backPage}=this.state;
-        if(editComplete){
+        const {referrer} = this.state;
+        const {handlebackcalled}=this.state;
+        const {handleEditcalled}=this.state
+        if (referrer) 
+            return (<Redirect to={referrer} />);
+        if(handlebackcalled)
             return <ListOfStudents></ListOfStudents>
-        }
-        if(backPage){
+        if(handleEditcalled)
             return <ListOfStudents></ListOfStudents>
-        }
         return(
-            <div className="col-75 ">
-            <div className="center">
-            <h4> Student To be edit:</h4>
-                <div>
+            <div className="Edit-Student">
+            <div><h2> Student To be edit:  {this.props.studentToUpdate.firstName} </h2></div> 
                 <form>
                     <InputBox id="fname" inputType="text"  placeholder="First Name"    value={this.props.studentToUpdate.firstName}    
-                              handleChanges={this.handleFirstNameChange}    Name="firstName"   error={this.state.ErrfirstName} />
+                              handleChanges={this.handleFirstNameChange}    Name="firstName"   error={this.state.ErrfirstName} /><br/>
+                    
                     <InputBox id="lname" inputType="text"  placeholder="Last Name"     value={this.props.studentToUpdate.lastName}     
-                              handleChanges={this.handleLastNameChange}     Name="lastName"    error={this.state.ErrlastName} />          
+                              handleChanges={this.handleLastNameChange}     Name="lastName"    error={this.state.ErrlastName} /><br/>          
                     <InputBox id="class" inputType="text"  placeholder="Class"         value={this.props.studentToUpdate.studentClass}        
-                              handleChanges={this.handleClassChange}        Name="class"       error={this.state.ErrClass} />         
+                              handleChanges={this.handleClassChange}        Name="class"       error={this.state.ErrClass} /><br/>         
                     <InputBox id="div" inputType="text"  placeholder="Division"      value={this.props.studentToUpdate.division}     
-                              handleChanges={this.handleDivisionChange}     Name="division"    error={this.state.Errdivision} />          
+                              handleChanges={this.handleDivisionChange}     Name="division"    error={this.state.Errdivision} /><br/>          
                     <InputBox id="address1" inputType="text"  placeholder="Address Line1" value={this.props.studentToUpdate.addressLine1} 
-                              handleChanges={this.handleAddressLine1Change} Name="addressLine1"error={this.state.line1} />
+                              handleChanges={this.handleAddressLine1Change} Name="addressLine1"error={this.state.ErraddressLine1} /><br/>
                     <InputBox id="address2" inputType="text"  placeholder="Address Line2" value={this.props.studentToUpdate.addressLine2} 
-                              handleChanges={this.handleAddressLine2Change} Name="addressLine2"                               />
-                    <InputBox id="pin" inputType="text"  placeholder="PIN code"      value={this.props.studentToUpdate.pincode}     
-                              handleChanges={this.handlePincodeChange}      Name="pincode"     error={this.state.Errpincode} />          
-                    <Button buttonName="Edit Student" handleOnClick={this.handleEditStudent} error={this.state.ErrButton}/>
-                    <Button buttonName="Back" handleOnClick={this.handleBack}/>
+                              handleChanges={this.handleAddressLine2Change} Name="addressLine2"                               /><br/>
+                    <InputBox id="pin" inputType="text"  placeholder="PIN code"      value={this.props.studentToUpdate.pincode}      
+                              handleChanges={this.handlePincodeChange}      Name="pincode"     error={this.state.Errpincode} /><br/>           
                 </form>   
-                </div>
+                <Button buttonName="Edit Student" handleOnClick={this.handleEditStudent} error={this.state.ErrButton}/>
+                <Button buttonName="Back" handleOnClick={this.handleBack}/>
             </div>
-
-         </div>
         );
     }
 }

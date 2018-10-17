@@ -62,9 +62,8 @@ class TeacherHome extends React.Component
         if(logOutCalled){
             return <Login></Login>
         }
-        console.log(this.props.teachers)
         return(
-            <div id ="TeacherHome" className="col-75 ">
+            <div id ="TeacherHome" className="TeacherHome ">
                 <div className="right">  
                     <h2> Teacher:{this.props.teachers.firstName} {this.props.teachers.lastName}</h2>
                 </div>

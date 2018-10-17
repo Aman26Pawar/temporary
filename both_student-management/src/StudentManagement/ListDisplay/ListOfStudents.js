@@ -6,7 +6,6 @@ import Button from '../Buttons/Button.js';
 import EditStudent from '../Edit/EditStudent.js';
 import Axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
-import { Table } from 'react-bootstrap';
 import 'react-confirm-alert/src/react-confirm-alert.css' 
 import TeacherHome from '../TeacherHome/TeacherHome';
 
@@ -24,6 +23,7 @@ class ListOfStudents extends React.Component
             referrer:null,
             studentData:{}
         }
+        this.mapTeacherStudent = this.mapTeacherStudent.bind(this)
     }
     handleBack()
     {
@@ -35,13 +35,29 @@ class ListOfStudents extends React.Component
         this.loadStudentsFromServer()
     }
     loadStudentsFromServer()
-    {
+    { 
+        console.log(this.state.teacherId)
         fetch('http://localhost:8080/getAllStudent')
         .then(res => res.json())
-        .then((rows=[]) => {
-          this.setState({ students: rows})
+        .then((rows) => { 
+            this.mapTeacherStudent(rows)
         })
     }
+
+    mapTeacherStudent(studentsList)
+    {
+        const list = []
+        for(let i=0; i<studentsList.length; i++)
+        { 
+                if(this.state.teacherId === studentsList[i].teacherId)
+                {
+                   list.push(studentsList[i])
+                }         
+        }
+        this.setState({students:list})  
+        console.log(this.state.students)
+    }
+
     handleEditClicked(student)
     {
       const id = student.studentId;
@@ -92,17 +108,23 @@ class ListOfStudents extends React.Component
             return (<Redirect to={referrer} />,<EditStudent studentToUpdate={this.state.studentData}/>);
         if(handleBackCalled)
             return <TeacherHome></TeacherHome>
-        return(    
+        return(
             <div>
-                <Table >
+            <div className="List-O">
+                <table >
                     <thead>
                         <tr>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>class</th>
                             <th>division</th>
+<<<<<<< HEAD
                             <th>Address Line1</th>
                             <th>Address Line2</th>
+=======
+                            <th>AddressLine1</th>
+                            <th>AddressLine2</th>
+>>>>>>> 0f9dc40a765cad5891860e3488ded0a1937eb0a2
                             <th>PIN Code</th>
                             <th></th>
                             <th></th>
@@ -127,9 +149,10 @@ class ListOfStudents extends React.Component
                             ) 
                         })    
                     }
-                </Table>
-                <Button buttonName="Back" handleOnClick={this.handleBack}/>
+                </table>
             </div>
+             <Button buttonName="Back" handleOnClick={this.handleBack}/>
+             </div>    
         );
     }
 }

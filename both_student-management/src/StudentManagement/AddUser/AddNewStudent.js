@@ -19,7 +19,7 @@ class AddNewStudent extends React.Component
                     addressLine1Valid:false,
                     pincodeValid:false,
                     ErrfirstName:" ",ErrlastName:" ",ErrClass:"",Errdivision:" ",
-                    ErraddressLine1:" ",Errpincode:"",ErrButton:"",
+                    ErraddressLine1:" ",Errpincode:"",ErrButton:"",AddFormError:'',
                     formErrors:{FirstName:'',LastName:'',Class:'',Division:'',Address:'',PINcode:''},
                     referrer:null,
                     backCalled:false
@@ -62,7 +62,7 @@ class AddNewStudent extends React.Component
             break;
 
             case 'Division':
-                divisionValid = value.match(/^[a-zA-Z]$/);
+                divisionValid = value.match(/^[a-zA-Z]$/) && value.length===1;
                 fieldValidationErrors.Division = divisionValid ? '': ' Single Character';
             break;
 
@@ -72,8 +72,8 @@ class AddNewStudent extends React.Component
             break;
 
             case 'PIN':
-                pinValid = value.length === 6 && value.match(/^[0-9]+$/) ;
-                fieldValidationErrors.PINcode= pinValid ? '': 'Check PIN code';
+                pinValid = value.length === 6 && value.match(/[0-9]$/) ;
+                fieldValidationErrors.PINcode= pinValid ? '': 'Pin code should be 6 digits';
             break;
             
             default:
@@ -92,7 +92,15 @@ class AddNewStudent extends React.Component
     {
         this.setState({formValid: this.state.firstNameValid && this.state.lastNameValid &&
              this.state.classNameValid &&this.state.divisionNmValid && this.state.addressLine1Valid &&
-             this.state.pincodeValid});        
+             this.state.pincodeValid});    
+        if(this.state.formValid !== true)
+        {
+            this.setState({AddFormError:'please fill complete form'})
+        } 
+        else
+        {
+            this.setState({AddFormError:''})
+        }   
     }
     errorClass(error) 
     {
@@ -131,7 +139,7 @@ class AddNewStudent extends React.Component
         const{backCalled}=this.state;
         if(backCalled) return (<TeacherHome></TeacherHome>)
         return(
-            <div className="col-75 ">
+            <div className="Add-Student">
                 <div className="center">
                 <form>
                         <div className="panel panel-default">
@@ -165,7 +173,7 @@ class AddNewStudent extends React.Component
                             <input id="pincode" type="text" placeholder="PIN code" name="PIN" required
                                 value={this.state.value} onChange={this.handleUserInput}/>
                         </div><br/>
-                        <Button buttonName="Add Student" handleOnClick={this.handleAddStudent} disabled={!this.state.formValid} />
+                        <Button buttonName="Add Student" handleOnClick={this.handleAddStudent} disabled={!this.state.formValid} error={this.state.AddFormError}/>
                         <Button buttonName="Back" handleOnClick={this.handleBack}/>
                     </form>
                 </div>

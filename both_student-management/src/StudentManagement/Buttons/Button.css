@@ -1,6 +1,6 @@
 .buttonProp {
     width: 15%;
-    background-color:maroon;
+    background-color:black;
     color: white;
     padding: 5px 10px;
     margin: 8px;
@@ -15,12 +15,12 @@
     background-color:mediumorchid;
 }
 .label {
-
     display: inline;
     font-size: small;
     color: red;
   }
 .table {
+    width: 100%;
     border-collapse: collapse;
 }
 
