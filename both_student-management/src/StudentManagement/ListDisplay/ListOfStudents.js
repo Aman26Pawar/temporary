@@ -125,8 +125,8 @@ class ListOfStudents extends React.Component
                             <th>Last Name</th>
                             <th>class</th>
                             <th>division</th>
-                            <th>AddressLine1</th>
-                            <th>AddressLine2</th>
+                            <th>Address Line1</th>
+                            <th>Address Line2</th>
                             <th>PIN Code</th>
                             <th></th>
                             <th></th>
@@ -158,7 +158,6 @@ class ListOfStudents extends React.Component
         );
     }
 }
-//export default ListOfStudents;  
 const mapStateToProps = (state) => {
     return{
         teachers:state.LoginReducer[0]
