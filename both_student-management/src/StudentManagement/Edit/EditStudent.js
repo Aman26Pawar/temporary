@@ -115,31 +115,40 @@ class EditStudent extends React.Component
     }
     handleEditStudent()
     {
-        const id=this.props.studentToUpdate.studentId;
-        const tid=this.props.studentToUpdate.teacherId;
-        const fname = document.getElementById("fname").value;
-        const lname = document.getElementById("lname").value;
-        const classs = document.getElementById("class").value;
-        const division= document.getElementById("div").value;
-        const line1 = document.getElementById("address1").value;
-        const line2 = document.getElementById("address2").value;
-        const pin = document.getElementById("pin").value;
-        this.setState({FirstName:fname,LastName:lname,Class:classs,Division:division,
-                        AddressLine1:line1,AddressLine2:line2,pincode:pin})
-        if(this.state.FirstName!=="" && this.state.LastName!==""&&this.state.Class!=="" && this.state.Division!==""&&this.state.AddressLine1!=="" && this.state.pincode!=="")
+        const updatedStudent=
         {
-           if(fetch('http://localhost:8080/updateStudent?id='+id+'&firstName='+fname+
-            '&lastName='+lname+'&TeacherId='+tid+'&classs='+classs+'&division='+division+'&line1='+line1 +
-            '&line2='+line2+'&pinCode='+pin,
-            {method:'POST',mode:"no-cors"})
+            tid : this.props.studentToUpdate.teacherId,
+            fname : this.state.FirstName,
+            lname : this.state.LastName,
+            classs : this.state.Class,
+            division : this.state.Division,
+            line1 : this.state.AddressLine1,
+            line2 : this.state.AddressLine2,
+            pin : this.state.pincode
+        }
+        /*tid : this.props.studentToUpdate.teacherId,
+            fname : document.getElementById("fname").value,
+            lname : document.getElementById("lname").value,
+            classs : document.getElementById("class").value,
+            division : document.getElementById("div").value,
+            line1 : document.getElementById("address1").value,
+            line2 : document.getElementById("address2").value,
+            pin : document.getElementById("pin").value*/
+        
+           if(fetch('http://localhost:8080/updateStudent/'+this.props.studentToUpdate.studentId,{
+               method:'PUT',
+               headers: {
+                'content-type': 'application/json'
+              },
+               body: JSON.stringify(updatedStudent)
+            })
             .then(resp => resp)
             .then(findResp => this.setState({data:findResp}))
            )
            {
-            alert("Updated "+ fname+ " "+lname);
+            //alert("Updated "+ fname+ " "+lname);
             this.setState({handleEditcalled:!this.state.handleEditcalled});
            }    
-        }
         else
         {
             this.setState({ErrButton:"Please fill the above fields"})

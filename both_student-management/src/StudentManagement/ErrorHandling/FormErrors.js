@@ -8,7 +8,9 @@ export  const FormErrors = ({formErrors}) =>
   {
     return (
       <label className="label">
-        <p key={i}>{fieldName} {formErrors[fieldName]}</p>
+        <p key={i}>
+        {fieldName} {formErrors[fieldName]}
+        </p>
       </label>
     )        
   }else 
