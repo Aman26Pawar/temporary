@@ -110,7 +110,7 @@ class AddNewStudent extends React.Component
       handleAddStudent()
     { 
         const newStudent= {
-        TeacherId : this.props.teacherId,
+        teacherId : this.props.teacherId,
         firstName : this.state.FirstName,
         lastName : this.state.LastName,
         studentClass : this.state.Class,

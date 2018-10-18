@@ -1,0 +1,36 @@
+@media only screen and (max-width: 700px) {
+    .App-header {
+        background-color: #222;
+        height: 70px;
+        width: 100%;
+        padding: 5px;
+        color: white;
+      }
+}
+
+@media only screen and (min-width:700px) and (max-width: 1200px) {
+    .App-header {
+        background-color: #222;
+        height: 70px;
+        width: 100%;
+        padding: 5px;
+        color: white;
+      }
+}
+
+@media only screen and (min-width:1400px){
+    .App-header {
+        background-color: #222;
+        height: 70px;
+        width: 100%;
+        padding: 5px;
+        color: white;
+      }
+}
+.App-header {
+    background-color: #222;
+    height: 70px;
+    width: 100%;
+    padding: 5px;
+    color: white;
+  }

@@ -38,17 +38,17 @@ validateField(fieldName,value){
   let PasswordValid = this.state.passwordValid;
 
     switch(fieldName) {
-      case 'FirstName':
+      case 'First Name':
           FirstNmValid = value.match(/^[a-zA-Z'.-]+$/);
           fieldValidationErrors.FirstName = FirstNmValid ? '' : ' is invalid';
         break;
       
-      case 'LastName':
+      case 'Last Name':
           LastNameValid = value.match(/^[a-zA-Z]+$/);
           fieldValidationErrors.LastName = LastNameValid ? '' : ' is invalid';
         break;
       
-      case 'userNm':
+      case 'user Name':
         UserNameValid = value.match(/^[a-zA-Z0-9]+$/);
         fieldValidationErrors.userNm = UserNameValid ? '' : ' is invalid';
       break;

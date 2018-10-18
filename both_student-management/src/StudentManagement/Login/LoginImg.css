@@ -1,0 +1,29 @@
+.LoginImg{
+    width:"700";
+    height:"250";
+    
+}
+
+@media only screen and (max-width:700px){
+    .LoginImg{
+        width: 300px;
+        height: 100px;
+        
+    }
+}
+
+@media only screen and (min-width:700px) and (max-width:1400px){
+    .LoginImg{
+        width:"600";
+        height:"250";
+        
+    }
+}
+
+@media only screen and (min-width:1400px){
+    .LoginImg{
+        width:"600";
+        height:"250";
+        
+    }
+}

@@ -10,13 +10,13 @@ class EditStudent extends React.Component
     {
         super(props)
         this.state={studentId:'',
-                    FirstName:'',
-                    LastName:'',    
-                    Class:'',
-                    Division:'',
-                    AddressLine1:'',
-                    AddressLine2:'',
-                    pincode:'',
+        FirstName:this.props.studentToUpdate.firstName,
+        LastName:this.props.studentToUpdate.lastName,
+        Class : this.props.studentToUpdate.studentClass,
+        Division:this.props.studentToUpdate.division,
+        AddressLine1:this.props.studentToUpdate.addressLine1,
+        AddressLine2:this.props.studentToUpdate.addressLine2,
+        pincode:this.props.studentToUpdate.pincode,
                     firstNameValid:false,
                     lastNameValid:false,
                     divisionValid: false,
@@ -36,7 +36,7 @@ class EditStudent extends React.Component
         this.handleBack=this.handleBack.bind(this);
     }
 
-    componentDidMount(){
+   /*componentDidMount(){
         this.setState(
             {FirstName:this.props.studentToUpdate.firstName},
             {LastName:this.props.studentToUpdate.lastName},
@@ -46,7 +46,7 @@ class EditStudent extends React.Component
             {AddressLine2:this.props.studentToUpdate.addressLine2},
             {pincode:this.props.studentToUpdate.pincode}
         )
-    }
+    }*/
 
     handleFirstNameChange(value)
     { 
@@ -134,24 +134,15 @@ class EditStudent extends React.Component
     {
         const updatedStudent=
         {
-            tid : this.props.studentToUpdate.teacherId,
-            fname : this.state.FirstName,
-            lname : this.state.LastName,
-            classs : this.state.Class,
+            teacherId : this.props.studentToUpdate.teacherId,
+            firstName : this.state.FirstName,
+            lastName : this.state.LastName,
+            studentClass : this.state.Class,
             division : this.state.Division,
-            line1 : this.state.AddressLine1,
-            line2 : this.state.AddressLine2,
-            pin : this.state.pincode
-        }
-        /*tid : this.props.studentToUpdate.teacherId,
-            fname : document.getElementById("fname").value,
-            lname : document.getElementById("lname").value,
-            classs : document.getElementById("class").value,
-            division : document.getElementById("div").value,
-            line1 : document.getElementById("address1").value,
-            line2 : document.getElementById("address2").value,
-            pin : document.getElementById("pin").value*/
-        
+            addressLine1 : document.getElementById("address1").value,
+            addressLine2 : this.state.AddressLine2,
+            pincode : this.state.pincode
+        }        
            if(fetch('http://localhost:8080/updateStudent/'+this.props.studentToUpdate.studentId,{
                method:'PUT',
                headers: {
@@ -163,7 +154,6 @@ class EditStudent extends React.Component
             .then(findResp => this.setState({data:findResp}))
            )
            {
-            //alert("Updated "+ fname+ " "+lname);
             this.setState({handleEditcalled:!this.state.handleEditcalled});
            }    
         else
