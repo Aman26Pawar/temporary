@@ -1,97 +1,31 @@
-package com.example.demo.controller;
+package com.example.demo.services;
 
 import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.Student;
-import com.example.demo.Teacher;
-import com.example.demo.repositoriess.StudentRepository;
-import com.example.demo.repositoriess.TeacherRepository;
+import com.example.demo.dao.StudentRepository;
+import com.example.demo.exceptionHandling.ResourceNotFoundException;
+import com.example.demo.model.Student;
 
-import ExceptionHandling.ResourceNotFoundException;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-
-
-@RestController
-@CrossOrigin(origins="http://localhost:3000")
-public class MainController
+@Service
+public class StudentService 
 {
-	@Autowired
-	private TeacherRepository teacherRepository;
 	@Autowired
 	private StudentRepository studentRepository;
 	
-	@RequestMapping(path="/")
-	public String index(Model model){
-		model.addAttribute("title", "Welcome");
-		System.out.println("Index");
-		return "index";
-	}
-	
-	 @PostMapping(path="/addTeacher")
-	 @ResponseBody
-	 public Teacher createTeacher(@RequestBody Teacher teacher) {
-		 System.out.println("New Teacher Added....");
-	       return teacherRepository.save(teacher);
-	 }
-
-	@GetMapping(path = "/getAllTeachers")
-	@ResponseBody
-	public List<Teacher> getAllTeachers()
-	{
-		System.out.println("Get All Teachers.......");
-		return teacherRepository.findAll();
-	}
-	
-	 @GetMapping(path = "/getTeacherrById/{id}")
-	 @ResponseBody
-	 public Teacher getTeacherById(@PathVariable(value = "id") Integer teacherId) {
-	     return teacherRepository.findById(teacherId)
-	           .orElseThrow(() -> new ResourceNotFoundException("Teacher", "id", teacherId));
-	 }
-	
-	 @PutMapping(value = "/updateTeachers/{id}")
-	 @ResponseBody
-	 public Teacher updateTeacher(@PathVariable(value = "id") Integer teacherId,
-	                           @Valid @RequestBody Teacher teacherDetails) {
-		 System.out.println("teacher updated.........");
-	      Teacher teacher = teacherRepository.findById(teacherId)
-	         .orElseThrow(() -> new ResourceNotFoundException("Teacher", "id", teacherId));
-	        teacher.setFirstName(teacherDetails.getFirstName());
-	        teacher.setLastName(teacherDetails.getLastName());
-	        teacher.setUserName(teacherDetails.getUserName());
-	        teacher.setPassword(teacherDetails.getPassword());
-	        return teacherRepository.save(teacher);
-	 }
-	 
-	 @DeleteMapping(value = "/deleteTeacher/{id}")
-	 @ResponseBody
-	 public ResponseEntity<?> deleteTeacher(@PathVariable(value = "id") Integer teacherId) {
-		 System.out.println("teacher deleted...");
-	    Teacher teacher = teacherRepository.findById(teacherId)
-	            .orElseThrow(() -> new ResourceNotFoundException("Teacher", "id", teacherId));
-	      teacherRepository.delete(teacher);
-	      return ResponseEntity.ok().build();
-	 }
-	 
-	 
-	 
-	 
-	 @PostMapping(path = "/addStudents")
+	@PostMapping(path = "/addStudents")
 	 @ResponseBody
 	 public Student createStudent(@Valid @RequestBody Student addStudent) {
 		 System.out.println("New student added...");

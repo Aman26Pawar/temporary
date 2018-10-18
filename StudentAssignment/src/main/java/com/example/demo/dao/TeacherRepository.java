@@ -1,9 +1,12 @@
-package com.example.demo.repositoriess;
+package com.example.demo.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.demo.Teacher;
+
+import com.example.demo.model.Teacher;
+
+
 
 public interface TeacherRepository extends JpaRepository<Teacher, Integer>
 {
-	
+	Teacher findByUserName (String userName);
 }
