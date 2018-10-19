@@ -18,9 +18,10 @@ class ListOfStudents extends React.Component
         this.state={
             students:[],
             editClicked: false,
-            handleBackCalled:false,teacherId:"",
+            handleBackCalled:false,
+            teacherId:"",
             studentToEdit:{},
-            referrer:null,
+            referrer:false,
             studentData:{}
         }
        // this.mapTeacherStudent = this.mapTeacherStudent.bind(this)
@@ -36,7 +37,6 @@ class ListOfStudents extends React.Component
     }
     loadStudentsFromServer()
     { 
-        console.log(this.state.teacherId)
         //const tid = this.state.teacherId 
         fetch('http://localhost:8080/getStudentByTeacher/' + this.props.teachers.teacherID )
         .then(res => res.json())
@@ -75,8 +75,9 @@ class ListOfStudents extends React.Component
                  .then(res=>res)
                  .then((dataById={})=>{
             this.setState({studentToEdit:dataById})
-            this.setState({referrer:'/ListOfStudents/EditStudent'})
+            //this.setState({referrer:'/ListOfStudents/EditStudent'})
             this.setState({studentData:this.state.studentToEdit.data});
+            this.setState({referrer : !this.state.referrer})
             })
         }
         else

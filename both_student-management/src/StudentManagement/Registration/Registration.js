@@ -23,10 +23,10 @@ export default class Registration extends Component{
         console.log("sign up clicked...")
         const newTeacher=
         {
-            fname : document.getElementById("name").value,
-            lname : document.getElementById("lastName").value,
-            uname : document.getElementById("user").value,
-            pw : document.getElementById("pass_word").value
+            firstName : document.getElementById("name").value,
+            lastName : document.getElementById("lastName").value,
+            userName : document.getElementById("user").value,
+            password : document.getElementById("pass_word").value
         }
     
        if(

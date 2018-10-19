@@ -1,4 +1,5 @@
 import React from 'react'
+import './AppFooter.js'
 
 export default class AppFooter extends React.Component
 {

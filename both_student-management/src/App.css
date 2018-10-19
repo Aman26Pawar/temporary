@@ -9,26 +9,8 @@
   size: 20px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 70px;
-  width: 100%;
-  padding: 5px;
-  color: white;
-}
-.App-Footer
-{
-    position: fixed;
-    left: 0;
-    right:0;
-    bottom: 0;
-    height: 40px;
-    width: 100%;
-    background-color:#efefef;
-    color:black;
-    text-align: center;
-    padding: 0px;
-}
+
+
 .App-title {
   font-size: 1.5em;
 }

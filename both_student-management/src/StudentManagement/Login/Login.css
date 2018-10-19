@@ -1,0 +1,20 @@
+@media only screen and (max-width:700px){
+    .LoginPage{
+        overflow: scroll;
+    }
+} 
+
+@media only screen and (min-width:700px) and (max-width:1400px){
+    .LoginPage{
+        overflow: scroll;
+    }
+}
+
+@media only screen and (min-width:1400px){
+    .LoginPage{
+        overflow: scroll;
+    }
+}
+.LoginPage{
+    overflow: scroll;
+}

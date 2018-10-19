@@ -90,10 +90,16 @@ public class MainController
 	 
 	 @PostMapping(path = "/addStudents")
 	 @ResponseBody
+<<<<<<< HEAD
 	 public Student createStudent(@Valid @RequestBody Student student) 
 	 {
 		 System.out.println("New student added...");
 	     return studentRepository.save(student);
+=======
+	 public Student createStudent(@Valid @RequestBody Student addStudent) {
+		 System.out.println("New student added...");
+		 	return studentRepository.save(addStudent);
+>>>>>>> 6eee836fe0feafdc3c927e57170170ba282604fb
 	 }
 	 
 	@GetMapping(path = "/getAllStudents")
@@ -121,11 +127,18 @@ public class MainController
 
 	 @PutMapping(path = "/updateStudent/{id}")
 	 @ResponseBody
+<<<<<<< HEAD
 	 public Student updateStudent(@PathVariable(value = "id") Integer studentId, @Valid @RequestBody Student studentDetails) 
 	 {
 		System.out.println("student upated..........");
 		System.out.println(studentDetails);
 	    Student student = studentRepository.findById(studentId)
+=======
+	 public Student updateStudent(@PathVariable(value = "id") Integer studentId,
+	                           @Valid @RequestBody Student studentDetails) {
+		 System.out.println("student upated..........");
+	      Student student = studentRepository.findById(studentId)
+>>>>>>> 6eee836fe0feafdc3c927e57170170ba282604fb
 	         .orElseThrow(() -> new ResourceNotFoundException("Student", "id", studentId));
         student.setFirstName(studentDetails.getFirstName());
         student.setLastName(studentDetails.getLastName());
