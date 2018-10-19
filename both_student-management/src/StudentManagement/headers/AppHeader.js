@@ -5,10 +5,11 @@ export default class AppHeader extends React.Component
 {
     render(){
         return(
-            
-            <header className="App-header">
+            <div className="App-header">
+            <header>
                     <h1 className="App-title">Welcome To Student Management System</h1>
             </header>
+            </div>
         )
     }
 }  

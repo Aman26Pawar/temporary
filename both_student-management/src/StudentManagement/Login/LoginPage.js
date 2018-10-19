@@ -79,7 +79,6 @@ class Login extends React.Component
         }
         return(
         <div id="LoginData" className="LoginPage"><br/><br/>
-            <LoginImg></LoginImg>
             <br/><br/>
             <input id="userName" type="text"  placeholder="User Name" required></input>
             <br/><br/>

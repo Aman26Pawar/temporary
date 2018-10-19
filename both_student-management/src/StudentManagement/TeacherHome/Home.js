@@ -7,7 +7,7 @@ class Home extends  React.Component
     {
         return(
             <div>
-                <img src={img1} width="400" height="200" alt='icon' />
+                <img src={img1} width="400" height="100" alt='icon' />
             </div>
         );
     }

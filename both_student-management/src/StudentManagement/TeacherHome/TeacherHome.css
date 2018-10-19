@@ -1,0 +1,46 @@
+@media only screen and (max-width:700px){
+    .TeacherHome{
+        height:540px;
+        width: 100%;
+        background-image: url("img1.jpg");
+        background-size: auto; 
+        background-repeat: no-repeat;
+        background-position: center center
+      }
+    
+} 
+
+@media only screen and (min-width:700px) and (max-width:1400px){
+    .TeacherHome{
+        height:540px;
+        width: 100%;
+        overflow-y: scroll;
+        background-image: url("img1.jpg");
+        background-size:  auto; 
+        background-repeat: no-repeat;
+        background-position: center center
+      }
+    
+}
+
+@media only screen and (min-width:1400px){
+    .TeacherHome{
+        height:600px;
+        width: 100%;
+        overflow-y: scroll;
+        background-image: url("img1.jpg");
+        background-size:  auto; 
+        background-repeat: no-repeat;
+        background-position: center center
+      } 
+}
+
+.TeacherHome{
+    height:540px;
+    width: 100%;
+   
+    background-image: url("img1.jpg");
+    background-size:  cover; 
+    background-repeat: no-repeat;
+    background-position: center center
+  }
