@@ -93,14 +93,14 @@ class ListOfStudents extends React.Component
                 title: 'Confirm to Delete',
                 message: 'Are you sure to do this.',
                 buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => fetch('http://localhost:8080/deleteStudent/'+id, {method:'DELETE'})
-                                    .then(res=>this.loadStudentsFromServer())
-                },
-                {
-                    label: 'No'
-                }
+                    {
+                        label: 'Yes',
+                        onClick: () => fetch('http://localhost:8080/deleteStudent/'+id, {method:'DELETE'})
+                                        .then(res=>this.loadStudentsFromServer())
+                    },
+                    {
+                        label: 'No'
+                    }
                 ]
             })
         }
