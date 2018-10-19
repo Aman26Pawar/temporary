@@ -1,20 +1,37 @@
 @media only screen and (max-width:700px){
     .LoginPage{
-        overflow: scroll;
+        background-image: url("img2.jpg");
+        background-size:  cover; 
+        background-repeat: no-repeat;
+        background-position: center center
     }
+    
 } 
 
 @media only screen and (min-width:700px) and (max-width:1400px){
     .LoginPage{
-        overflow: scroll;
+    height: 532px;
+    background-image: url("img2.jpg");
+    background-size:  cover; 
+    background-repeat: no-repeat;
+    background-position: center center
     }
+    
 }
 
 @media only screen and (min-width:1400px){
     .LoginPage{
-        overflow: scroll;
+        background-image: url("img2.jpg");
+        background-size:  cover; 
+        background-repeat: no-repeat;
+        background-position: center center
     }
+    
 }
+
+
 .LoginPage{
-    overflow: scroll;
+background-image: url("img2.jpg");
+background-repeat: no-repeat;
+background-position: center
 }

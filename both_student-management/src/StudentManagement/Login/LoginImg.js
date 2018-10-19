@@ -8,7 +8,7 @@ class LoginImg extends  React.Component
     {
         return(
             <div className='LoginImg' >
-                <img src={img2} alt='icon' />
+                <img src={img2} alt='icon'  />
             </div>
         );
     }

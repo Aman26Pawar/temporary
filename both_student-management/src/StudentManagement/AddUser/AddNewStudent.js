@@ -6,6 +6,7 @@ import TeacherHome from '../TeacherHome/TeacherHome';
 import '../Buttons/Button.css';
 
 
+
 class AddNewStudent extends React.Component
 {
     constructor(props)
