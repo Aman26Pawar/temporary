@@ -152,7 +152,7 @@ class AddNewStudent extends React.Component
                         <div className="panel panel-default">
                             <FormErrors formErrors={this.state.formErrors} />
                         </div><br/>
-                        <div className={`form-group ${this.errorClass(this.state.formErrors.FirstName)}`}>
+                        <div className={`col-3 ${this.errorClass(this.state.formErrors.FirstName)}`}>
                             <input id="firstname" type="text" placeholder="First Name" name="FirstName"  required
                                 value={this.state.value} onChange={this.handleUserInput}/>                           
                         </div><br/>

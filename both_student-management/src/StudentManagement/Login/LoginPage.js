@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import TeacherHome from '../TeacherHome/TeacherHome';
 import Button from '../Buttons/Button';
 import '../Buttons/Button.css'
-import LoginImg from '../Login/LoginImg'
+
 
 class Login extends React.Component
 {

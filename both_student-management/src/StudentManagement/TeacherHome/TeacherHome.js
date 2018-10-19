@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Button from "../Buttons/Button.js";
-import Home from "./Home";
 import AddNewStudent from '../AddUser/AddNewStudent'
 import Login from '../Login/LoginPage';
 import { Redirect } from 'react-router-dom';

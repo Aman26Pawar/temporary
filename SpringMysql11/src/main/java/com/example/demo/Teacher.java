@@ -7,14 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.Table;
-
-<<<<<<< HEAD
-=======
 import org.hibernate.validator.constraints.Length;
 
-
-
->>>>>>> 6eee836fe0feafdc3c927e57170170ba282604fb
 @Entity
 @Table(name="teacher_info")
 

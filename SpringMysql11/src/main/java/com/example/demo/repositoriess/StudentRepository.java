@@ -16,6 +16,5 @@ public interface StudentRepository extends JpaRepository<Student, Integer>
 	@Query(value = FIND_STUDENT_BY_STUDENTID, nativeQuery = true)
     List<Student> findStudentByStudentId(Integer studentId);
 	
-	String ADD_STUDENT = "INSERT INTO studentinfo(firstName, lastName, TeacherId, studentClass, division, addressLine1, addressLine2, pincode) values(:fname,:lname,:tid,:studentClass,:division,:line1,:line2,:pin)";
-
+	String ADD_STUDENT = "INSERT INTO student_info(firstName, lastName, TeacherId, studentClass, division, addressLine1, addressLine2, pincode) values(:fname,:lname,:tid,:studentClass,:division,:line1,:line2,:pin)";
 }
