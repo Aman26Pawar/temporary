@@ -1,15 +1,11 @@
 package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
-
 @SpringBootApplication
-public class SpringMysql11Application {
-
-
+public class SpringMysql11Application 
+{
 	public static void main(String[] args) 
 	{
 		
@@ -18,5 +14,4 @@ public class SpringMysql11Application {
 		System.out.println("Spring-React App started.....");
 
 	}
-
 }

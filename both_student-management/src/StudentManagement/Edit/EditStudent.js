@@ -94,8 +94,7 @@ class EditStudent extends React.Component
         {
             divVlid=value.match(/^[a-zA-Z]$/);
             this.setState({Errdivision:divVlid? '':'Only single character'});
-            this.setState({Division: value});
-            
+            this.setState({Division: value});  
         }
         else{
             this.setState({Errdivision:"*Division is required"});
@@ -182,7 +181,6 @@ class EditStudent extends React.Component
                 <form>
                     <InputBox id="fname" inputType="text"  placeholder="First Name"    value={this.props.studentToUpdate.firstName}    
                               handleChanges={this.handleFirstNameChange}    Name="firstName"   error={this.state.ErrfirstName} /><br/>
-                    
                     <InputBox id="lname" inputType="text"  placeholder="Last Name"     value={this.props.studentToUpdate.lastName}     
                               handleChanges={this.handleLastNameChange}     Name="lastName"    error={this.state.ErrlastName} /><br/>          
                     <InputBox id="class" inputType="text"  placeholder="Class"         value={this.props.studentToUpdate.studentClass}        
