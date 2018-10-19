@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import {FormErrors} from '../ErrorHandling/FormErrors.js'
 import TeacherHome from '../TeacherHome/TeacherHome';
 import '../Buttons/Button.css';
+import './AddNewStudent.css'
 
 
 
@@ -147,7 +148,7 @@ class AddNewStudent extends React.Component
         if(backCalled) return (<TeacherHome></TeacherHome>)
         return(
             <div className="Add-Student">
-                <div className="center">
+                <div>
                 <form>
                         <div className="panel panel-default">
                             <FormErrors formErrors={this.state.formErrors} />

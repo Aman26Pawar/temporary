@@ -8,6 +8,7 @@ import Axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css' 
 import TeacherHome from '../TeacherHome/TeacherHome';
+import './ListOfStudents.css'
 
 class ListOfStudents extends React.Component
 {
@@ -24,7 +25,6 @@ class ListOfStudents extends React.Component
             referrer:false,
             studentData:{}
         }
-       // this.mapTeacherStudent = this.mapTeacherStudent.bind(this)
     }
     handleBack()
     {
@@ -37,33 +37,13 @@ class ListOfStudents extends React.Component
     }
     loadStudentsFromServer()
     { 
-        //const tid = this.state.teacherId 
+        
         fetch('http://localhost:8080/getStudentByTeacher/' + this.props.teachers.teacherID )
         .then(res => res.json())
         .then((rows) => { 
             this.setState({students:rows}) 
-            //this.mapTeacherStudent(rows)
         })
-       /* fetch('http://localhost:8080/getAllStudents')
-        .then(res => res.json())
-        .then((rows) => { 
-            this.mapTeacherStudent(rows)
-        })*/
     }
-
-   /* mapTeacherStudent(studentsList)
-    {
-        const list = []
-        for(let i=0; i<studentsList.length; i++)
-        { 
-                if(this.state.teacherId === studentsList[i].teacherId)
-                {
-                   list.push(studentsList[i])
-                }         
-        }
-        this.setState({students:list})  
-        console.log(this.state.students)
-    }*/
 
     handleEditClicked(student)
     {
@@ -117,9 +97,9 @@ class ListOfStudents extends React.Component
         if(handleBackCalled)
             return <TeacherHome></TeacherHome>
         return(
+            <div className="StudentList">
             <div>
-            <div className="List-O">
-                <table >
+                <table className="table">
                     <thead>
                         <tr>
                             <th>First Name</th>
@@ -155,7 +135,7 @@ class ListOfStudents extends React.Component
                 </table>
             </div>
              <Button buttonName="Back" handleOnClick={this.handleBack}/>
-             </div>    
+            </div>    
         );
     }
 }

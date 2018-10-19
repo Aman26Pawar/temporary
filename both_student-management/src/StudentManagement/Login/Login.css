@@ -9,8 +9,7 @@
 } 
 
 @media only screen and (min-width:700px) and (max-width:1400px){
-    .LoginPage{
-    height: 532px;
+    .LoginPage{  
     background-image: url("img2.jpg");
     background-size:  cover; 
     background-repeat: no-repeat;
@@ -28,10 +27,10 @@
     }
     
 }
-
-
 .LoginPage{
-background-image: url("img2.jpg");
-background-repeat: no-repeat;
-background-position: center
+    background-image: url("img2.jpg");
+    background-size:  cover; 
+    background-repeat: no-repeat;
+    background-position: center center
 }
+

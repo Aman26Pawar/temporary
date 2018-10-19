@@ -1,0 +1,34 @@
+.Edit-Student{
+    height:500px;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x:scroll;
+  }
+  @media only screen and (max-width:700px){
+    .Edit-Student{
+      height:500px;
+      width: 100%;
+      overflow-y: scroll;
+      overflow-x:scroll;
+    }
+    
+} 
+
+@media only screen and (min-width:700px) and (max-width:1400px){
+  .Edit-Student{
+    height:500px;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x:scroll;
+  }
+    
+}
+
+@media only screen and (min-width:1400px){
+  .Edit-Student{
+    height:500px;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x:scroll;
+  }
+}

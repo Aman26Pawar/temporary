@@ -5,20 +5,42 @@
         background-image: url("img1.jpg");
         background-size: auto; 
         background-repeat: no-repeat;
-        background-position: center center
+        background-position: center center;
+        overflow: scroll;
+      }
+      .right {
+        position: absolute;
+        right: 200px;
+        width: 300px;
+        padding: 10px;
+      }
+      .center {
+        padding: 50px 0;
+        text-align: center;
+        margin-top: 10px;
       }
     
 } 
 
 @media only screen and (min-width:700px) and (max-width:1400px){
     .TeacherHome{
-        height:540px;
+        height:450px;
         width: 100%;
-        overflow-y: scroll;
         background-image: url("img1.jpg");
         background-size:  auto; 
         background-repeat: no-repeat;
         background-position: center center
+      }
+      .right {
+        position: absolute;
+        right: 200px;
+        width: 300px;
+        padding: 10px;
+      }
+      .center {
+        padding: 50px 0;
+        text-align: center;
+        margin-top: 10px;
       }
     
 }
@@ -27,18 +49,27 @@
     .TeacherHome{
         height:600px;
         width: 100%;
-        overflow-y: scroll;
         background-image: url("img1.jpg");
         background-size:  auto; 
         background-repeat: no-repeat;
         background-position: center center
       } 
+      .right {
+        position: absolute;
+        right: 200px;
+        width: 300px;
+        padding: 10px;
+      }
+      .center {
+        padding: 50px 0;
+        text-align: center;
+        margin-top: 10px;
+      }
 }
 
 .TeacherHome{
     height:540px;
     width: 100%;
-   
     background-image: url("img1.jpg");
     background-size:  cover; 
     background-repeat: no-repeat;

@@ -4,7 +4,11 @@ import {connect} from 'react-redux'
 import TeacherHome from '../TeacherHome/TeacherHome';
 import Button from '../Buttons/Button';
 import '../Buttons/Button.css'
+<<<<<<< HEAD
+import './Login.css'
+=======
 
+>>>>>>> 2f07daf1446a6c8773272bfdadbe47844161f7fb
 
 class Login extends React.Component
 {
