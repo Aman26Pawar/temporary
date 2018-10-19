@@ -1,5 +1,5 @@
 import React from 'react';
-import InputBox from '../InputBox';
+import InputBox from '../InputBox/InputBox';
 import Button from '../Buttons/Button';
 import { Redirect } from 'react-router-dom';
 import ListOfStudents from '../ListDisplay/ListOfStudents';

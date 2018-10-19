@@ -1,5 +1,5 @@
 import React from 'react';
-import './Buttons/Button.css'
+import '../Buttons/Button.css'
 
 class InputBox extends React.Component
 {
