@@ -9,7 +9,7 @@
 
 @media only screen and (min-width:400px) and (max-width:700px){
   .Edit-Student{
-    height:330px;
+    height:247px;
     width: 100%;
     overflow-y: scroll;
   }
@@ -27,7 +27,7 @@
 
 @media only screen and (min-width:1400px){
   .Edit-Student{
-    height:400px;
+    height:350px;
     width: 100%;
     overflow-y: scroll;
   }

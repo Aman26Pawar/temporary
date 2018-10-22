@@ -15,7 +15,7 @@
 
 @media only screen and (min-width:400px) and (max-width:700px){
   .StudentList{
-    height:330px ;
+    height:247px ;
       width: 100%;
       overflow-y: scroll;
       padding: 10px 70px 0px 20px;
@@ -30,7 +30,7 @@
 
 @media only screen and (min-width:700px) and (max-width:1200px){
     .StudentList{
-      height:500px ;
+      height:350px ;
         width: 100%;
         overflow-y: scroll;
         padding: 10px 70px 0px 20px;
@@ -48,7 +48,7 @@
     height:500px ;
       width: 100%;
       overflow-y: scroll;
-      padding: 10px 70px 0px 20px;
+      padding: 10px 20px 0px 20px;
     } 
     .table{
       border: 2px solid black;
@@ -62,7 +62,7 @@
 
 @media only screen and (min-width:1400px){
     .StudentList{
-        height:400px ;
+        height:350px ;
         width: 90%;
         overflow-y: scroll;
         padding: 10px 70px 0px 70px;
@@ -71,6 +71,6 @@
         border: 2px solid black;
         height:200px ;
         width: 100%;
-      } 
+      }      
 }
   

@@ -12,10 +12,10 @@
 @media only screen and (min-width:400px) and (max-width:700px){
     .LoginPage{  
     background-image: url("img2.jpg");
-    background-size:  415px 320px; 
+    background-size:  640px 320px; 
     background-repeat: no-repeat;
     background-position: center center;
-    height: 320px;
+    height: 225px;
     }
     
 }
@@ -50,8 +50,8 @@
         background-size: 1438px 450px;  
         background-repeat: no-repeat;
         background-position: center center;
-        padding: 70px;
-        height: 450px;
+        padding: 20px 140px 70px 70px;
+        height: 350px;
     }
     
 }
