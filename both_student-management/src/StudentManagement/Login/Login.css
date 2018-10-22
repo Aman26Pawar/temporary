@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-*{
-    box-sizing: border-box;
-}
-@media only screen and (max-width:700px){
-=======
 @media only screen and (max-width:400px){
->>>>>>> cbaddee5862039d128af632baaa4816daa573539
     .LoginPage{
         background-image: url("img2.jpg");
         background-size: 375px 375px ;  
@@ -53,13 +46,8 @@
 
 @media only screen and (min-width:1400px){
     .LoginPage{
-<<<<<<< HEAD
-        background-image: url('img2.jpg'); 
-        background-size:  cover; 
-=======
         background-image: url("img2.jpg");
         background-size: 1438px 450px;  
->>>>>>> cbaddee5862039d128af632baaa4816daa573539
         background-repeat: no-repeat;
         background-position: center center;
         padding: 70px;
