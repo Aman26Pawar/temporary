@@ -1,6 +1,6 @@
   @media only screen and (max-width:400px){
     .StudentList{
-        height:365px ;
+        height:325px ;
         width: 375px;
         overflow: scroll;
         padding: 10px 10px 0px 10px;
@@ -56,6 +56,10 @@
       height:200px ;
       width: 100%;
     } 
+    tbody tr:nth-of-type(odd){
+      background-color: rgb(155, 76, 245);
+      color: #fff;
+    }
 }
 
 

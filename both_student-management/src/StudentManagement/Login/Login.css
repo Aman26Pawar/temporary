@@ -4,7 +4,7 @@
         background-size: 375px 375px ;  
         background-repeat: no-repeat;
         background-position: center center;
-        height: 375px;
+        height: 325px;
     }
     
 } 
@@ -26,7 +26,7 @@
     background-size:  cover; 
     background-repeat: no-repeat;
     background-position: center center;
-    height: 395px;
+    height: 350px;
     }
     
 }
@@ -39,7 +39,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     padding: 70px;
-    height: 520px;
+    height: 470px;
     }
     
 }

@@ -1,6 +1,6 @@
 @media only screen and (max-width:400px){
     .TeacherHome{
-        height:365px;
+        height:325px;
         width: 370px;
         background-image: url("img1.jpg");
         background-size:375px 375px; 
@@ -27,7 +27,7 @@
       height:290px;
       width: 100%;
       background-image: url("img1.jpg");
-      background-size:  auto; 
+      background-size:  600px 300px; 
       background-repeat: no-repeat;
       background-position: center center
     }
@@ -47,7 +47,7 @@
 
 @media only screen and (min-width:700px) and (max-width:1200px){
     .TeacherHome{
-        height:385px;
+        height:350px;
         width: 100%;
         background-image: url("img1.jpg");
         background-size:  auto; 
