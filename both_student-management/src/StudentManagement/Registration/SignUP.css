@@ -1,0 +1,46 @@
+
+  @media only screen and (max-width:400px){
+    .SignUpPage{
+        height:328px;
+        width: 100%;
+        overflow-y: scroll;
+      }
+    
+} 
+
+@media only screen and (min-width:400px) and (max-width:700px){
+    .SignUpPage{
+        height:320px;
+        width: 100%;
+        overflow-y: scroll;
+      }
+    
+}
+
+@media only screen and (min-width:700px) and (max-width:1200px){
+    .SignUpPage{
+        height:355px;
+        width: 100%;
+        overflow: scroll;
+      }
+    
+}
+
+
+@media only screen and (min-width:1200px) and (max-width:1400px){
+    .SignUpPage{
+        height:470px;
+        width: 100%;
+        overflow-y: scroll;
+      }
+    
+}
+
+@media only screen and (min-width:1400px){
+    .SignUpPage{
+        height:540px;
+        width: 100%;
+        overflow-y: scroll;
+      }
+    
+}

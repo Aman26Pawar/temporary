@@ -20,6 +20,9 @@
 
 @media only screen and (min-width:700px) and (max-width:1400px){
     .Add-Student {
+        background-image: url("addStudent.jpg");
+        background-size: 1350px 550px;
+        background-position: center;
         overflow-y: scroll;
         float: left;
         width: 100%;

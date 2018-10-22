@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {FormErrors} from '../ErrorHandling/FormErrors.js'
 import { Redirect } from 'react-router-dom';
 import Button from '../Buttons/Button.js';
+import './SignUP.css'
 
 class SignUpForm extends Component {
   constructor(props){
