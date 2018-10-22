@@ -9,7 +9,7 @@
 
 @media only screen and (min-width:400px) and (max-width:700px){
   .Edit-Student{
-    height:390px;
+    height:330px;
     width: 100%;
     overflow-y: scroll;
   }
