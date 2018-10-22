@@ -7,8 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="student_info")
+@Table(name="studentinfo")
 /*@NamedStoredProcedureQueries({
 	@NamedStoredProcedureQuery(name="sp_GetStudent", procedureName="sp_GetStudent", resultClasses=Student.class)
 })*/

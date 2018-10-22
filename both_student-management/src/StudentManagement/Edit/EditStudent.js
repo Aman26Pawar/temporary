@@ -3,6 +3,7 @@ import InputBox from '../InputBox/InputBox';
 import Button from '../Buttons/Button';
 import { Redirect } from 'react-router-dom';
 import ListOfStudents from '../ListDisplay/ListOfStudents';
+import './EditStudent.css'
 //import Axios from 'axios';
 class EditStudent extends React.Component
 {

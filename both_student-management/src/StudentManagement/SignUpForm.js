@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {FormErrors} from '../ErrorHandling/FormErrors.js'
-import { Redirect } from 'react-router-dom';
-import Button from '../Buttons/Button.js';
-import './SignUP.css'
-
+import {FormErrors} from './FormErrors.js'
+import Button from './Button';
+//import { browserHistory } from 'react-router';
+//import './Form.css';
 class SignUpForm extends Component {
   constructor(props){
     super(props);
@@ -17,8 +16,7 @@ class SignUpForm extends Component {
         UserNameValid:false,
         PasswordValid:false,
         formErrors:{FirstName:'',LastName:'',userNm:'',passWord:''},
-        formValid:false,
-        referrer:null
+        formValid:false
     }
     this.handleUserInput = this.handleUserInput.bind(this)
     this.handleBack=this.handleBack.bind(this);
@@ -39,17 +37,17 @@ validateField(fieldName,value){
   let PasswordValid = this.state.passwordValid;
 
     switch(fieldName) {
-      case 'First Name':
-          FirstNmValid = value.match(/^[a-zA-Z'.-]+$/);
+      case 'FirstName':
+          FirstNmValid = value.match(/^[a-zA-Z]+$/);
           fieldValidationErrors.FirstName = FirstNmValid ? '' : ' is invalid';
         break;
       
-      case 'Last Name':
+      case 'LastName':
           LastNameValid = value.match(/^[a-zA-Z]+$/);
           fieldValidationErrors.LastName = LastNameValid ? '' : ' is invalid';
         break;
       
-      case 'user Name':
+      case 'userNm':
         UserNameValid = value.match(/^[a-zA-Z0-9]+$/);
         fieldValidationErrors.userNm = UserNameValid ? '' : ' is invalid';
       break;
@@ -78,43 +76,44 @@ errorClass(error) {
 handleBack()
 {
     console.log("back");
-    this.setState({referrer:'/'})
+    this.props.history.push('/')
 }
 
       render(){
-        const {referrer} = this.state;
-        if (referrer) return (<Redirect to={referrer} />)
         return(
-            <div className="SignUpPage">
-                 <form className="SignUpForm">
+                 <form className="RegistrationPage">
                  <h2>Register here</h2>
-                 <div>
+                 <div className="panel panel-default">
                      <FormErrors formErrors={this.state.formErrors} />
                 </div>
                     <div className={`form-group ${this.errorClass(this.state.formErrors.FirstName)}`}>
-                        <input id="name" type="text" size="15" placeholder="First Name" name="First Name"  required
+                        <label htmlFor="_FirstName">First Name: </label>
+                        <input id="name" type="text" size="15" placeholder="First Name" name="FirstName"  required
                         value={this.state.value}
-                        onChange={this.handleUserInput}/><br/><br/>                         
+                        onChange={this.handleUserInput}/>                           
                     </div>
                     <div className={`form-group ${this.errorClass(this.state.formErrors.LastName)}`}>
-                            <input id="lastName" type="text" size="15" placeholder="last name" name="Last Name" required
+                    <label htmlFor="_LastName">Last Name: </label>
+                            <input id="lastName" type="text" size="15" placeholder="last name" name="LastName" required
                             value={this.state.value}
-                            onChange={this.handleUserInput} /><br/><br/> 
+                            onChange={this.handleUserInput} />
                     </div>
                     <div className={`form-group ${this.errorClass (this.state.formErrors.userNm)}`}>
-                            <input id="user" type="text" size="15" placeholder="User Name" name="user Name" required
+                    <label htmlFor="_UserName">User Name:</label>
+                            <input id="user" type="text" size="15" placeholder="User Name" name="userNm" required
                             value={this.state.value}
-                            onChange={this.handleUserInput}/><br/><br/> 
+                            onChange={this.handleUserInput}/>
                     </div>
-                    <div className={`form-group ${this.errorClass(this.state.formErrors.passWord)}`}>     
-                            <input id="pass_word" type="password" size="15" placeholder="password" name="passWord" required
+                    <div className={`form-group ${this.errorClass(this.state.formErrors.passWord)}`}>      
+                    <label htmlFor="_password">Password: </label>
+                            <input id="pass_word" type="password" size="15" placeholder="New password" name="passWord" required
                             value={this.state.value}
-                            onChange={this.handleUserInput}/><br/><br/> 
+                            onChange={this.handleUserInput}/>
                     </div>
                     <Button buttonName="Home" handleOnClick={this.handleBack}/>
-                    <Button buttonName="Sign Up" handleOnClick={this.props.onSubmitClick} disabled={!this.state.formValid}></Button>                   
+                    <button type="submit" onClick={this.props.onSubmitClick}disabled={!this.state.formValid}>Sign up</button>
+                    
                 </form>
-            </div>
         )
     }
 }

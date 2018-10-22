@@ -1,0 +1,76 @@
+  @media only screen and (max-width:400px){
+    .StudentList{
+        height:365px ;
+        width: 375px;
+        overflow: scroll;
+        padding: 10px 10px 0px 10px;
+    }  
+    .table{
+        border: 2px solid black;
+        overflow-y: scroll;
+        height:200px ;
+        width: 100%;
+      } 
+} 
+
+@media only screen and (min-width:400px) and (max-width:700px){
+  .StudentList{
+    height:330px ;
+      width: 100%;
+      overflow-y: scroll;
+      padding: 10px 70px 0px 20px;
+    } 
+    .table{
+      border: 2px solid black;
+      overflow: scroll;
+      height:200px ;
+      width: 100%;
+    } 
+}
+
+@media only screen and (min-width:700px) and (max-width:1200px){
+    .StudentList{
+      height:500px ;
+        width: 100%;
+        overflow-y: scroll;
+        padding: 10px 70px 0px 20px;
+      } 
+      .table{
+        border: 2px solid black;
+        overflow: scroll;
+        height:200px ;
+        width: 100%;
+      } 
+}
+
+@media only screen and (min-width:1200px) and (max-width:1400px){
+  .StudentList{
+    height:500px ;
+      width: 100%;
+      overflow-y: scroll;
+      padding: 10px 70px 0px 20px;
+    } 
+    .table{
+      border: 2px solid black;
+      overflow: scroll;
+      height:200px ;
+      width: 100%;
+    } 
+}
+
+
+
+@media only screen and (min-width:1400px){
+    .StudentList{
+        height:400px ;
+        width: 90%;
+        overflow-y: scroll;
+        padding: 10px 70px 0px 70px;
+      }
+      .table{
+        border: 2px solid black;
+        height:200px ;
+        width: 100%;
+      } 
+}
+  
