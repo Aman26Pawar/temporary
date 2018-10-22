@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -14,12 +17,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.example.demo.Student;
 import com.example.demo.Teacher;
 import com.example.demo.repositoriess.StudentRepository;
 import com.example.demo.repositoriess.TeacherRepository;
+
 import ExceptionHandling.ResourceNotFoundException;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 @RestController
 @CrossOrigin(origins="http://localhost:3000")
@@ -31,19 +38,15 @@ public class MainController
 	private StudentRepository studentRepository;
 	
 	@RequestMapping(path="/")
-	public String index(Model model)
-	{
-		model.addAttribute("title", "Welcome");
-		System.out.println("Index");
+	public String index(){
 		return "index";
 	}
 	
 	 @PostMapping(path="/addTeacher")
 	 @ResponseBody
-	 public Teacher createTeacher(@RequestBody Teacher teacher) 
-	 {
+	 public Teacher createTeacher(@RequestBody Teacher teacher) {
 		 System.out.println("New Teacher Added....");
-	     return teacherRepository.save(teacher);
+	       return teacherRepository.save(teacher);
 	 }
 
 	@GetMapping(path = "/getAllTeachers")
@@ -54,10 +57,24 @@ public class MainController
 		return teacherRepository.findAll();
 	}
 	
+	@PostMapping(path="/login")
+	@ResponseBody
+	public Teacher loginTeacher(@RequestBody Teacher teacherLogin){
+		System.out.println("Finding logged teacher");
+		List<Teacher> teachers = teacherRepository.findAll();
+		for(int i=0 ; i<teachers.size() ; i++)
+		{
+			if(teachers.get(i).getUserName() == teacherLogin.getUserName() && teachers.get(i).getPassword() == teacherLogin.getPassword() )
+			{
+				return getTeacherById(i);
+			}
+		}
+		return null;
+	}
 	 @GetMapping(path = "/getTeacherrById/{id}")
 	 @ResponseBody
-	 public Teacher getTeacherById(@PathVariable(value = "id") Integer teacherId) 
-	 {
+	 public Teacher getTeacherById(@PathVariable(value = "id") Integer teacherId) {
+		 System.out.println("getTeacheryID");
 	     return teacherRepository.findById(teacherId)
 	           .orElseThrow(() -> new ResourceNotFoundException("Teacher", "id", teacherId));
 	 }
@@ -65,28 +82,29 @@ public class MainController
 	 @PutMapping(value = "/updateTeachers/{id}")
 	 @ResponseBody
 	 public Teacher updateTeacher(@PathVariable(value = "id") Integer teacherId,
-	                           @Valid @RequestBody Teacher teacherDetails) 
-	 {
-		System.out.println("teacher updated.........");
-	    Teacher teacher = teacherRepository.findById(teacherId)
+	                           @Valid @RequestBody Teacher teacherDetails) {
+		 System.out.println("teacher updated.........");
+	      Teacher teacher = teacherRepository.findById(teacherId)
 	         .orElseThrow(() -> new ResourceNotFoundException("Teacher", "id", teacherId));
-        teacher.setFirstName(teacherDetails.getFirstName());
-        teacher.setLastName(teacherDetails.getLastName());
-        teacher.setUserName(teacherDetails.getUserName());
-        teacher.setPassword(teacherDetails.getPassword());
-        return teacherRepository.save(teacher);
+	        teacher.setFirstName(teacherDetails.getFirstName());
+	        teacher.setLastName(teacherDetails.getLastName());
+	        teacher.setUserName(teacherDetails.getUserName());
+	        teacher.setPassword(teacherDetails.getPassword());
+	        return teacherRepository.save(teacher);
 	 }
 	 
 	 @DeleteMapping(value = "/deleteTeacher/{id}")
 	 @ResponseBody
-	 public ResponseEntity<?> deleteTeacher(@PathVariable(value = "id") Integer teacherId) 
-	 {
+	 public ResponseEntity<?> deleteTeacher(@PathVariable(value = "id") Integer teacherId) {
 		 System.out.println("teacher deleted...");
-		 Teacher teacher = teacherRepository.findById(teacherId)
+	    Teacher teacher = teacherRepository.findById(teacherId)
 	            .orElseThrow(() -> new ResourceNotFoundException("Teacher", "id", teacherId));
-	     teacherRepository.delete(teacher);
-	     return ResponseEntity.ok().build();
+	      teacherRepository.delete(teacher);
+	      return ResponseEntity.ok().build();
 	 }
+	 
+	 
+	 
 	 
 	 @PostMapping(path = "/addStudents")
 	 @ResponseBody
@@ -95,56 +113,54 @@ public class MainController
 		 	return studentRepository.save(addStudent);
 	 }
 	 
-	@GetMapping(path = "/getAllStudents")
-    @ResponseBody
-    public List<Student> getAllStudents() 
-	{
-	 	System.out.println("get All Students.......");
-        return studentRepository.findAll();
-    }
+	 @GetMapping(path = "/getAllStudents")
+	    @ResponseBody
+	    public List<Student> getAllStudents() 
+		{
+		 	System.out.println("get All Students.......");
+	        return studentRepository.findAll();
+	    }
+		
+
 	 @GetMapping(path = "/getStudentById/{id}")
 	 @ResponseBody
-	 public Student getStudentById(@PathVariable(value = "id") Integer studentId) 
-	 {
+	 public Student getStudentById(@PathVariable(value = "id") Integer studentId) {
 	     return studentRepository.findById(studentId)
 	           .orElseThrow(() -> new ResourceNotFoundException("Student", "id", studentId));
 	 }
 
 	 @GetMapping(path = "/getStudentByTeacher/{teacher_id}")
 	 @ResponseBody
-	 public List<Student> getStudentByTeacherId(@PathVariable(value = "teacher_id") Integer teacher_Id) 
-	 {
+	 public List<Student> getStudentByTeacherId(@PathVariable(value = "teacher_id") Integer teacher_Id) {
 		 System.out.println("get student by teacher id...");
-	     return studentRepository.findStudentByTeacherId(teacher_Id);
+	      return studentRepository.findStudentByTeacherId(teacher_Id);
 	 }
 
 	 @PutMapping(path = "/updateStudent/{id}")
 	 @ResponseBody
 	 public Student updateStudent(@PathVariable(value = "id") Integer studentId,
-	                           @Valid @RequestBody Student studentDetails) 
-	 {
-		System.out.println("student upated..........");
-	    Student student = studentRepository.findById(studentId)
+	                           @Valid @RequestBody Student studentDetails) {
+		 System.out.println("student upated..........");
+	      Student student = studentRepository.findById(studentId)
 	         .orElseThrow(() -> new ResourceNotFoundException("Student", "id", studentId));
-        student.setFirstName(studentDetails.getFirstName());
-        student.setLastName(studentDetails.getLastName());
-        student.setAddressLine1(studentDetails.getAddressLine1());
-        student.setAddressLine2(studentDetails.getAddressLine2());
-        student.setStudentClass(studentDetails.getStudentClass());
-        student.setDivision(studentDetails.getDivision());
-        student.setTeacherId(studentDetails.getTeacherId());
-        student.setPincode(studentDetails.getPincode());
-        return studentRepository.save(student);
+	        student.setFirstName(studentDetails.getFirstName());
+	        student.setLastName(studentDetails.getLastName());
+	        student.setAddressLine1(studentDetails.getAddressLine1());
+	        student.setAddressLine2(studentDetails.getAddressLine2());
+	        student.setStudentClass(studentDetails.getStudentClass());
+	        student.setDivision(studentDetails.getDivision());
+	        student.setTeacherId(studentDetails.getTeacherId());
+	        student.setPincode(studentDetails.getPincode());
+	        return studentRepository.save(student);
 	 }
 
 	 @DeleteMapping(path = "/deleteStudent/{id}")
 	 @ResponseBody
-	 public ResponseEntity<?> deleteStudent(@PathVariable(value = "id") Integer studentId) 
-	 {
+	 public ResponseEntity<?> deleteStudent(@PathVariable(value = "id") Integer studentId) {
 		 System.out.println("student deleted.............");
-		 Student student = studentRepository.findById(studentId)
+	    Student student = studentRepository.findById(studentId)
 	            .orElseThrow(() -> new ResourceNotFoundException("Student", "id", studentId));
-	     studentRepository.delete(student);
-	     return ResponseEntity.ok().build();
+	      studentRepository.delete(student);
+	      return ResponseEntity.ok().build();
 	 }
 }
