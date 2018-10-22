@@ -1,19 +1,45 @@
-@media only screen and (max-width:700px){
+@media only screen and (max-width:400px){
     .LoginPage{
         background-image: url("img2.jpg");
-        background-size:  cover; 
+        background-size: 375px 375px ;  
         background-repeat: no-repeat;
-        background-position: center center
+        background-position: center center;
+        height: 375px;
     }
     
 } 
 
-@media only screen and (min-width:700px) and (max-width:1400px){
+@media only screen and (min-width:400px) and (max-width:700px){
     .LoginPage{  
     background-image: url("img2.jpg");
     background-size:  cover; 
     background-repeat: no-repeat;
-    background-position: center center
+    background-position: center center;
+    height: 250px;
+    }
+    
+}
+
+@media only screen and (min-width:700px) and (max-width:1200px){
+    .LoginPage{  
+    background-image: url("img2.jpg");
+    background-size:  cover; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 395px;
+    }
+    
+}
+
+
+@media only screen and (min-width:1200px) and (max-width:1400px){
+    .LoginPage{  
+    background-image: url("img2.jpg");
+    background-size: 1365px 540px; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 70px;
+    height: 520px;
     }
     
 }
@@ -21,16 +47,11 @@
 @media only screen and (min-width:1400px){
     .LoginPage{
         background-image: url("img2.jpg");
-        background-size:  cover; 
+        background-size: 1438px 450px;  
         background-repeat: no-repeat;
-        background-position: center center
+        background-position: center center;
+        padding: 70px;
+        height: 450px;
     }
     
 }
-.LoginPage{
-    background-image: url("img2.jpg");
-    background-size:  cover; 
-    background-repeat: no-repeat;
-    background-position: center center
-}
-

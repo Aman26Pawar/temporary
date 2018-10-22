@@ -1,29 +1,29 @@
-<<<<<<< HEAD
-.Add-Student {
-    float: left;
-    width: 100%;
-    margin-top: 6px;
-    margin-left: 0px;
-  }
-
-  @media only screen and (max-width:700px){
+  @media only screen and (max-width:400px){
     .Add-Student {
         overflow-y: scroll;
         float: left;
         width: 100%;
-        margin-top: 6px;
-        margin-left: 0px;
+        height: 390px;
       }
     
 } 
+
+@media only screen and (min-width:400px) and (max-width:700px){
+    .Add-Student {
+        overflow-y: scroll;
+        float: left;
+        width: 100%;
+        height: 390px;
+      }
+}
+
 
 @media only screen and (min-width:700px) and (max-width:1400px){
     .Add-Student {
         overflow-y: scroll;
         float: left;
         width: 100%;
-        margin-top: 6px;
-        margin-left: 0px;
+        height: 420px;
       }
 }
 
@@ -37,18 +37,3 @@
       }
 }
 
-=======
-.col-3 {width: 25%;}
-@media only screen and (max-width: 600px) 
-{
-    /* For mobile phones: */
-    [class*="col-"] 
-    {
-        width: 100%;
-    }
-}
-[class*="col-"] {
-    float: left;
-    padding: 15px;
-}
->>>>>>> 2f07daf1446a6c8773272bfdadbe47844161f7fb
