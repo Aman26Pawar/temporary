@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 @media only screen and (max-width:700px){
     .LoginPage{
         background-image: url("img2.jpg");
@@ -21,7 +24,7 @@
 
 @media only screen and (min-width:1400px){
     .LoginPage{
-        background-image: url("img2.jpg");
+        background-image: url('img2.jpg'); 
         background-size:  cover; 
         background-repeat: no-repeat;
         background-position: center center

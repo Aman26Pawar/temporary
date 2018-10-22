@@ -78,7 +78,7 @@ class Login extends React.Component
             return <TeacherHome />
         }
         return(
-        <div id="LoginData" className="LoginPage"><br/><br/>
+        <div id="LoginData" className="Login"><br/><br/>
             <br/><br/>
             <input id="userName" type="text"  placeholder="User Name" required></input>
             <br/><br/>
