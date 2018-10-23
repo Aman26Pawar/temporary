@@ -28,29 +28,30 @@ class Login extends React.Component
 
     onLoginClick()
     {
+        /*const userName = document.getElementById("userName").value
+        const password = document.getElementById("password").value
         const loggedTeacher ={
             userName : document.getElementById("userName").value,
             password : document.getElementById("password").value
         }
-        fetch('http://localhost:8080/login',{
+        fetch('http://localhost:8080/loginTeacher?userName=' + userName + '&password=' +password,{
                    method:'POST',
                    headers: {
                     'content-type': 'application/json'
-                  },
-                    body: JSON.stringify(loggedTeacher)
+                   }
                 }) 
             .then(res=>res)
             .then(row => {
                 console.log(row.body)
                 this.storeCredentials(row)
-                })
-       /* const uname = document.getElementById("userName").value
+                })*/
+        const uname = document.getElementById("userName").value
         const pw =document.getElementById("password").value
         axios.get("http://localhost:8080/getAllTeachers",{mode:"no-cors"})
         .then(res=>res)
         .then(row => {
         this.checkLoginCredentials(row.data,uname,pw)
-            })*/
+            })
     }
 
     checkLoginCredentials(fetchedData,uname,pw)
