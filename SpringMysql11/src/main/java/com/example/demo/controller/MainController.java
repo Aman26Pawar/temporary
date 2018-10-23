@@ -58,6 +58,13 @@ public class MainController
 		return teacherRepository.findAll();
 	}
 	
+	@PostMapping(path="/loginTeacher")
+	@ResponseBody
+	public Teacher login(@PathVariable(value = "userName") String userName, @PathVariable(value = "password") String password){
+		System.out.println("Autenticating user.........");
+		return teacherRepository.login(userName, password);
+	}
+	
 	@PostMapping(path="/login")
 	@ResponseBody
 	public Teacher loginTeacher(@RequestBody Teacher teacherLogin){

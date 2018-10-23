@@ -19,9 +19,9 @@ public class Student implements Serializable
 	@GeneratedValue
 	@Column(name="StudentID")
 	private int StudentId;
-	@Column(name="firstName")
+	@Column(name="FirstName")
 	private String firstName;
-	@Column(name="lastName")
+	@Column(name="LastName")
 	private String lastName;
 	@Column(name="TeacherID")
 	private int TeacherId;

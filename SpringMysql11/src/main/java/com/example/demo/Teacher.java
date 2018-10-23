@@ -25,13 +25,13 @@ public class Teacher
 	@GeneratedValue
 	@Column(name="TeacherID")
 	private int TeacherID;
-	@Column(name="firstName")
+	@Column(name="FirstName")
 	private String firstName;
-	@Column(name="lastName")
+	@Column(name="LastName")
 	private String lastName;
-	@Column(name="userName")
+	@Column(name="UserName")
 	private String userName;
-	@Column(name="password")
+	@Column(name="Password")
 	@Length(min = 6, message = "*Your password must have at least 6 characters")
 	private String password;
 	
