@@ -28,16 +28,17 @@ class Login extends React.Component
 
     onLoginClick()
     {
-       /* const loggedTeacher ={
+        /*const loggedTeacher ={
             userName : document.getElementById("userName").value,
-            password :   document.getElementById("password").value
+            password : document.getElementById("password").value
         }
-        axios.post("http://localhost:8080/login",
-            {
-                mode:"no-cors",
-                header:{'Content-Type':'application/json'},
-                body : JSON.stringify(loggedTeacher)
-            })
+        fetch('http://localhost:8080/login',{
+                   method:'POST',
+                   headers: {
+                    'content-type': 'application/json'
+                  },
+                    body: JSON.stringify(loggedTeacher)
+                }) 
             .then(res=>res)
             .then(row => {
                 this.storeCredentials(row.data)
@@ -48,7 +49,7 @@ class Login extends React.Component
         .then(res=>res)
         .then(row => {
         this.checkLoginCredentials(row.data,uname,pw)
-            }) 
+            })
     }
 
     checkLoginCredentials(fetchedData,uname,pw)

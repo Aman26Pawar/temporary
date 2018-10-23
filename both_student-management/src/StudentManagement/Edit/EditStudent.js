@@ -21,8 +21,10 @@ class EditStudent extends React.Component
                     firstNameValid:false,
                     lastNameValid:false,
                     divisionValid: false,
-                    addressLine1Valid:false,handleEditcalled:false,
-                    pincodeValid:false,handlebackcalled:false,
+                    addressLine1Valid:false,
+                    handleEditcalled:false,
+                    pincodeValid:false,
+                    handlebackcalled:false,
                     ErrfirstName:" ",ErrlastName:" ",ErrClass:"",Errdivision:" ",
                     ErraddressLine1:" ",Errpincode:"",ErrButton:""
                     }
@@ -36,18 +38,6 @@ class EditStudent extends React.Component
         this.handlePincodeChange=this.handlePincodeChange.bind(this);
         this.handleBack=this.handleBack.bind(this);
     }
-
-   /*componentDidMount(){
-        this.setState(
-            {FirstName:this.props.studentToUpdate.firstName},
-            {LastName:this.props.studentToUpdate.lastName},
-            {Class : this.props.studentToUpdate.studentClass},
-            {Division:this.props.studentToUpdate.division},
-            {AddressLine1:this.props.studentToUpdate.addressLine1},
-            {AddressLine2:this.props.studentToUpdate.addressLine2},
-            {pincode:this.props.studentToUpdate.pincode}
-        )
-    }*/
 
     handleFirstNameChange(value)
     { 

@@ -20,7 +20,7 @@ class ListOfStudents extends React.Component
             students:[],
             editClicked: false,
             handleBackCalled:false,
-            teacherId:"",
+            teacherId: this.props.teachers.teacherID,
             studentToEdit:{},
             referrer:false,
             studentData:{}
@@ -32,13 +32,11 @@ class ListOfStudents extends React.Component
     }
     componentDidMount()
     {
-        this.setState({teacherId:this.props.teachers.teacherID})
         this.loadStudentsFromServer()
     }
     loadStudentsFromServer()
     { 
-        
-        fetch('http://localhost:8080/getStudentByTeacher/' + this.props.teachers.teacherID )
+        fetch('http://localhost:8080/getStudentByTeacher/' + this.state.teacherId)
         .then(res => res.json())
         .then((rows) => { 
             this.setState({students:rows}) 
@@ -48,27 +46,17 @@ class ListOfStudents extends React.Component
     handleEditClicked(student)
     {
       const id = student.studentId;
-      const stid=student.teacherId;
-      if(this.state.teacherId===stid)
-      {
             Axios.get('http://localhost:8080/getStudentById/'+id)
                  .then(res=>res)
                  .then((dataById={})=>{
             this.setState({studentToEdit:dataById})
-            //this.setState({referrer:'/ListOfStudents/EditStudent'})
             this.setState({studentData:this.state.studentToEdit.data});
             this.setState({referrer : !this.state.referrer})
             })
-        }
-        else
-        alert("You can't Edit this student");
     }
     handleDeleteClicked(student)
     {  
-        const id = student.studentId;
-        const stid=student.teacherId;
-        if(this.state.teacherId===stid)
-        {
+        const id = student.studentId;       
             confirmAlert(
             {
                 title: 'Confirm to Delete',
@@ -84,9 +72,6 @@ class ListOfStudents extends React.Component
                     }
                 ]
             })
-        }
-        else
-        alert("You can't Edit this student");
     }
     render()
     {
