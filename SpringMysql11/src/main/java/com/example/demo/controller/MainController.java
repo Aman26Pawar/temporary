@@ -49,6 +49,7 @@ public class MainController
 	       return teacherRepository.save(teacher);
 	 }
 
+
 	@GetMapping(path = "/getAllTeachers")
 	@ResponseBody
 	public List<Teacher> getAllTeachers()
@@ -60,13 +61,19 @@ public class MainController
 	@PostMapping(path="/login")
 	@ResponseBody
 	public Teacher loginTeacher(@RequestBody Teacher teacherLogin){
+		System.out.println(teacherLogin.getUserName() + "," + teacherLogin.getPassword());
+		String loggedUser = teacherLogin.getUserName();
+		String loggedPassword = teacherLogin.getPassword();
+		Teacher loggedTeacher;
 		System.out.println("Finding logged teacher");
 		List<Teacher> teachers = teacherRepository.findAll();
 		for(int i=0 ; i<teachers.size() ; i++)
 		{
-			if(teachers.get(i).getUserName() == teacherLogin.getUserName() && teachers.get(i).getPassword() == teacherLogin.getPassword() )
+			System.out.println(teachers.get(i).getUserName()); 
+			if(loggedUser.equals(teachers.get(i).getUserName()) && loggedPassword.equals(teachers.get(i).getPassword()) )
 			{
-				return getTeacherById(i);
+				 loggedTeacher = getTeacherById(i+1);
+				 return loggedTeacher;
 			}
 		}
 		return null;
@@ -109,6 +116,7 @@ public class MainController
 	 @PostMapping(path = "/addStudents")
 	 @ResponseBody
 	 public Student createStudent(@Valid @RequestBody Student addStudent) {
+		 //System.out.println(addStudent.getFirstName());
 		 System.out.println("New student added...");
 		 	return studentRepository.save(addStudent);
 	 }
