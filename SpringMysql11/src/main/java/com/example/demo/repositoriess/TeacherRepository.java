@@ -8,7 +8,9 @@ import com.example.demo.Teacher;
 
 public interface TeacherRepository extends JpaRepository<Teacher, Integer>
 {
-	String TEACHER_AUTHENTICATION = "SELECT * FROM teacherinfo WHERE userName = ?:=userName AND password = ?:password";
+	String TEACHER_AUTHENTICATION = "SELECT FirstName, LastName, UserName, Password FROM teacherinfo WHERE UserName =:userName AND Password =:password";
 	@Query(value = "TEACHER_AUTHENTICATION", nativeQuery=true)
-	Teacher login(@Param("userNAme") String userName, @Param ("password") String password);
+	Teacher login(@Param("userName") String userName, @Param ("password") String password);
+	
+	//boolean exists(String userName);
 }

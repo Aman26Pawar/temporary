@@ -46,6 +46,10 @@ public class MainController
 	 @ResponseBody
 	 public Teacher createTeacher(@RequestBody Teacher teacher) {
 		 System.out.println("New Teacher Added....");
+		 /*if(teacherRepository.exists(teacher.getUserName()))
+		 {
+			System.out.println("user with same name already exists");
+		 }*/
 	       return teacherRepository.save(teacher);
 	 }
 
@@ -58,7 +62,7 @@ public class MainController
 		return teacherRepository.findAll();
 	}
 	
-	@PostMapping(path="/loginTeacher")
+	@GetMapping(path="/loginTeacher/{userName}/{password}")
 	@ResponseBody
 	public Teacher login(@PathVariable(value = "userName") String userName, @PathVariable(value = "password") String password){
 		System.out.println("Autenticating user.........");
@@ -85,7 +89,7 @@ public class MainController
 		}
 		return null;
 	}
-	 @GetMapping(path = "/getTeacherrById/{id}")
+	 @GetMapping(path = "/getTeacherById/{id}")
 	 @ResponseBody
 	 public Teacher getTeacherById(@PathVariable(value = "id") Integer teacherId) {
 		 System.out.println("getTeacheryID");
