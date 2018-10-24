@@ -2,7 +2,7 @@
     .TeacherHome{
         height:325px;
         width: 370px;
-        background-image: url("img1.jpg");
+        background-image: url("teacherHome2.jpg");
         background-size:375px 375px; 
         background-repeat: no-repeat;
         background-position: center center;
@@ -10,9 +10,11 @@
       }
       .right {
         position: sticky;
-        right: 200px;
-        width: 300px;
+        right: 10px;
+        width: 280px;
+        height: 40px;
         padding: 10px;
+        color:greenyellow;
       }
       .center {
         padding: 5px;
@@ -26,16 +28,17 @@
   .TeacherHome{
       height:290px;
       width: 100%;
-      background-image: url("img1.jpg");
-      background-size:  600px 300px; 
+      background-image: url("teacherHome2.jpg");
+      background-size:  700px 300px; 
       background-repeat: no-repeat;
       background-position: center center
     }
     .right {
       position: absolute;
-      right: 200px;
+      right: 150px;
       width: 300px;
       padding: 10px;
+      color:greenyellow;
     }
     .center {
       padding: 50px 0;
@@ -45,12 +48,12 @@
   
 }
 
-@media only screen and (min-width:700px) and (max-width:1200px){
+@media only screen and (min-width:700px) and (max-width:1000px){
     .TeacherHome{
         height:350px;
         width: 100%;
-        background-image: url("img1.jpg");
-        background-size:  auto; 
+        background-image: url("teacherHome2.jpg");
+        background-size:  800px 600px; 
         background-repeat: no-repeat;
         background-position: center center
       }
@@ -59,6 +62,7 @@
         right: 200px;
         width: 300px;
         padding: 10px;
+        color:chartreuse;
       }
       .center {
         padding: 50px 0;
@@ -68,12 +72,14 @@
     
 }
 
-@media only screen and (min-width:1200px) and (max-width:1400px){
+
+
+@media only screen and (min-width:1000px) and (max-width:1200px){
   .TeacherHome{
-      height:460px;
+      height:350px;
       width: 100%;
-      background-image: url("img1.jpg");
-      background-size: 1365px 540px; 
+      background-image: url("teacherHome2.jpg");
+      background-size:  1050px 600px; 
       background-repeat: no-repeat;
       background-position: center center
     }
@@ -82,6 +88,33 @@
       right: 200px;
       width: 300px;
       padding: 10px;
+      color:chartreuse;
+    }
+    .center {
+      padding: 50px 0;
+      text-align: center;
+      margin-top: 10px;
+    }
+  
+}
+
+
+
+@media only screen and (min-width:1200px) and (max-width:1400px){
+  .TeacherHome{
+      height:460px;
+      width: 100%;
+      background-image: url("teacherHome2.jpg");
+      background-size: 1365px 540px; 
+      background-repeat: no-repeat;
+      background-position: center center
+    }
+    .right {
+      position: absolute;
+      right: 50px;
+      width: 300px;
+      padding: 10px;
+      color: black;
     }
     .center {
       padding: 50px 0;
@@ -95,16 +128,17 @@
     .TeacherHome{
         height:340px;
         width: 100%;
-        background-image: url("img1.jpg");
-        background-size:  auto; 
+        background-image: url("teacherHome2.jpg");
+        background-size:  1440px 700px; 
         background-repeat: no-repeat;
         background-position: center center
       } 
       .right {
         position: absolute;
-        right: 200px;
+        right: 100px;
         width: 300px;
-        padding: 10px;
+        padding: 25px;
+        color: red;
       }
       .center {
         padding: 50px 0;

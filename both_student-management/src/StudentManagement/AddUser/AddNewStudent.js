@@ -13,9 +13,15 @@ class AddNewStudent extends React.Component
     constructor(props)
     {
         super(props)
-        this.state={FirstName:"",LastName:" ",Class:" ",
-                    Division:" ",AddressLine1:" ",
-                    AddressLine2:" ",pincode:"",firstNameValid:false,
+        this.state={FirstName:"",
+                    LastName:" ",
+                    Class:" ",
+                    Division:" ",
+                    AddressLine1:" ",
+                    AddressLine2:" ",
+                    pincode:"",
+                    teacherId: this.props.teacherId,
+                    firstNameValid:false,
                     lastNameValid:false,
                     divisionValid: false,
                     addressLine1Valid:false,
@@ -112,7 +118,7 @@ class AddNewStudent extends React.Component
       handleAddStudent()
     { 
         const newStudent= {
-        teacherId : this.props.teacherId,
+        teacherId : this.state.teacherId,
         firstName : this.state.FirstName,
         lastName : this.state.LastName,
         studentClass : this.state.Class,

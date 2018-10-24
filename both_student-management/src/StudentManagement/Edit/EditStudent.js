@@ -18,6 +18,8 @@ class EditStudent extends React.Component
         AddressLine1:this.props.studentToUpdate.addressLine1,
         AddressLine2:this.props.studentToUpdate.addressLine2,
         pincode:this.props.studentToUpdate.pincode,
+        teacherId:this.props.studentToUpdate.teacherId,
+        studentIdToBeUpdate:this.props.studentToUpdate.studentId,
                     firstNameValid:false,
                     lastNameValid:false,
                     divisionValid: false,
@@ -124,7 +126,7 @@ class EditStudent extends React.Component
     {
         const updatedStudent=
         {
-            teacherId : this.props.studentToUpdate.teacherId,
+            teacherId : this.state.teacherId,
             firstName : this.state.FirstName,
             lastName : this.state.LastName,
             studentClass : this.state.Class,
@@ -133,7 +135,7 @@ class EditStudent extends React.Component
             addressLine2 : this.state.AddressLine2,
             pincode : this.state.pincode
         }        
-           if(fetch('http://localhost:8080/updateStudent/'+this.props.studentToUpdate.studentId,{
+           if(fetch('http://localhost:8080/updateStudent/'+this.state.studentIdToBeUpdate,{
                method:'PUT',
                headers: {
                 'content-type': 'application/json'
@@ -168,21 +170,21 @@ class EditStudent extends React.Component
             return <ListOfStudents></ListOfStudents>
         return(
             <div className="Edit-Student">
-            <div><h2> Student To be edit:  {this.props.studentToUpdate.firstName} </h2></div> 
+            <div><h2> Student To be edit:  {this.state.FirstName} </h2></div> 
                 <form>
-                    <InputBox id="fname" inputType="text"  placeholder="First Name"    value={this.props.studentToUpdate.firstName}    
+                    <InputBox id="fname" inputType="text"  placeholder="First Name"    value={this.state.FirstName}    
                               handleChanges={this.handleFirstNameChange}    Name="firstName"   error={this.state.ErrfirstName} /><br/>
-                    <InputBox id="lname" inputType="text"  placeholder="Last Name"     value={this.props.studentToUpdate.lastName}     
+                    <InputBox id="lname" inputType="text"  placeholder="Last Name"     value={this.state.LastName}     
                               handleChanges={this.handleLastNameChange}     Name="lastName"    error={this.state.ErrlastName} /><br/>          
-                    <InputBox id="class" inputType="text"  placeholder="Class"         value={this.props.studentToUpdate.studentClass}        
+                    <InputBox id="class" inputType="text"  placeholder="Class"         value={this.state.Class}        
                               handleChanges={this.handleClassChange}        Name="class"       error={this.state.ErrClass} /><br/>         
-                    <InputBox id="div" inputType="text"  placeholder="Division"      value={this.props.studentToUpdate.division}     
+                    <InputBox id="div" inputType="text"  placeholder="Division"      value={this.state.Division}     
                               handleChanges={this.handleDivisionChange}     Name="division"    error={this.state.Errdivision} /><br/>          
-                    <InputBox id="address1" inputType="text"  placeholder="Address Line1" value={this.props.studentToUpdate.addressLine1} 
+                    <InputBox id="address1" inputType="text"  placeholder="Address Line1" value={this.state.AddressLine1} 
                               handleChanges={this.handleAddressLine1Change} Name="addressLine1"error={this.state.ErraddressLine1} /><br/>
-                    <InputBox id="address2" inputType="text"  placeholder="Address Line2" value={this.props.studentToUpdate.addressLine2} 
+                    <InputBox id="address2" inputType="text"  placeholder="Address Line2" value={this.state.AddressLine2} 
                               handleChanges={this.handleAddressLine2Change} Name="addressLine2"                               /><br/>
-                    <InputBox id="pin" inputType="text"  placeholder="PIN code"      value={this.props.studentToUpdate.pincode}      
+                    <InputBox id="pin" inputType="text"  placeholder="PIN code"      value={this.state.pincode}      
                               handleChanges={this.handlePincodeChange}      Name="pincode"     error={this.state.Errpincode} /><br/>           
                 </form>   
                 <Button buttonName="Edit Student" handleOnClick={this.handleEditStudent} error={this.state.ErrButton}/>

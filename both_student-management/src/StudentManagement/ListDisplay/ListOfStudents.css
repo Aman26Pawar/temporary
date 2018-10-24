@@ -1,7 +1,7 @@
   @media only screen and (max-width:400px){
     .StudentList{
         height:325px ;
-        width: 375px;
+        width: 360px;
         overflow: scroll;
         padding: 10px 10px 0px 10px;
     }  
@@ -11,6 +11,10 @@
         height:200px ;
         width: 100%;
       } 
+      tbody tr:nth-of-type(odd){
+        background-color: rgb(155, 76, 245);
+        color: #fff;
+      }
 } 
 
 @media only screen and (min-width:400px) and (max-width:700px){
@@ -26,6 +30,10 @@
       height:200px ;
       width: 100%;
     } 
+    tbody tr:nth-of-type(odd){
+      background-color: rgb(155, 76, 245);
+      color: #fff;
+    }
 }
 
 @media only screen and (min-width:700px) and (max-width:1200px){
@@ -41,6 +49,10 @@
         height:200px ;
         width: 100%;
       } 
+      tbody tr:nth-of-type(odd){
+        background-color: rgb(155, 76, 245);
+        color: #fff;
+      }
 }
 
 @media only screen and (min-width:1200px) and (max-width:1400px){
@@ -75,6 +87,10 @@
         border: 2px solid black;
         height:200px ;
         width: 100%;
-      }      
+      }    
+      tbody tr:nth-of-type(odd){
+        background-color: rgb(155, 76, 245);
+        color: #fff;
+      }  
 }
   

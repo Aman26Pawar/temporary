@@ -28,7 +28,7 @@
         background-color: darkorchid;
         height: 70px;
         width: 100%;
-        padding: 1px;
+        padding: 1px 1px 0px 1px;
         color: white;
       }
 }
