@@ -50,10 +50,10 @@ validateField(fieldName,value){
         break;
       
       case 'user Name':
-        UserNameValid = value.match(/^[a-zA-Z0-9]+$/);
+        UserNameValid = value.match(/[a-zA-Z0-9_.]+$/);
         fieldValidationErrors.userNm = UserNameValid ? '' : ' is invalid';
       break;
-      
+
       case 'passWord':
         PasswordValid = value.length >= 6;
         fieldValidationErrors.passWord = PasswordValid ? '': ' is too short';
