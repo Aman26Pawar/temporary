@@ -14,9 +14,9 @@ public interface TeacherRepository extends JpaRepository<Teacher, Integer>
 	
 	//boolean findByUserName(String userName);
 	
-	String TEACHER_REGISTRATION = "SELECT TeacherID FROM teacherinfo WHERE UserName =:username";
+	String TEACHER_REGISTRATION = "SELECT TeacherID FROM teacherinfo WHERE UserName =#{username}";
 	@Query(value ="TEACHER_REGISTRATION",nativeQuery = true)
-	boolean findByUserName(@Param("username") String username);
+	boolean findByUserName(String username);
 	
 	
 

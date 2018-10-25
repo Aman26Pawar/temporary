@@ -85,12 +85,12 @@ public class MainController
 		return teacherRepository.findAll();
 	}
 	
-	@GetMapping(path="/loginTeacher/{userName}/{password}")
+	/*@GetMapping(path="/loginTeacher/{userName}/{password}")
 	@ResponseBody
 	public Teacher login(@PathVariable(value = "userName") String userName, @PathVariable(value = "password") String password){
 		System.out.println("Autenticating user.........");
 		return teacherRepository.login(userName, password);
-	}
+	}*/
 	
 	@PostMapping(path="/login")
 	@ResponseBody
@@ -106,7 +106,9 @@ public class MainController
 			System.out.println(teachers.get(i).getUserName()); 
 			if(loggedUser.equals(teachers.get(i).getUserName()) && loggedPassword.equals(teachers.get(i).getPassword()) )
 			{
+				System.out.println(teachers.get(i).getUserName()); 
 				 loggedTeacher = getTeacherById(i+1);
+				 System.out.println("teacher logged-in is "+loggedTeacher.getFirstName() + " " + loggedTeacher.getLastName());
 				 return loggedTeacher;
 			}
 		}
