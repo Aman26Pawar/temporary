@@ -135,7 +135,7 @@ class EditStudent extends React.Component
             addressLine2 : this.state.AddressLine2,
             pincode : this.state.pincode
         }        
-           if(fetch('http://localhost:8080/updateStudent/'+this.state.studentIdToBeUpdate,{
+        fetch('http://localhost:8080/updateStudent/'+this.state.studentIdToBeUpdate,{
                method:'PUT',
                headers: {
                 'content-type': 'application/json'
@@ -143,15 +143,17 @@ class EditStudent extends React.Component
                body: JSON.stringify(updatedStudent)
             })
             .then(resp => resp)
-            .then(findResp => this.setState({data:findResp}))
-           )
-           {
-            this.setState({handleEditcalled:!this.state.handleEditcalled});
-           }    
-        else
-        {
-            this.setState({ErrButton:"Please fill the above fields"})
-        }
+            .then(findResp => {
+                if(findResp.status === 200)
+                {
+                    this.setState({handleEditcalled:!this.state.handleEditcalled});   
+                }
+                else
+                {
+                    this.setState({ErrButton:"Please fill the above fields"})
+                }
+            })
+             
     }
     handleBack()
     {

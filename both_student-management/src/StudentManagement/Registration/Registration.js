@@ -29,7 +29,6 @@ export default class Registration extends Component{
             password : document.getElementById("pass_word").value
         }
     
-       if(
         fetch("http://localhost:8080/addTeacher/",{
             method:'POST',
             headers:{
@@ -37,10 +36,20 @@ export default class Registration extends Component{
             },
             body: JSON.stringify(newTeacher)
         })
-       ){
-           alert("New teacher added...")
-           this.props.history.push('/')
-       }
+        .then(res=>res)
+            .then(row => {
+                console.log(row.status)
+                if(row.status===200)
+                {
+                    alert("New teacher added...")
+                    this.props.history.push('/')
+                }
+                else
+                {
+                    alert("username not available")
+                }
+                })
+       
     }
     render(){
         return(

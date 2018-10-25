@@ -127,20 +127,27 @@ class AddNewStudent extends React.Component
         addressLine2 : this.state.AddressLine2,
         pincode : document.getElementById("pincode").value
         }
-           if(
-               fetch('http://localhost:8080/addStudents',{
+           
+     fetch('http://localhost:8080/addStudents',{
                    method:'POST',
                    headers: {
                     'content-type': 'application/json'
                   },
                     body: JSON.stringify(newStudent)
-                }) 
-                   
-           ){
-            
-            alert("Added "+ this.state.FirstName);  
-            this.setState({referrer:'/ListOfStudents'})
-            } 
+                })
+                .then(res=>res)
+                .then(row =>{
+                    if(row.status === 200)
+                    {
+                        alert("Added "+ this.state.FirstName);  
+                        this.setState({referrer:'/ListOfStudents'})
+                    }
+                    else
+                    {
+                        alert("please fill all details carefully")
+                    }
+                })        
+         
     }
     handleBack()
     {

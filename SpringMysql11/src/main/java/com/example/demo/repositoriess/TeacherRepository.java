@@ -12,5 +12,12 @@ public interface TeacherRepository extends JpaRepository<Teacher, Integer>
 	@Query(value = "TEACHER_AUTHENTICATION", nativeQuery=true)
 	Teacher login(@Param("userName") String userName, @Param ("password") String password);
 	
-	//boolean exists(String userName);
+	//boolean findByUserName(String userName);
+	
+	String TEACHER_REGISTRATION = "SELECT TeacherID FROM teacherinfo WHERE UserName =:username";
+	@Query(value ="TEACHER_REGISTRATION",nativeQuery = true)
+	boolean findByUserName(@Param("username") String username);
+	
+	
+
 }

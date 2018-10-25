@@ -44,15 +44,38 @@ public class MainController
 	
 	 @PostMapping(path="/addTeacher")
 	 @ResponseBody
-	 public Teacher createTeacher(@RequestBody Teacher teacher) {
+	 public ResponseEntity<?> createTeacher(@RequestBody Teacher teacher) {
 		 System.out.println("New Teacher Added....");
-		 /*if(teacherRepository.exists(teacher.getUserName()))
+		 String uname =  teacher.getUserName();
+		 System.out.println(uname);
+		
+		/* boolean validUser = teacherRepository.findByUserName(uname);
+		 if(validUser = true)
 		 {
-			System.out.println("user with same name already exists");
+			teacherRepository.save(teacher);
+			return ResponseEntity.ok().build();
+		 }
+		 else
+		 {
+			 return ResponseEntity.badRequest().build(); 
 		 }*/
-	       return teacherRepository.save(teacher);
+		 teacherRepository.save(teacher);
+		 return ResponseEntity.ok().build();
+		     
 	 }
-
+	  /*public boolean findByUserName(String username)
+	  {
+		  List <Teacher>AllTeachers = teacherRepository.findAll();
+		  for(int i = 0 ; i < AllTeachers.size() ; i++ )
+		  {
+			  if(AllTeachers.get(i).getUserName().equals(username))
+			  {
+				  return false;
+			  }
+		  }
+		return true;
+		  
+	  }*/
 
 	@GetMapping(path = "/getAllTeachers")
 	@ResponseBody
@@ -122,14 +145,16 @@ public class MainController
 	 }
 	 
 	 
+	 //========================= Student Operations================================
 	 
 	 
 	 @PostMapping(path = "/addStudents")
 	 @ResponseBody
-	 public Student createStudent(@Valid @RequestBody Student addStudent) {
+	 public ResponseEntity<?>  createStudent(@Valid @RequestBody Student addStudent) {
 		 //System.out.println(addStudent.getFirstName());
 		 System.out.println("New student added...");
-		 	return studentRepository.save(addStudent);
+		 	studentRepository.save(addStudent);
+		 	return ResponseEntity.ok().build();
 	 }
 	 
 	 @GetMapping(path = "/getAllStudents")
@@ -157,7 +182,7 @@ public class MainController
 
 	 @PutMapping(path = "/updateStudent/{id}")
 	 @ResponseBody
-	 public Student updateStudent(@PathVariable(value = "id") Integer studentId,
+	 public ResponseEntity<?> updateStudent(@PathVariable(value = "id") Integer studentId,
 	                           @Valid @RequestBody Student studentDetails) {
 		 System.out.println("student upated..........");
 	      Student student = studentRepository.findById(studentId)
@@ -170,7 +195,8 @@ public class MainController
 	        student.setDivision(studentDetails.getDivision());
 	        student.setTeacherId(studentDetails.getTeacherId());
 	        student.setPincode(studentDetails.getPincode());
-	        return studentRepository.save(student);
+	        studentRepository.save(student);
+	        return ResponseEntity.ok().build();
 	 }
 
 	 @DeleteMapping(path = "/deleteStudent/{id}")
