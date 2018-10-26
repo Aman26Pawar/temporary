@@ -1,13 +1,16 @@
 package com.example.demo.controller;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
-import java.util.Optional;
-
 import javax.validation.Valid;
 
+import org.hibernate.result.ResultSetOutput;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +25,6 @@ import com.example.demo.Student;
 import com.example.demo.Teacher;
 import com.example.demo.repositoriess.StudentRepository;
 import com.example.demo.repositoriess.TeacherRepository;
-
 import ExceptionHandling.ResourceNotFoundException;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -46,36 +48,10 @@ public class MainController
 	 @ResponseBody
 	 public ResponseEntity<?> createTeacher(@RequestBody Teacher teacher) {
 		 System.out.println("New Teacher Added....");
-		 String uname =  teacher.getUserName();
-		 System.out.println(uname);
-		
-		/* boolean validUser = teacherRepository.findByUserName(uname);
-		 if(validUser = true)
-		 {
-			teacherRepository.save(teacher);
-			return ResponseEntity.ok().build();
-		 }
-		 else
-		 {
-			 return ResponseEntity.badRequest().build(); 
-		 }*/
 		 teacherRepository.save(teacher);
-		 return ResponseEntity.ok().build();
-		     
+		 return ResponseEntity.ok().build();     
 	 }
-	  /*public boolean findByUserName(String username)
-	  {
-		  List <Teacher>AllTeachers = teacherRepository.findAll();
-		  for(int i = 0 ; i < AllTeachers.size() ; i++ )
-		  {
-			  if(AllTeachers.get(i).getUserName().equals(username))
-			  {
-				  return false;
-			  }
-		  }
-		return true;
-		  
-	  }*/
+	 
 
 	@GetMapping(path = "/getAllTeachers")
 	@ResponseBody
@@ -84,35 +60,14 @@ public class MainController
 		System.out.println("Get All Teachers.......");
 		return teacherRepository.findAll();
 	}
-	
-	/*@GetMapping(path="/loginTeacher/{userName}/{password}")
+		
+	@PostMapping(path="/loginTeacher")
 	@ResponseBody
-	public Teacher login(@PathVariable(value = "userName") String userName, @PathVariable(value = "password") String password){
-		System.out.println("Autenticating user.........");
-		return teacherRepository.login(userName, password);
-	}*/
-	
-	@PostMapping(path="/login")
-	@ResponseBody
-	public Teacher loginTeacher(@RequestBody Teacher teacherLogin){
+	public Teacher loginTeacher(@Param(value="userName")String loggedUser,@Param(value="password")String loggedPassword,@RequestBody Teacher teacherLogin){
 		System.out.println(teacherLogin.getUserName() + "," + teacherLogin.getPassword());
-		String loggedUser = teacherLogin.getUserName();
-		String loggedPassword = teacherLogin.getPassword();
-		Teacher loggedTeacher;
-		System.out.println("Finding logged teacher");
-		List<Teacher> teachers = teacherRepository.findAll();
-		for(int i=0 ; i<teachers.size() ; i++)
-		{
-			System.out.println(teachers.get(i).getUserName()); 
-			if(loggedUser.equals(teachers.get(i).getUserName()) && loggedPassword.equals(teachers.get(i).getPassword()) )
-			{
-				System.out.println(teachers.get(i).getUserName()); 
-				 loggedTeacher = getTeacherById(i+1);
-				 System.out.println("teacher logged-in is "+loggedTeacher.getFirstName() + " " + loggedTeacher.getLastName());
-				 return loggedTeacher;
-			}
-		}
-		return null;
+		 loggedUser = teacherLogin.getUserName();
+		 loggedPassword = teacherLogin.getPassword();		
+		return teacherRepository.login(loggedUser, loggedPassword);
 	}
 	 @GetMapping(path = "/getTeacherById/{id}")
 	 @ResponseBody

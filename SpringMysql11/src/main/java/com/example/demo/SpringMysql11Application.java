@@ -14,7 +14,6 @@ public class SpringMysql11Application {
 	{
 		
 		SpringApplication.run(SpringMysql11Application.class, args);
-
 		System.out.println("Spring-React App started.....");
 
 	}
