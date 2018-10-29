@@ -6,7 +6,8 @@ import Button from '../Buttons/Button.js';
 import EditStudent from '../Edit/EditStudent.js';
 import Axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css' 
+import 'react-confirm-alert/src/react-confirm-alert.css' ;
+import Dialog from 'react-bootstrap-dialog'
 import TeacherHome from '../TeacherHome/TeacherHome';
 import './ListOfStudents.css'
 
@@ -72,9 +73,20 @@ class ListOfStudents extends React.Component
                     }
                 ]
             })
+
+            /*this.dialog.show({
+                title: 'Confirm Delete',
+                body: 'Are you sure?',
+                actions: [
+                  Dialog.CancelAction(),
+                  Dialog.OKAction(() => fetch('http://localhost:8080/deleteStudent/'+id, {method:'DELETE'})
+                  .then(res=>this.loadStudentsFromServer()))
+                ]
+              })*/
     }
     render()
     {
+      
         const {referrer} = this.state;
         const {handleBackCalled}=this.state;
         if (referrer) 
@@ -84,6 +96,7 @@ class ListOfStudents extends React.Component
         return(
             <div className="StudentList">
             <div>
+                <Dialog ref={(el) => { this.dialog = el }} />
                 <table className="table">
                     <thead>
                         <tr>

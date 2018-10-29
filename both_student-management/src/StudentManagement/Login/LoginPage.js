@@ -21,40 +21,54 @@ class Login extends React.Component
         isAuthenticating: true
       }
       this.onLoginClick=this.onLoginClick.bind(this);
-      this.checkLoginCredentials= this.checkLoginCredentials.bind(this)
+      //this.checkLoginCredentials= this.checkLoginCredentials.bind(this)
       this.storeCredentials = this.storeCredentials.bind(this)
       this.handleuserNameChange=this.handleuserNameChange.bind(this)
     }
 
     onLoginClick()
     {
-    /*const loggedTeacher ={
+    const loggedTeacher ={
                     userName : document.getElementById("userName").value,
                     password : document.getElementById("password").value
                 }
-                fetch('http://localhost:8080/login',{
-                   method:'POST',
-                   headers: {
-                    'content-type': 'application/json'
-                   },
-                   body:JSON.stringify(loggedTeacher)
-                }) 
-            .then(res=>res)
-            .then(row => {
-                console.log(row.body)
-                this.storeCredentials(row)
-             })*/
 
-        const uname = document.getElementById("userName").value
+        if(loggedTeacher.userName !== "" && loggedTeacher.password!=="")        
+        { 
+            fetch('http://localhost:8080/loginTeacher',{
+                method:'POST',
+                headers: {
+                 'content-type': 'application/json'
+                },
+                body:JSON.stringify(loggedTeacher)
+             }) 
+         .then(res=>res.json())
+         .then(row => {
+                if(row !== "")
+                {
+                    this.storeCredentials(row)
+                }
+                else
+                {
+                    alert("Invalid UserName or Password")
+                }
+             })
+        }
+        else
+        {
+            alert("please fill all credentials")
+        }  
+
+        /*const uname = document.getElementById("userName").value
         const pw =document.getElementById("password").value
         axios.get("http://localhost:8080/getAllTeachers",{mode:"no-cors"})
         .then(res=>res)
         .then(row => {
         this.checkLoginCredentials(row.data,uname,pw)
-            })
+            })*/
     }
 
-    checkLoginCredentials(fetchedData,uname,pw)
+   /* checkLoginCredentials(fetchedData,uname,pw)
     {
         for(let i=0;i<fetchedData.length;i++)
         {
@@ -73,7 +87,7 @@ class Login extends React.Component
                 this.setState({error:'invalid user or password...'})
             }
         }
-    }
+    }*/
 
     storeCredentials(dataTobeStore)
     {
@@ -96,9 +110,10 @@ class Login extends React.Component
         }
         return(
         <div id="LoginData" className="LoginPage"><br/>
-            <input id="userName" type="text"  placeholder="User Name" required></input>
+            <input id="userName" type="text" size="18"  placeholder="User Name" required></input>
             <br/><br/>
-            <input id="password" type="password" placeholder="Password" required></input>
+            <input id="password" type="password" size="18" placeholder="Password" required></input>
+            <br/>
             <Button buttonName="Log In" handleOnClick={this.onLoginClick} error={this.state.error} ></Button>
             <h4>Not Registered????... <a href="/Registration">Register Here</a>  </h4>   
         </div>

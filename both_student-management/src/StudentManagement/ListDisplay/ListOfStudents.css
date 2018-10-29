@@ -69,9 +69,10 @@
       width: 100%;
     } 
     tbody tr:nth-of-type(odd){
-      background-color: rgb(155, 76, 245);
+      background-color: rgb(76, 149, 245);
       color: #fff;
     }
+   
 }
 
 
