@@ -19,7 +19,7 @@ export default class Routers extends React.Component
                 <Route exact path='/' component={Login} />   
                 <Route exact path='/Registration' component={Registration} />
                 <Route exact path='/TeacherHome' component={TeacherHome}/>     
-                <Route exact path='/ListOfStudents' component={ListOfStudents} />
+                <Route exact path='/TeacherHome/ListOfStudents' component={ListOfStudents} />
                 <Route exact path='/AddNewStudent' component={AddNewStudent} />
                 <Route exact path="/ListOfStudents/EditStudent" component={EditStudent }/>
                 </Switch>

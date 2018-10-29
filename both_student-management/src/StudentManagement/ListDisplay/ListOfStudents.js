@@ -31,6 +31,10 @@ class ListOfStudents extends React.Component
     {
         this.setState({handleBackCalled:!this.state.handleBackCalled});
     }
+    componentWillMount()
+    {
+        this.setState({teacherID: this.props.teachers.teacherID})
+    }
     componentDidMount()
     {
         this.loadStudentsFromServer()

@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios'
-import {connect} from 'react-redux'
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+import {connect} from 'react-redux';
 import TeacherHome from '../TeacherHome/TeacherHome';
 import Button from '../Buttons/Button';
 import '../Buttons/Button.css'
@@ -96,7 +97,7 @@ class Login extends React.Component
             this.props.dispatch({
                 type:'ADD_LOGIN',
                 loggedInData})
-            this.setState({validCredentials:!this.state.validCredentials})
+            this.setState({referrer:'/TeacherHome'})
         }
     }
     handleuserNameChange(e)
@@ -104,7 +105,9 @@ class Login extends React.Component
         this.setState({username:e.target.value});
     }
     render()
-    {      
+    {  
+        const {referrer} = this.state;
+        if (referrer) return (<Redirect to={referrer} />)    
         if(this.state.validCredentials === true){
             return <TeacherHome />
         }

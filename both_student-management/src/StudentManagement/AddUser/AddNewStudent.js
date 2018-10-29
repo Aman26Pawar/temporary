@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import Button from '../Buttons/Button.js';
 import { Redirect } from 'react-router-dom';
 import {FormErrors} from '../ErrorHandling/FormErrors.js'
@@ -140,7 +141,7 @@ class AddNewStudent extends React.Component
                     if(row.status === 200)
                     {
                         alert("Added "+ this.state.FirstName);  
-                        this.setState({referrer:'/ListOfStudents'})
+                        this.setState({referrer:'/TeacherHome/ListOfStudents'})
                     }
                     else
                     {
@@ -203,4 +204,9 @@ class AddNewStudent extends React.Component
     }
   
 }
+/*const mapStateToProps = (state) => {
+    return{
+        teachers:state.LoginReducer[0]
+    }
+}*/
 export default AddNewStudent;

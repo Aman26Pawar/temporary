@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import InputBox from '../InputBox/InputBox';
 import Button from '../Buttons/Button';
 import { Redirect } from 'react-router-dom';
@@ -195,4 +196,9 @@ class EditStudent extends React.Component
         );
     }
 }
-export default EditStudent;
+const mapStateToProps = (state) => {
+    return{
+        teachers:state.LoginReducer[0]
+    }
+  }
+export default connect (mapStateToProps) (EditStudent);

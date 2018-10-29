@@ -30,10 +30,12 @@ class TeacherHome extends React.Component
     {  
         console.log("ListOfStudents hit....")
         this.setState({listOfStudentsCalled:!this.state.listOfStudentsCalled})
+        //this.setState({referrer:'/TeacherHome/ListOfStudents'})
     }
     handleNewStudent()
     {
         this.setState({addNewStudentCalled:!this.state.addNewStudentCalled})
+        //this.setState({referrer:'/AddNewStudent'})
     }
     handleLogOut = async event =>
     {
@@ -41,7 +43,7 @@ class TeacherHome extends React.Component
         this.props.dispatch({
             type:'LOGOUT',
             logout})
-        this.setState({logOutCalled:!this.state.logOutCalled})
+        this.setState({referrer:'/'})
     }
 
     render()
