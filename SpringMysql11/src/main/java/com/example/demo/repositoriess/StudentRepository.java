@@ -14,7 +14,11 @@ public interface StudentRepository extends JpaRepository<Student, Integer>
 	@Query(value = FIND_STUDENTS_BY_TEACHER, nativeQuery = true)
     List<Student> findStudentByTeacherId(@Param("teacherId") Integer teacherId);
 	
-	String FIND_STUDENT_BY_STUDENTID = "SELECT firstName, lastName, Standard, Division, AddressLine1, AddressLine2, PinCode FROM studentinfo WHERE StudentID = :studentId";
+	String FIND_STUDENT_BY_STUDENTID = "SELECT FirstName, LastName, Standard, Division, AddressLine1, AddressLine2, PinCode FROM studentinfo WHERE StudentID = :studentId";
 	@Query(value = FIND_STUDENT_BY_STUDENTID, nativeQuery = true)
     List<Student> findStudentByStudentId(Integer studentId);
+	
+/*	String UPDATE_STUDENT = "UPDATE FirstName.LastName,Standard, Division, AddressLine1, AddressLine2, PinCode FROM studentinfo WHERE StudentID = :studentId ";
+	@Query(value = UPDATE_STUDENT, nativeQuery = true)*/
+	
 }

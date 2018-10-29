@@ -63,12 +63,19 @@ public class MainController
 		
 	@PostMapping(path="/loginTeacher")
 	@ResponseBody
-	public Teacher loginTeacher(@Param(value="userName")String loggedUser,@Param(value="password")String loggedPassword,@RequestBody Teacher teacherLogin){
-		System.out.println(teacherLogin.getUserName() + "," + teacherLogin.getPassword());
-		 loggedUser = teacherLogin.getUserName();
-		 loggedPassword = teacherLogin.getPassword();		
-		return teacherRepository.login(loggedUser, loggedPassword);
+	public Teacher loginTeacher(@RequestBody Teacher teacherLogin){
+		//System.out.println(teacherLogin.getUserName() + "," + teacherLogin.getPassword());
+		 String loggedUser = teacherLogin.getUserName();
+		 String loggedPassword = teacherLogin.getPassword();
+		 return teacherRepository.login(loggedUser, loggedPassword);
+		 
+		
 	}
+	public String loginError()
+	{
+		return "please enter valid userName or password";
+	}	
+	
 	 @GetMapping(path = "/getTeacherById/{id}")
 	 @ResponseBody
 	 public Teacher getTeacherById(@PathVariable(value = "id") Integer teacherId) {
