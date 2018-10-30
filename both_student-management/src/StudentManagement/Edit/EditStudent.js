@@ -5,7 +5,7 @@ import Button from '../Buttons/Button';
 import { Redirect } from 'react-router-dom';
 import ListOfStudents from '../ListDisplay/ListOfStudents';
 import './EditStudent.css'
-//import Axios from 'axios';
+
 class EditStudent extends React.Component
 {
     constructor(props)
@@ -148,6 +148,7 @@ class EditStudent extends React.Component
                 if(findResp.status === 200)
                 {
                     this.setState({handleEditcalled:!this.state.handleEditcalled});   
+                    //this.setState({referrer:'TeacherHome/ListOfStudents'})
                 }
                 else
                 {
@@ -159,6 +160,7 @@ class EditStudent extends React.Component
     handleBack()
     {
         this.setState({handlebackcalled:!this.state.handlebackcalled});
+        //this.setState({referrer:'TeacherHome/ListOfStudents'})
     }
     render()
     {
@@ -198,7 +200,7 @@ class EditStudent extends React.Component
 }
 const mapStateToProps = (state) => {
     return{
-        teachers:state.LoginReducer[0]
+        teachers:state.loginReducer[state.loginReducer.length-1]
     }
   }
 export default connect (mapStateToProps) (EditStudent);

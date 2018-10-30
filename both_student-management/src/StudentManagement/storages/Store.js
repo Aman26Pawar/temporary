@@ -3,6 +3,8 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from '../Reducers';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'
 
 export const history = createHistory();
 
@@ -21,15 +23,23 @@ if (process.env.NODE_ENV === 'development') {
     }
 }
 
+const persistConfig = {
+    key: 'root',
+    storage,
+  }
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
 const composedEnhancers = compose(
     applyMiddleware(...middleware),
     ...enhancers
 );
 
 const store = createStore(
-    connectRouter(history)(rootReducer),
+    connectRouter(history) (persistedReducer),
     initialState,
-    composedEnhancers
+    composedEnhancers,
 );
 
-export default store;
+let persistor = persistStore(store)
+
+export default {store,persistor}

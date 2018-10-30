@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Button from "../Buttons/Button.js";
-import AddNewStudent from '../AddUser/AddNewStudent'
-import Login from '../Login/LoginPage';
 import { Redirect } from 'react-router-dom';
-import ListOfStudents from '../ListDisplay/ListOfStudents.js';
 
 import './TeacherHome.css'
 
@@ -29,42 +26,32 @@ class TeacherHome extends React.Component
     handleListOfStudents()
     {  
         console.log("ListOfStudents hit....")
-        this.setState({listOfStudentsCalled:!this.state.listOfStudentsCalled})
-        //this.setState({referrer:'/TeacherHome/ListOfStudents'})
+        this.setState({referrer:'/TeacherHome/ListOfStudents'})
     }
     handleNewStudent()
     {
-        this.setState({addNewStudentCalled:!this.state.addNewStudentCalled})
-        //this.setState({referrer:'/AddNewStudent'})
+        this.setState({referrer:'/AddNewStudent'})
     }
     handleLogOut = async event =>
     {
+        console.log("logout clicked....localStorage has.." + localStorage.getItem('user'))
         const logout = this.props.teachers[0]
         this.props.dispatch({
             type:'LOGOUT',
             logout})
+        localStorage.removeItem('user');
+        console.log("logout executed....localStorage is " + localStorage.getItem('user'))
         this.setState({referrer:'/'})
     }
 
     render()
     {
         const{referrer}=this.state
-        const {listOfStudentsCalled}=this.state;
-        const {addNewStudentCalled}=this.state;
-        const {logOutCalled}=this.state;
         if(referrer)
         {
             return <Redirect to={referrer}></Redirect>
         }
-        if(listOfStudentsCalled){
-            return <ListOfStudents></ListOfStudents>
-        }
-        if(addNewStudentCalled){
-            return <AddNewStudent teacherId={this.props.teachers.teacherID}></AddNewStudent>
-        }
-        if(logOutCalled){
-            return <Login></Login>
-        }
+
         return(
             <div id ="TeacherHomeID" className="TeacherHome ">
                 <div className="right">  
@@ -86,7 +73,7 @@ class TeacherHome extends React.Component
 }
 const mapStateToProps = (state) => {
     return{
-        teachers:state.LoginReducer[0]
+        teachers:state.loginReducer[state.loginReducer.length-1]
     }
 }
 export default connect (mapStateToProps) (TeacherHome);

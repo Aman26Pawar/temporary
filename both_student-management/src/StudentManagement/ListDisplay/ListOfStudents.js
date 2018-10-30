@@ -8,7 +8,6 @@ import Axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css' ;
 import Dialog from 'react-bootstrap-dialog'
-import TeacherHome from '../TeacherHome/TeacherHome';
 import './ListOfStudents.css'
 
 class ListOfStudents extends React.Component
@@ -23,13 +22,14 @@ class ListOfStudents extends React.Component
             handleBackCalled:false,
             teacherId: this.props.teachers.teacherID,
             studentToEdit:{},
-            referrer:false,
+            referrer:null,
             studentData:{}
         }
     }
     handleBack()
     {
-        this.setState({handleBackCalled:!this.state.handleBackCalled});
+        //this.setState({handleBackCalled:!this.state.handleBackCalled});
+        this.setState({referrer:'/TeacherHome'})
     }
     componentWillMount()
     {
@@ -56,7 +56,7 @@ class ListOfStudents extends React.Component
                  .then((dataById={})=>{
             this.setState({studentToEdit:dataById})
             this.setState({studentData:this.state.studentToEdit.data});
-            this.setState({referrer : !this.state.referrer})
+            this.setState({editClicked : !this.state.referrer})
             })
     }
     handleDeleteClicked(student)
@@ -90,14 +90,18 @@ class ListOfStudents extends React.Component
     }
     render()
     {
-      
         const {referrer} = this.state;
-        const {handleBackCalled}=this.state;
-        if (referrer) 
-            return (<Redirect to={referrer} />,<EditStudent studentToUpdate={this.state.studentData}/>);
-        if(handleBackCalled)
-            return <TeacherHome></TeacherHome>
-        return(
+        const {editClicked} = this.state;
+
+        if(referrer)
+        {
+            return (<Redirect to = {referrer}/>)
+        }
+        if (editClicked) 
+        {
+            return (<Redirect to={editClicked} />,<EditStudent studentToUpdate={this.state.studentData}/>);
+        }
+            return(
             <div className="StudentList">
             <div>
                 <Dialog ref={(el) => { this.dialog = el }} />
@@ -143,7 +147,7 @@ class ListOfStudents extends React.Component
 }
 const mapStateToProps = (state) => {
     return{
-        teachers:state.LoginReducer[0]
+        teachers:state.loginReducer[state.loginReducer.length-1]
     }
   }
 export default connect (mapStateToProps) (ListOfStudents);

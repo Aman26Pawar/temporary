@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Button from '../Buttons/Button.js';
 import { Redirect } from 'react-router-dom';
 import {FormErrors} from '../ErrorHandling/FormErrors.js'
-import TeacherHome from '../TeacherHome/TeacherHome';
 import '../Buttons/Button.css';
 import './AddNewStudent.css'
 
@@ -21,7 +20,7 @@ class AddNewStudent extends React.Component
                     AddressLine1:" ",
                     AddressLine2:" ",
                     pincode:"",
-                    teacherId: this.props.teacherId,
+                    teacherId: this.props.teachers.teacherID,
                     firstNameValid:false,
                     lastNameValid:false,
                     divisionValid: false,
@@ -152,14 +151,13 @@ class AddNewStudent extends React.Component
     }
     handleBack()
     {
-        this.setState({backCalled:!this.state.backCalled})
+        this.setState({referrer:'/TeacherHome'})
     }
     render()
     {
         const {referrer} = this.state;
         if (referrer) return (<Redirect to={referrer} />)
-        const{backCalled}=this.state;
-        if(backCalled) return (<TeacherHome></TeacherHome>)
+        
         return(
             <div className="Add-Student">
                 <div>
@@ -204,9 +202,9 @@ class AddNewStudent extends React.Component
     }
   
 }
-/*const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return{
-        teachers:state.LoginReducer[0]
+        teachers:state.loginReducer[state.loginReducer.length-1]
     }
-}*/
-export default AddNewStudent;
+}
+export default connect (mapStateToProps) (AddNewStudent);
