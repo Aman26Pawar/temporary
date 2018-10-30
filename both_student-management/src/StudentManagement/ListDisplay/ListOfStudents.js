@@ -6,7 +6,7 @@ import Button from '../Buttons/Button.js';
 import EditStudent from '../Edit/EditStudent.js';
 import Axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css' ;
+import './confirmAlert.css' ;
 import Dialog from 'react-bootstrap-dialog'
 import './ListOfStudents.css'
 

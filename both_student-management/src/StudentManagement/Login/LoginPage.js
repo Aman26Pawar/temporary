@@ -34,13 +34,15 @@ class Login extends React.Component
             fetch('http://localhost:8080/loginTeacher',{
                 method:'POST',
                 headers: {
-                 'content-type': 'application/json'
+                 'content-type': 'application/json',
+                 Authentication : Response,
                 },
                 body:JSON.stringify(loggedTeacher)
              }) 
          .then(res=>res.json())
          .then(row => {
-                if(row !== "")
+                console.log(row)
+                if(row.status !== 500)
                 {
                     this.storeCredentials(row)
                 }

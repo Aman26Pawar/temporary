@@ -10,10 +10,8 @@
       }
       .right {
         position: sticky;
-        right: 10px;
-        width: 280px;
+        width: 290px;
         height: 40px;
-        padding: 10px;
         color:greenyellow;
       }
       .center {
@@ -135,10 +133,10 @@
       } 
       .right {
         position: absolute;
-        right: 100px;
+        right: 250px;
         width: 300px;
         padding: 25px;
-        color: red;
+        color:gold;
       }
       .center {
         padding: 50px 0;

@@ -1,16 +1,10 @@
 package com.example.demo.controller;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.List;
 import javax.validation.Valid;
 
-import org.hibernate.result.ResultSetOutput;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,18 +57,13 @@ public class MainController
 		
 	@PostMapping(path="/loginTeacher")
 	@ResponseBody
-	public Teacher loginTeacher(@RequestBody Teacher teacherLogin){
-		//System.out.println(teacherLogin.getUserName() + "," + teacherLogin.getPassword());
+	public Teacher  loginTeacher(@RequestBody Teacher teacherLogin){
+		 //System.out.println("Teacher trying to login is " + teacherLogin.getUserName() + "," + teacherLogin.getPassword());
 		 String loggedUser = teacherLogin.getUserName();
 		 String loggedPassword = teacherLogin.getPassword();
 		 return teacherRepository.login(loggedUser, loggedPassword);
-		 
-		
 	}
-	public String loginError()
-	{
-		return "please enter valid userName or password";
-	}	
+	
 	
 	 @GetMapping(path = "/getTeacherById/{id}")
 	 @ResponseBody

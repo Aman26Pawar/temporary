@@ -175,7 +175,7 @@ class EditStudent extends React.Component
             return <ListOfStudents></ListOfStudents>
         return(
             <div className="Edit-Student">
-            <div><h2> Student To be edit:  {this.state.FirstName} </h2></div> 
+            <div><h2> Student To be edit:  {this.state.FirstName} {this.state.LastName}</h2></div> 
                 <form>
                     <InputBox id="fname" inputType="text"  placeholder="First Name"    value={this.state.FirstName}    
                               handleChanges={this.handleFirstNameChange}    Name="firstName"   error={this.state.ErrfirstName} /><br/>
