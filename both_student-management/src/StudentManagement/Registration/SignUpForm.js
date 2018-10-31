@@ -18,6 +18,7 @@ class SignUpForm extends Component {
         PasswordValid:false,
         formErrors:{FirstName:'',LastName:'',userNm:'',passWord:''},
         formValid:false,
+        AddFormError:'',
         referrer:null
     }
     this.handleUserInput = this.handleUserInput.bind(this)
@@ -36,7 +37,7 @@ validateField(fieldName,value){
   let FirstNmValid = this.state.FirstNmValid;
   let LastNameValid = this.state.LastNameValid;
   let UserNameValid = this.state.UserNameValid;
-  let PasswordValid = this.state.passwordValid;
+  let PasswordValid = this.state.PasswordValid;
 
     switch(fieldName) {
       case 'First Name':
@@ -70,7 +71,15 @@ validateField(fieldName,value){
 }
 
 validateForm() {
-  this.setState({formValid: this.state.FirstNmValid && this.state.LastNameValid && this.state.UserNameValid &&this.state.PasswordValid});
+  this.setState({formValid: this.state.FirstNmValid  && this.state.LastNameValid  && this.state.UserNameValid  &&this.state.PasswordValid});
+  if(this.state.formValid !==true)
+  {
+    this.setState({AddFormError : "please fill complete details..."})
+  }
+  else
+  {
+    this.setState({AddFormError:''})
+  }
 }
 errorClass(error) {
   return(error.length === 0 ? '' : 'has-error');
@@ -112,7 +121,7 @@ handleBack()
                             onChange={this.handleUserInput}/><br/><br/> 
                     </div>
                     <Button buttonName="Home" handleOnClick={this.handleBack}/>
-                    <Button buttonName="Sign Up" handleOnClick={this.props.onSubmitClick} disabled={!this.state.formValid}></Button>                   
+                    <Button buttonName="Sign Up" handleOnClick={this.props.onSubmitClick} disabled={!this.state.formValid} error={this.state.AddFormError}></Button>                   
                 </form>
             </div>
         )

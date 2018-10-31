@@ -23,14 +23,14 @@ class AddNewStudent extends React.Component
                     teacherId: this.props.teachers.teacherID,
                     firstNameValid:false,
                     lastNameValid:false,
-                    divisionValid: false,
+                    classNameValid:false,
+                    divisionNmValid: false,
                     addressLine1Valid:false,
                     pincodeValid:false,
-                    ErrfirstName:" ",ErrlastName:" ",ErrClass:"",Errdivision:" ",
-                    ErraddressLine1:" ",Errpincode:"",ErrButton:"",AddFormError:'',
+                    formValid:false,
+                    AddFormError:'',
                     formErrors:{FirstName:'',LastName:'',Class:'',Division:'',Address:'',PINcode:''},
-                    referrer:null,
-                    backCalled:false
+                    referrer:null
                     }
                     this.handleAddStudent=this.handleAddStudent.bind(this);
                     this.handleUserInput = this.handleUserInput.bind(this);
@@ -55,12 +55,12 @@ class AddNewStudent extends React.Component
         switch(fieldName) 
         {
             case 'FirstName':
-                FirstNmValid = value.match(/^[a-zA-Z'.-]+$/);
+                FirstNmValid = value.match(/^[a-zA-Z]+$/);
                 fieldValidationErrors.FirstName = FirstNmValid ? '' : ' is invalid';
             break;
             
             case 'LastName':
-                LastNmValid = value.match(/^[a-zA-Z'.-]+$/);
+                LastNmValid = value.match(/^[a-zA-Z]+$/);
                 fieldValidationErrors.LastName = LastNmValid ? '' : ' is invalid';
             break;
             
@@ -75,13 +75,13 @@ class AddNewStudent extends React.Component
             break;
 
             case 'AddressLine1':
-                addressValid = value.length <= 22;
+                addressValid = value.length <= 100;
                 fieldValidationErrors.Address = addressValid ? '' : ' Too long use AddressLine2';
             break;
 
             case 'PIN':
-                pinValid = value.length === 6 && value.match(/[0-9]$/) ;
-                fieldValidationErrors.PINcode= pinValid ? '': 'Pin code should be 6 digits';
+                pinValid = value.length === 6 && value.match(/^[0-9]+$/) ;
+                fieldValidationErrors.PINcode= pinValid ? '': 'should be 6 digits only';
             break;
             
             default:
@@ -98,9 +98,9 @@ class AddNewStudent extends React.Component
     }
     validateForm() 
     {
-        this.setState({formValid: this.state.firstNameValid && this.state.lastNameValid &&
-             this.state.classNameValid &&this.state.divisionNmValid && this.state.addressLine1Valid &&
-             this.state.pincodeValid});    
+        this.setState({formValid: (this.state.firstNameValid  && this.state.lastNameValid  &&
+             this.state.classNameValid  &&this.state.divisionNmValid && this.state.addressLine1Valid &&
+             this.state.pincodeValid.length===1)});    
         if(this.state.formValid !== true)
         {
             this.setState({AddFormError:'please fill complete form'})

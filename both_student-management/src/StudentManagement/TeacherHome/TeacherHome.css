@@ -100,7 +100,7 @@
 
 @media only screen and (min-width:1200px) and (max-width:1400px){
   .TeacherHome{
-      height:460px;
+      height:510px;
       width: 100%;
       background-image: url("teacherHome2.jpg");
       background-size: 1365px 540px; 

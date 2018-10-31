@@ -35,20 +35,21 @@ class Login extends React.Component
                 method:'POST',
                 headers: {
                  'content-type': 'application/json',
-                 Authentication : Response,
+                 'Authentication' : Response,
                 },
                 body:JSON.stringify(loggedTeacher)
              }) 
-         .then(res=>res.json())
+         .then(res=>res.text())
          .then(row => {
                 console.log(row)
-                if(row.status !== 500)
+                if(row !== "")
                 {
-                    this.storeCredentials(row)
+                    this.storeCredentials(JSON.parse(row))
                 }
                 else
                 {
                     alert("Invalid UserName or Password")
+                    window.location.reload()
                 }
              })
         }
@@ -66,9 +67,7 @@ class Login extends React.Component
             const loggedInData = dataTobeStore
             this.props.dispatch({
                     type:'ADD_LOGIN',
-                    loggedInData})
-            window.localStorage.setItem('user',loggedInData)
-            console.log(localStorage.getItem('user'))
+                    loggedInData})  
             this.setState({referrer:'/TeacherHome'})
         }
     }

@@ -1,6 +1,6 @@
   @media only screen and (max-width:400px){
     .Edit-Student{
-      height:325px;
+      height:400px;
       width: 100%;
       overflow-y: scroll;
     }
@@ -16,14 +16,24 @@
     
 }
 
-@media only screen and (min-width:700px) and (max-width:1400px){
+@media only screen and (min-width:700px) and (max-width:1200px){
   .Edit-Student{
-    height:500px;
+    height:600px;
     width: 100%;
     overflow-y: scroll;
   }
     
 }
+
+@media only screen and (min-width:1200px) and (max-width:1400px){
+  .Edit-Student{
+    height:520px;
+    width: 100%;
+    overflow-y: scroll;
+  }
+    
+}
+
 
 @media only screen and (min-width:1400px){
   .Edit-Student{

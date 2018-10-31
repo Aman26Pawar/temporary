@@ -34,13 +34,10 @@ class TeacherHome extends React.Component
     }
     handleLogOut = async event =>
     {
-        console.log("logout clicked....localStorage has.." + localStorage.getItem('user'))
         const logout = this.props.teachers[0]
         this.props.dispatch({
             type:'LOGOUT',
             logout})
-        localStorage.removeItem('user');
-        console.log("logout executed....localStorage is " + localStorage.getItem('user'))
         this.setState({referrer:'/'})
     }
 
