@@ -27,6 +27,7 @@
         color:black;
         text-align: center;
         padding: 0px;
+        box-sizing: border-box;
     }
 }
 
@@ -35,7 +36,7 @@
 @media only screen and (min-width: 700px) and (max-width:1400px){
     .App-Footer
     {
-        position: sticky;
+        position: absolute;
         left: 0;
         right:0;
         bottom: 0;
@@ -45,6 +46,7 @@
         color:black;
         text-align: center;
         padding: 0px;
+        box-sizing: border-box;
     }
 }
 
