@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @RestController
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="*")
 public class MainController
 {
 	@Autowired
@@ -58,10 +58,11 @@ public class MainController
 	@PostMapping(path="/loginTeacher")
 	@ResponseBody
 	public Teacher  loginTeacher(@RequestBody Teacher teacherLogin){
-		 //System.out.println("Teacher trying to login is " + teacherLogin.getUserName() + "," + teacherLogin.getPassword());
 		 String loggedUser = teacherLogin.getUserName();
 		 String loggedPassword = teacherLogin.getPassword();
+		 System.out.println(teacherRepository.login(loggedUser, loggedPassword));
 		 return teacherRepository.login(loggedUser, loggedPassword);
+		
 	}
 	
 	

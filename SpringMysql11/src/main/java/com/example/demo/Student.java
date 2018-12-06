@@ -15,6 +15,10 @@ import javax.persistence.Table;
 })*/
 public class Student implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5438296987290165775L;
 	@Id
 	@GeneratedValue
 	@Column(name="StudentID")
